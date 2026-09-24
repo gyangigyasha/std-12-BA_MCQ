@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="gu" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ધોરણ ૧૨ B.A. MCQ ક્વિઝ ગેમ - Tr. HEMANT SIR</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81'
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Hind Vadodara', sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .bg-watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 85vw;
+      height: 85vw;
+      max-width: 520px;
+      max-height: 520px;
+      opacity: 0.045;
+      pointer-events: none;
+      z-index: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      transition: opacity 0.3s ease;
+    }
+    
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(156, 163, 175, 0.4);
+      border-radius: 9999px;
+    }
+    
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    .pulse-card {
+      animation: pulse-subtle 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300 relative selection:bg-indigo-500 selection:text-white">
+
+  <!-- Background Watermark -->
+  <div id="appWatermark" class="bg-watermark"></div>
+
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 shadow-sm transition-colors">
+    <div class="max-w-6xl mx-auto px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2">
+      
+      <!-- Brand & Creator -->
+      <div class="flex items-center gap-2 sm:gap-3 cursor-pointer" onclick="navigateTo('home')">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-200 dark:shadow-none font-bold text-lg">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <h1 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-none">B.A. માસ્ટર ક્વિઝ</h1>
+            <!-- Creator Secret 5-Tap Badge -->
+            <span id="teacherSecretBadge" onclick="handleSecretCreatorTap(event)" 
+              class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-950 dark:text-indigo-300 dark:border-indigo-800 cursor-pointer select-none active:scale-95 transition" 
+              title="માર્ગદર્શક: Tr. HEMANT SIR (૫ વાર ટેપ કરો)">
+              <i class="fa-solid fa-chalkboard-user mr-1 text-indigo-500"></i> Tr. HEMANT SIR
+            </span>
+          </div>
+          <p class="text-[11px] sm:text-xs text-indigo-600 dark:text-indigo-400 font-medium leading-tight">ધોરણ ૧૨ વાણિજ્ય વ્યવસ્થા અને સંચાલન</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Badges -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Top 10 Leaderboard Button -->
+        <button onclick="openLeaderboardModal()" class="px-2.5 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-xs font-bold flex items-center gap-1 transition shadow-sm" title="ટોપ ૧૦ લીડરબોર્ડ">
+          <i class="fa-solid fa-trophy text-amber-500"></i>
+          <span class="hidden sm:inline">ટોપ ૧૦</span>
+        </button>
+
+        <!-- Points Display with Reset Trigger -->
+        <div onclick="openResetPointsModal()" class="px-2.5 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-slate-700 text-xs font-bold flex items-center gap-1.5 cursor-pointer transition" title="પોઈન્ટ રીસેટ કરવા ક્લિક કરો">
+          <i class="fa-solid fa-star text-amber-500"></i>
+          <span id="navScorePoints">૦</span>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <button onclick="toggleDarkMode()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300 transition flex items-center justify-center text-sm" title="ડાર્ક/લાઈટ મોડ">
+          <i class="fa-solid fa-moon dark:hidden"></i>
+          <i class="fa-solid fa-sun hidden dark:inline text-amber-400"></i>
+        </button>
+
+        <!-- Teacher / Admin Secure Lock Button (Hidden by default, unlocked by secret trigger) -->
+        <button id="teacherAdminNavBtn" onclick="promptTeacherLogin()" class="hidden w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition items-center justify-center text-sm shadow-md" title="શિક્ષક નિયંત્રણ પેનલ">
+          <i class="fa-solid fa-user-shield"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-6xl w-full mx-auto p-3 sm:p-4 md:p-6 relative z-10">
+    
+    <!-- ==================== HOME VIEW ==================== -->
+    <div id="viewHome" class="space-y-6">
+      
+      <!-- Student Banner & Live Stats -->
+      <div class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-brand-600 rounded-2xl p-4 sm:p-6 text-white shadow-xl relative overflow-hidden">
+        <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 relative z-10">
+          
+          <div>
+            <div class="flex items-center gap-2 mb-1 flex-wrap">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-white/20 text-white backdrop-blur-sm">
+                <i class="fa-solid fa-user-graduate mr-1"></i> વિદ્યાર્થી પ્રોફાઇલ
+              </span>
+              <span id="homeLiveTrackerBadge" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-400/30 text-emerald-100 border border-emerald-300/30">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping mr-1.5"></span>
+                <span id="liveStudentCountText">૧૨+ વિદ્યાર્થીઓએ ટેસ્ટ આપી</span>
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <h2 class="text-xl sm:text-2xl font-bold" id="studentGreetingName">નમસ્તે, વિદ્યાર્થી!</h2>
+              <button onclick="promptEditStudentName()" class="text-white/80 hover:text-white text-xs px-2 py-1 rounded bg-white/15 hover:bg-white/25 transition">
+                <i class="fa-solid fa-pencil"></i> નામ બદલો
+              </button>
+            </div>
+            <p class="text-xs sm:text-sm text-indigo-100 mt-1 max-w-xl">
+              વાણિજ્ય વ્યવસ્થા અને સંચાલનના તમામ ૧૨ પ્રકરણોના બોર્ડ આધારિત પ્રશ્નો તૈયાર કરો અને ૮૦%+ મેળવી ડિજિટલ સર્ટિફિકેટ મેળવો.
+            </p>
+          </div>
+
+          <!-- Quick Action Buttons on Banner -->
+          <div class="flex items-center gap-2 flex-wrap">
+            <button onclick="openResetPointsModal()" class="px-3 py-2 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/20 border border-white/20 text-white transition flex items-center gap-1.5">
+              <i class="fa-solid fa-rotate-left"></i> સ્કોર રીસેટ
+            </button>
+            <button onclick="openLeaderboardModal()" class="px-3 py-2 rounded-xl text-xs font-bold bg-amber-400 hover:bg-amber-300 text-slate-900 transition flex items-center gap-1.5 shadow-md">
+              <i class="fa-solid fa-trophy"></i> લીડરબોર્ડ
+            </button>
+            <button onclick="startMixedQuiz()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-indigo-700 hover:bg-indigo-50 transition flex items-center gap-1.5 shadow-md">
+              <i class="fa-solid fa-bolt"></i> મિશ્ર પ્રશ્નો (20)
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Quick Summary Mini Cards -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-3 mt-4 pt-4 border-t border-white/15 text-center">
+          <div class="bg-black/10 rounded-xl p-2">
+            <p class="text-[11px] text-indigo-200">કુલ પોઈન્ટ્સ</p>
+            <p class="text-base sm:text-lg font-bold" id="statTotalScore">૦</p>
+          </div>
+          <div class="bg-black/10 rounded-xl p-2">
+            <p class="text-[11px] text-indigo-200">ઉપલબ્ધ પ્રશ્નો</p>
+            <p class="text-base sm:text-lg font-bold" id="statTotalQuestions">૧૨૨</p>
+          </div>
+          <div class="bg-black/10 rounded-xl p-2">
+            <p class="text-[11px] text-indigo-200">શ્રેષ્ઠ સ્ટ્રીક</p>
+            <p class="text-base sm:text-lg font-bold" id="statBestStreak">૦ 🔥</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Board Mock Test Hero Card -->
+      <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 rounded-2xl p-4 sm:p-5 text-white shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-2xl shrink-0">
+            <i class="fa-solid fa-file-shield"></i>
+          </div>
+          <div>
+            <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-black/20 uppercase tracking-wider mb-0.5">Board Special</span>
+            <h3 class="text-lg font-bold">બોર્ડ સ્પેશિયલ મોક ટેસ્ટ (૨૫ પ્રશ્નો)</h3>
+            <p class="text-xs text-amber-100">બોર્ડ પરીક્ષાના વાતાવરણ જેવી સમયબદ્ધ ટેસ્ટ અને ત્વરિત વિશ્લેષણ</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button onclick="openMockSelectModal()" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-white text-orange-600 hover:bg-orange-50 font-bold text-xs sm:text-sm shadow-md transition text-center">
+            <i class="fa-solid fa-list-check mr-1.5"></i> પેપર પસંદ કરો
+          </button>
+          <button onclick="startTimedMockTest(25)" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-900 text-white font-bold text-xs sm:text-sm shadow-md transition text-center">
+            <i class="fa-solid fa-play mr-1.5"></i> સીધી શરૂ કરો
+          </button>
+        </div>
+      </div>
+
+      <!-- Chapter Grid Section -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
+              <i class="fa-solid fa-book-open text-indigo-600"></i> પ્રકરણ મુજબ MCQ કસોટી
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">તમારા અભ્યાસક્રમના તમામ ૧૨ પ્રકરણોની વિષયવાર પ્રેક્ટિસ કરો</p>
+          </div>
+        </div>
+
+        <div id="chapterCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <!-- Dynamically populated chapters -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==================== QUIZ PLAY VIEW ==================== -->
+    <div id="viewQuiz" class="hidden space-y-4 max-w-3xl mx-auto">
+      
+      <!-- Quiz Status Header -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-3 sm:p-4 shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-between gap-2 flex-wrap">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="quizBadgeCategory" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">પ્રકરણ ૧</span>
+            <span id="quizBadgeStreak" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300">
+              <i class="fa-solid fa-fire text-amber-500 mr-1"></i><span id="quizStreakCount">૦</span>
+            </span>
+          </div>
+          <p id="quizQuestionCounter" class="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">પ્રશ્ન ૧ / ૧૦</p>
+        </div>
+
+        <!-- Timer and Exit -->
+        <div class="flex items-center gap-3">
+          <div id="quizTimerWrapper" class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-100 dark:bg-slate-700 font-bold text-sm text-slate-700 dark:text-slate-200">
+            <i class="fa-regular fa-clock text-indigo-500"></i>
+            <span id="quizTimerText">૩૦s</span>
+          </div>
+          <button onclick="confirmExitQuiz()" class="text-slate-400 hover:text-rose-500 p-2 text-sm transition" title="કસોટી છોડો">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+        <div id="quizProgressBar" class="h-full bg-gradient-to-r from-indigo-500 to-brand-500 transition-all duration-300" style="width: 10%"></div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl border border-slate-200 dark:border-slate-700 relative">
+        
+        <!-- Lifelines Row -->
+        <div class="flex items-center justify-end gap-2 mb-4">
+          <button id="lifeline5050" onclick="useLifeline5050()" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-indigo-50 hover:text-indigo-600 transition flex items-center gap-1">
+            <i class="fa-solid fa-scale-unbalanced"></i> 50:50
+          </button>
+          <button id="lifelineSkip" onclick="useLifelineSkip()" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-indigo-50 hover:text-indigo-600 transition flex items-center gap-1">
+            <i class="fa-solid fa-forward"></i> સ્કિપ
+          </button>
+        </div>
+
+        <h3 id="quizQuestionText" class="text-base sm:text-lg md:text-xl font-bold text-slate-900 dark:text-white mb-6 leading-relaxed">
+          પ્રશ્ન અહીં લોડ થશે...
+        </h3>
+
+        <!-- Options Container -->
+        <div id="quizOptionsContainer" class="space-y-3">
+          <!-- Dynamically generated option buttons -->
+        </div>
+
+        <!-- Feedback & Explanation Box -->
+        <div id="quizExplanationBox" class="mt-5 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 hidden transition-all">
+          <div class="flex items-start gap-2.5">
+            <i id="explanationIcon" class="fa-solid fa-circle-info text-indigo-500 mt-0.5"></i>
+            <div>
+              <p id="explanationTitle" class="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wide">સમજૂતી</p>
+              <p id="explanationBody" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-0.5">વિગતવાર સમજૂતી અહીં આવશે.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Button -->
+        <div class="mt-6 flex justify-end">
+          <button id="btnQuizNext" onclick="proceedToNextQuestion()" disabled class="px-5 py-2.5 rounded-xl font-bold text-sm bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-40 disabled:pointer-events-none transition shadow-md shadow-indigo-200 dark:shadow-none flex items-center gap-2">
+            <span>આગળનો પ્રશ્ન</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ==================== RESULT VIEW ==================== -->
+    <div id="viewResult" class="hidden space-y-6 max-w-2xl mx-auto text-center py-4">
+      
+      <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+        
+        <div id="resultTrophyBadge" class="w-20 h-20 rounded-full bg-amber-100 text-amber-500 flex items-center justify-center text-4xl mx-auto mb-4 shadow-inner">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+
+        <h2 id="resultHeading" class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">અભિનંદન! શાનદાર પરિણામ!</h2>
+        <p id="resultSubtext" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">તમે ધોરણ ૧૨ B.A. ની કસોટી સફળતાપૂર્વક પૂર્ણ કરી છે.</p>
+
+        <!-- Score Breakdown Cards -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-3 my-6">
+          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+            <p class="text-xs text-slate-500 dark:text-slate-400">સાચા જવાબો</p>
+            <p id="resCorrectScore" class="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">0/0</p>
+          </div>
+          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+            <p class="text-xs text-slate-500 dark:text-slate-400">ટકાવારી</p>
+            <p id="resPercentage" class="text-xl sm:text-2xl font-black text-indigo-600 dark:text-indigo-400">0%</p>
+          </div>
+          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700">
+            <p class="text-xs text-slate-500 dark:text-slate-400">મેળવેલ પોઈન્ટ્સ</p>
+            <p id="resEarnedPoints" class="text-xl sm:text-2xl font-black text-amber-500">+0</p>
+          </div>
+        </div>
+
+        <!-- Certificate Trigger Button (if >= 80%) -->
+        <div id="certificateClaimBox" class="mb-6 hidden">
+          <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-amber-100 dark:from-amber-950/40 dark:to-amber-900/30 border border-amber-300 dark:border-amber-700/50 text-left flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-award text-amber-600 text-3xl"></i>
+              <div>
+                <h4 class="font-bold text-sm text-slate-900 dark:text-white">મેરિટ સર્ટિફિકેટ મેળવો!</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300">તમે ૮૦%+ મેળવી ઉત્કૃષ્ટ પ્રદર્શન કર્યું છે.</p>
+              </div>
+            </div>
+            <button onclick="openCertificateModal()" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white shadow transition shrink-0">
+              સર્ટિફિકેટ જુઓ
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
+          <button onclick="restartCurrentQuiz()" class="px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition flex items-center gap-1.5">
+            <i class="fa-solid fa-rotate-right"></i> ફરીથી રમો
+          </button>
+          <button onclick="openLeaderboardModal()" class="px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-amber-500 hover:bg-amber-600 text-white shadow-md transition flex items-center gap-1.5">
+            <i class="fa-solid fa-trophy"></i> લીડરબોર્ડ જુઓ
+          </button>
+          <button onclick="navigateTo('home')" class="px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600 transition flex items-center gap-1.5">
+            <i class="fa-solid fa-house"></i> હોમ પેજ
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ==================== TEACHER ADMIN VIEW ==================== -->
+    <div id="viewAdmin" class="hidden space-y-5">
+      
+      <!-- Admin Header Bar -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 sm:p-5 shadow-md border border-slate-200 dark:border-slate-700 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300">
+              <i class="fa-solid fa-shield-halved mr-1"></i> સુરક્ષિત એડમિન મોડ
+            </span>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">શિક્ષક નિયંત્રણ કક્ષ (Tr. HEMANT SIR)</h2>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">પ્રશ્નોનું સંચાલન, મોક ટેસ્ટ પેપર્સ, વિદ્યાર્થી રિપોર્ટ્સ અને બેકગ્રાઉન્ડ સેટિંગ્સ</p>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap">
+          <button onclick="openExcelModal()" class="px-3 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-file-excel"></i> Excel થી અપલોડ
+          </button>
+          <button onclick="openMockUploadModal()" class="px-3 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-file-circle-plus"></i> મોક ટેસ્ટ Excel
+          </button>
+          <button onclick="openBgPhotoModal()" class="px-3 py-2 rounded-xl text-xs font-bold bg-violet-600 hover:bg-violet-700 text-white shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-image"></i> ફોટો વોટરમાર્ક
+          </button>
+          <button onclick="changeAdminPinModal()" class="px-3 py-2 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition flex items-center gap-1">
+            <i class="fa-solid fa-key"></i> PIN બદલો
+          </button>
+          <button onclick="navigateTo('home')" class="px-3 py-2 rounded-xl text-xs font-bold bg-rose-50 text-rose-600 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-300 transition flex items-center gap-1">
+            <i class="fa-solid fa-door-open"></i> બહાર નીકળો
+          </button>
+        </div>
+      </div>
+
+      <!-- Admin Tabs Navigation -->
+      <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 pb-2 overflow-x-auto custom-scroll">
+        <button id="adminTabBtnQuestions" onclick="switchAdminTab('questions')" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm bg-indigo-600 text-white transition shrink-0">
+          <i class="fa-solid fa-list-ol mr-1.5"></i> પ્રશ્ન સંગ્રહ (<span id="adminTotalQuestionsCount">૧૨૨</span>)
+        </button>
+        <button id="adminTabBtnMock" onclick="switchAdminTab('mock')" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0">
+          <i class="fa-solid fa-file-lines mr-1.5"></i> બોર્ડ મોક ટેસ્ટ પેપર્સ
+        </button>
+        <button id="adminTabBtnReports" onclick="switchAdminTab('reports')" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0">
+          <i class="fa-solid fa-users mr-1.5"></i> વિદ્યાર્થીઓનો લાઈવ રિપોર્ટ
+        </button>
+      </div>
+
+      <!-- TAB 1: Questions Management -->
+      <div id="adminTabQuestions" class="space-y-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <select id="adminFilterChapter" onchange="renderAdminQuestionsTable()" class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-200 focus:outline-none">
+              <option value="all">તમામ પ્રકરણો</option>
+              <option value="1">પ્રકરણ ૧: સંચાલનનું સ્વરૂપ અને મહત્વ</option>
+              <option value="2">પ્રકરણ ૨: સંચાલનના સિદ્ધાંતો</option>
+              <option value="3">પ્રકરણ ૩: આયોજન</option>
+              <option value="4">પ્રકરણ ૪: વ્યવસ્થાતંત્ર</option>
+              <option value="5">પ્રકરણ ૫: કર્મચારી વ્યવસ્થા</option>
+              <option value="6">પ્રકરણ ૬: દોરવણી</option>
+              <option value="7">પ્રકરણ ૭: અંકુશ</option>
+              <option value="8">પ્રકરણ ૮: નાણાકીય સંચાલન</option>
+              <option value="9">પ્રકરણ ૯: નાણાકીય બજાર</option>
+              <option value="10">પ્રકરણ ૧૦: બજાર પ્રક્રિયા સંચાલન</option>
+              <option value="11">પ્રકરણ ૧૧: ગ્રાહક સુરક્ષા</option>
+              <option value="12">પ્રકરણ ૧૨: ધંધાકીય પર્યાવરણ</option>
+            </select>
+            <input type="text" id="adminSearchInput" oninput="renderAdminQuestionsTable()" placeholder="પ્રશ્ન શોધો..." class="px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-200 focus:outline-none w-full sm:w-48">
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+            <button onclick="exportQuestionsJson()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition">
+              <i class="fa-solid fa-download mr-1"></i> Export JSON
+            </button>
+            <button onclick="resetToDefault122Questions()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-50 text-rose-600 hover:bg-rose-100 transition" title="મૂળ ૧૨૨ પ્રશ્નો પુનઃસ્થાપિત કરો">
+              <i class="fa-solid fa-rotate-left mr-1"></i> ડિફોલ્ટ ૧૨૨
+            </button>
+          </div>
+        </div>
+
+        <!-- Questions List Table -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+          <div class="overflow-x-auto custom-scroll">
+            <table class="w-full text-left text-xs text-slate-700 dark:text-slate-300">
+              <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400 font-bold border-b border-slate-200 dark:border-slate-700">
+                <tr>
+                  <th class="py-3 px-3 w-12 text-center">ક્રમ</th>
+                  <th class="py-3 px-3 w-20">પ્રકરણ</th>
+                  <th class="py-3 px-4">પ્રશ્ન</th>
+                  <th class="py-3 px-4">સાચો જવાબ</th>
+                  <th class="py-3 px-3 text-center w-24">ક્રિયા</th>
+                </tr>
+              </thead>
+              <tbody id="adminQuestionsTableBody" class="divide-y divide-slate-200 dark:divide-slate-700">
+                <!-- Dynamically populated rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Dedicated Mock Papers -->
+      <div id="adminTabMock" class="hidden space-y-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">અપલોડ થયેલા મોક ટેસ્ટ પેપર્સ</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">વિદ્યાર્થીઓ માટે અલગથી અપલોડ કરેલ સ્પેશિયલ બોર્ડ પેપર્સ</p>
+          </div>
+          <button onclick="openMockUploadModal()" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white shadow transition">
+            <i class="fa-solid fa-plus mr-1"></i> નવું પેપર ઉમેરો
+          </button>
+        </div>
+
+        <div id="adminMockPapersList" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <!-- Dynamically populated mock papers -->
+        </div>
+      </div>
+
+      <!-- TAB 3: Student Live Reports -->
+      <div id="adminTabReports" class="hidden space-y-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">કુલ કસોટીઓ રમાઈ</p>
+            <p id="repTotalSessions" class="text-lg font-bold text-indigo-600">૦</p>
+          </div>
+          <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">અનોખા વિદ્યાર્થીઓ</p>
+            <p id="repUniqueStudents" class="text-lg font-bold text-emerald-600">૦</p>
+          </div>
+          <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">સરેરાશ સફળતા %</p>
+            <p id="repAverageScore" class="text-lg font-bold text-amber-500">૦%</p>
+          </div>
+          <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-center justify-center">
+            <button onclick="exportStudentReportsCsv()" class="w-full py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow transition">
+              <i class="fa-solid fa-file-csv mr-1"></i> Excel રિપોર્ટ ડાઉનલોડ
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+          <div class="overflow-x-auto custom-scroll">
+            <table class="w-full text-left text-xs text-slate-700 dark:text-slate-300">
+              <thead class="bg-slate-50 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400 font-bold border-b border-slate-200 dark:border-slate-700">
+                <tr>
+                  <th class="py-3 px-3">તારીખ-સમય</th>
+                  <th class="py-3 px-4">વિદ્યાર્થીનું નામ</th>
+                  <th class="py-3 px-3">કસોટી / પ્રકરણ</th>
+                  <th class="py-3 px-3 text-center">ગુણ</th>
+                  <th class="py-3 px-3 text-center">ટકાવારી</th>
+                  <th class="py-3 px-3 text-center">પરિણામ</th>
+                </tr>
+              </thead>
+              <tbody id="adminStudentReportsTableBody" class="divide-y divide-slate-200 dark:divide-slate-700">
+                <!-- Dynamically populated report rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== MODALS SECTION ==================== -->
+
+  <!-- 1. Teacher PIN Authentication Modal -->
+  <div id="teacherLoginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative text-center">
+      <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto mb-3">
+        <i class="fa-solid fa-user-shield text-xl"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-1">શિક્ષક વહીવટી પ્રવેશ</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">માત્ર Tr. HEMANT SIR માટે (સિક્રેટ સુરક્ષા PIN દાખલ કરો)</p>
+      
+      <div class="mb-4 text-left">
+        <input type="password" id="adminPinInput" placeholder="દા.ત. 1234" maxlength="8"
+          onkeydown="if(event.key==='Enter') verifyTeacherPin()"
+          class="w-full text-center tracking-widest text-xl font-bold py-2.5 px-4 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition">
+        <p id="pinErrorMessage" class="text-xs text-rose-500 font-medium text-center mt-2 hidden"></p>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="closeTeacherLoginModal()" class="flex-1 py-2 rounded-xl text-sm font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition">
+          રદ કરો
+        </button>
+        <button onclick="verifyTeacherPin()" class="flex-1 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow transition">
+          અનલૉક કરો
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Change PIN Modal -->
+  <div id="changePinModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative text-center">
+      <div class="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto mb-3">
+        <i class="fa-solid fa-key text-xl"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-1">શિક્ષક PIN બદલો</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">તમારો નવો સુરક્ષિત ૪ અંકનો PIN સેટ કરો</p>
+
+      <div class="space-y-3 mb-4 text-left">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">હાલનો PIN:</label>
+          <input type="password" id="currentPinInput" placeholder="હાલનો PIN દાખલ કરો" maxlength="8"
+            class="w-full py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">નવો PIN:</label>
+          <input type="password" id="newPinInput" placeholder="ઓછામાં ઓછા ૪ અંકનો નવો PIN" maxlength="8"
+            class="w-full py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <p id="changePinError" class="text-xs text-rose-500 font-medium hidden"></p>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="closeChangePinModal()" class="flex-1 py-2 rounded-xl text-sm font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
+          રદ કરો
+        </button>
+        <button onclick="saveNewAdminPin()" class="flex-1 py-2 rounded-xl text-sm font-semibold bg-emerald-600 hover:bg-emerald-700 text-white shadow transition">
+          સાચવો
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Excel Upload Modal -->
+  <div id="excelImportModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 flex items-center justify-center">
+            <i class="fa-solid fa-file-excel text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white">Excel થી પ્રશ્નો અપલોડ કરો</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">એક ક્લિકમાં બલ્ક પ્રશ્નો આયાત કરો</p>
+          </div>
+        </div>
+        <button onclick="closeExcelModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 mb-4 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-700 dark:text-slate-300">પગલું ૧: નમૂના શીટ ડાઉનલોડ કરો</span>
+          <button onclick="downloadExcelTemplate()" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center gap-1">
+            <i class="fa-solid fa-download"></i> નમૂનો (Template)
+          </button>
+        </div>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400">
+          આ એક્સેલ ફાઇલમાં પ્રકરણ નંબર (૧ થી ૧૨), પ્રશ્ન, ૪ વિકલ્પો અને સાચો જવાબ (A/B/C/D) ભરીને સાચવી લો.
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">પગલું ૨: ફાઇલ પસંદ કરો (.xlsx / .xls / .csv):</label>
+        <input type="file" id="excelFileInput" accept=".xlsx, .xls, .csv" onclick="this.value=null" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+        <p id="excelErrorMsg" class="text-xs text-rose-500 font-semibold mt-2 hidden"></p>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="closeExcelModal()" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+          રદ કરો
+        </button>
+        <button onclick="handleExcelUpload()" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow transition">
+          પ્રશ્નો ગેમમાં લોડ કરો
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Dedicated Mock Test Upload Modal -->
+  <div id="mockUploadModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 flex items-center justify-center">
+            <i class="fa-solid fa-file-circle-plus text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white">બોર્ડ મોક પેપર અપલોડ કરો</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">વિશેષ મોક ટેસ્ટ માટે અલગ એક્સેલ ફાઇલ</p>
+          </div>
+        </div>
+        <button onclick="closeMockUploadModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 mb-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">મોક ટેસ્ટ પેપરનું નામ:</label>
+          <input type="text" id="mockPaperTitleInput" placeholder="દા.ત. બોર્ડ મોક ટેસ્ટ પેપર - ૧ (માર્ચ ૨૦૨૫)" class="w-full py-2 px-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-800 dark:text-slate-100 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300">એક્સેલ ફાઇલ સિલેક્ટ કરો:</label>
+            <button onclick="downloadMockTemplate()" class="text-[11px] font-bold text-amber-600 hover:underline">
+              <i class="fa-solid fa-download"></i> નમૂનો ડાઉનલોડ
+            </button>
+          </div>
+          <input type="file" id="mockFileInput" accept=".xlsx, .xls, .csv" onclick="this.value=null" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100">
+        </div>
+        <p id="mockUploadError" class="text-xs text-rose-500 font-semibold hidden"></p>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="closeMockUploadModal()" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+          રદ કરો
+        </button>
+        <button onclick="handleMockUpload()" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white shadow transition">
+          મોક પેપર સાચવો
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Mock Paper Selection Modal for Students -->
+  <div id="mockSelectModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+            <i class="fa-solid fa-file-shield text-amber-500"></i> બોર્ડ મોક ટેસ્ટ પસંદ કરો
+          </h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400">પરીક્ષાની પૂર્વતૈયારી માટે તમારું મનપસંદ પેપર પસંદ કરો</p>
+        </div>
+        <button onclick="closeMockSelectModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="mockPaperSelectionList" class="space-y-2.5 max-h-80 overflow-y-auto custom-scroll pr-1">
+        <!-- Dynamically populated papers -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Background Watermark Settings Modal -->
+  <div id="bgPhotoModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-1.5">
+          <i class="fa-solid fa-image text-violet-500"></i> વોટરમાર્ક સેટિંગ્સ
+        </h3>
+        <button onclick="closeBgPhotoModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      
+      <div class="space-y-3 mb-4 text-left">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">વોટરમાર્ક પારદર્શકતા (Opacity):</label>
+          <div class="flex items-center gap-3">
+            <input type="range" id="bgOpacityRange" min="2" max="25" value="5" oninput="document.getElementById('opacityValText').innerText = this.value + '%'" class="flex-1">
+            <span id="opacityValText" class="text-xs font-bold text-indigo-600 w-8">5%</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">વોટરમાર્ક પ્રકાર:</label>
+          <div class="space-y-1.5 text-xs">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="watermarkType" value="seal" checked onchange="toggleWatermarkInputType('seal')">
+              <span>અધિકૃત Tr. HEMANT SIR સીલ (Default)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="watermarkType" value="custom" onchange="toggleWatermarkInputType('custom')">
+              <span>કસ્ટમ ફોટો URL / અપલોડ</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="customWatermarkInputBox" class="hidden space-y-2">
+          <input type="text" id="bgPhotoUrlInput" placeholder="ઇમેજ લિંક (https://...)" class="w-full py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-xs">
+          <input type="file" id="bgPhotoFileInput" accept="image/*" class="w-full text-xs text-slate-500 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-violet-50 file:text-violet-700">
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="closeBgPhotoModal()" class="flex-1 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+          રદ કરો
+        </button>
+        <button onclick="saveWatermarkSettings()" class="flex-1 py-2 rounded-xl text-xs font-semibold bg-violet-600 hover:bg-violet-700 text-white shadow transition">
+          લાગુ કરો
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Points Reset Confirmation Modal -->
+  <div id="resetPointsModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative text-center">
+      <div class="w-12 h-12 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 flex items-center justify-center mx-auto mb-3">
+        <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+      </div>
+      <h3 class="text-base font-bold text-slate-900 dark:text-white mb-1">કુલ પોઈન્ટ્સ રીસેટ કરવા છે?</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+        શું તમે ખરેખર તમારા કુલ મેળવેલ પોઈન્ટ્સ અને પ્રગતિ શૂન્ય (0) કરવા માંગો છો?
+      </p>
+      <div class="flex gap-2">
+        <button onclick="closeResetPointsModal()" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+          ના, રહેવા દો
+        </button>
+        <button onclick="confirmResetPoints()" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white shadow transition">
+          હા, રીસેટ કરો
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Top 10 Hall of Fame Leaderboard Modal -->
+  <div id="leaderboardModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-500 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-slate-900 dark:text-white">ટોપ ૧૦ તેજસ્વી તારલાઓ</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">સૌથી વધુ સ્કોર મેળવનાર વિદ્યાર્થીઓ</p>
+          </div>
+        </div>
+        <button onclick="closeLeaderboardModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Top 3 Podium Cards -->
+      <div id="leaderboardPodiumBox" class="grid grid-cols-3 gap-2 mb-4 text-center items-end">
+        <!-- Dynamically rendered top 3 -->
+      </div>
+
+      <!-- 4 to 10 List -->
+      <div id="leaderboardRemainderList" class="space-y-2 max-h-60 overflow-y-auto custom-scroll pr-1">
+        <!-- Dynamically rendered 4-10 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Certificate Preview Modal -->
+  <div id="certificateModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden p-3">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-2xl w-full p-4 sm:p-6 shadow-2xl border border-slate-200 dark:border-slate-700 relative">
+      
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs font-bold text-amber-600 uppercase tracking-widest flex items-center gap-1">
+          <i class="fa-solid fa-award"></i> પ્રમાણપત્ર પૂર્વાવલોકન
+        </span>
+        <button onclick="closeCertificateModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Printable Certificate Box -->
+      <div id="certificatePrintArea" class="bg-gradient-to-br from-amber-50 via-white to-amber-50 p-6 sm:p-8 rounded-2xl border-4 border-double border-amber-600 text-center relative overflow-hidden shadow-inner text-slate-800">
+        <div class="absolute top-2 left-2 text-amber-600/20 text-5xl pointer-events-none"><i class="fa-solid fa-award"></i></div>
+        <div class="absolute bottom-2 right-2 text-amber-600/20 text-5xl pointer-events-none"><i class="fa-solid fa-medal"></i></div>
+        
+        <h2 class="text-xl sm:text-2xl font-black text-amber-900 tracking-wide uppercase">પ્રમાણપત્ર (CERTIFICATE OF EXCELLENCE)</h2>
+        <p class="text-xs text-amber-700 font-semibold mt-0.5">ધોરણ ૧૨ વાણિજ્ય વ્યવસ્થા અને સંચાલન (B.A.)</p>
+        
+        <div class="my-4">
+          <p class="text-xs text-slate-500">આથી પ્રમાણિત કરવામાં આવે છે કે કુ./શ્રી</p>
+          <h3 id="certStudentName" class="text-lg sm:text-xl font-black text-indigo-900 border-b-2 border-amber-300 inline-block px-4 pb-0.5 mt-1">વિદ્યાર્થીનું નામ</h3>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-700 max-w-lg mx-auto leading-relaxed">
+          તેમણે B.A. માસ્ટર ક્વિઝ સ્પર્ધામાં ઉત્સાહપૂર્વક ભાગ લઈ 
+          <span id="certPercentage" class="font-bold text-amber-800">૦%</span> ગુણ સાથે સફળતાપૂર્વક ઉત્કૃષ્ટ પરિણામ પ્રાપ્ત કરેલ છે.
+        </p>
+
+        <div class="mt-8 flex items-end justify-between px-4 text-xs">
+          <div class="text-left">
+            <p id="certDateText" class="font-bold text-slate-700">તારીખ: ૧૫/૦૯/૨૦૨૬</p>
+            <p class="text-[10px] text-slate-500">ઓનલાઇન પ્રમાણિત</p>
+          </div>
+          <div class="text-right">
+            <div class="font-bold text-indigo-950 font-serif italic text-sm">Tr. Hemant Sir</div>
+            <p class="text-[11px] font-bold text-amber-800 border-t border-amber-600 pt-0.5">વિષય માર્ગદર્શક & સંયોજક</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 flex justify-end gap-2">
+        <button onclick="closeCertificateModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+          બંધ કરો
+        </button>
+        <button onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white shadow transition flex items-center gap-1.5">
+          <i class="fa-solid fa-print"></i> પ્રિન્ટ / PDF સાચવો
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================
+       CHAPTER METADATA (Chapters 1 to 12)
+       ========================================================== */
+    const CHAPTERS = [
+      { id: 1, title: "સંચાલનનું સ્વરૂપ અને મહત્વ", icon: "fa-cubes", color: "from-blue-500 to-indigo-600" },
+      { id: 2, title: "સંચાલનના સિદ્ધાંતો", icon: "fa-compass", color: "from-indigo-500 to-violet-600" },
+      { id: 3, title: "આયોજન (Planning)", icon: "fa-map", color: "from-emerald-500 to-teal-600" },
+      { id: 4, title: "વ્યવસ્થાતંત્ર (Organizing)", icon: "fa-sitemap", color: "from-teal-500 to-cyan-600" },
+      { id: 5, title: "કર્મચારી વ્યવસ્થા (Staffing)", icon: "fa-users-gear", color: "from-cyan-500 to-sky-600" },
+      { id: 6, title: "દોરવણી (Directing)", icon: "fa-signs-post", color: "from-sky-500 to-blue-600" },
+      { id: 7, title: "અંકુશ (Controlling)", icon: "fa-sliders", color: "from-amber-500 to-orange-600" },
+      { id: 8, title: "નાણાકીય સંચાલન", icon: "fa-sack-dollar", color: "from-rose-500 to-pink-600" },
+      { id: 9, title: "નાણાકીય બજાર", icon: "fa-chart-line", color: "from-purple-500 to-indigo-600" },
+      { id: 10, title: "બજાર પ્રક્રિયા સંચાલન", icon: "fa-bullhorn", color: "from-violet-500 to-purple-600" },
+      { id: 11, title: "ગ્રાહક સુરક્ષા", icon: "fa-shield-heart", color: "from-emerald-600 to-green-700" },
+      { id: 12, title: "ધંધાકીય પર્યાવરણ", icon: "fa-earth-americas", color: "from-blue-600 to-slate-700" }
+    ];
+
+    /* ==========================================================
+       ALL 122 OFFICIAL GUJARATI TEXTBOOK QUESTIONS
+       ========================================================== */
+    const DEFAULT_QUESTIONS = [
+      // Chapter 1
+      { id: "ch1_1", chapterId: 1, question: "અન્ય વ્યક્તિઓ પાસેથી કામ લેવાની કળાને શું કહે છે?", options: ["આયોજન", "સંચાલન", "દોરવણી", "સંકલન"], answer: 1, explanation: "કુંન્ત્ઝ અને ઓ’ડોનેલ અનુસાર, અન્ય વ્યક્તિઓ પાસેથી કામ લેવાની કળા એટલે સંચાલન." },
+      { id: "ch1_2", chapterId: 1, question: "પ્રવૃત્તિની દ્રષ્ટિએ સંચાલન કેવી પ્રવૃત્તિ છે?", options: ["સર્વવ્યાપી", "બિનકાર્યક્ષમ", "ધ્યેય નિર્ધારણ", "પારદર્શક"], answer: 0, explanation: "સંચાલન માત્ર ધંધામાં જ નહીં પરંતુ સામાજિક, ધાર્મિક, શૈક્ષણિક અને લશ્કરી દરેક ક્ષેત્રમાં જોવા મળે છે." },
+      { id: "ch1_3", chapterId: 1, question: "જ્ઞાનને અમલમાં મૂકવાની સરળ પદ્ધતિ એટલે શું?", options: ["વ્યવસાય", "વિજ્ઞાન", "કળા", "દોરવણી"], answer: 2, explanation: "કળા એટલે વ્યક્તિગત કૌશલ્ય અને સદ્ધાંતિક જ્ઞાનને વ્યવહારમાં મૂકવાની પદ્ધતિ." },
+      { id: "ch1_4", chapterId: 1, question: "વ્યવસાયી મંડળો પોતાના વ્યવસાય માટે કઈ બાબતોનું ઘડતર કરે છે?", options: ["વિસંગતતા", "અસંગતતા", "આચારસંહિતા", "વિચારસંહિતા"], answer: 2, explanation: "વ્યવસાયી મંડળો પોતાના સભ્યો માટે નીતિ-નિયમો એટલે કે આચારસંહિતા ઘડે છે." },
+      { id: "ch1_5", chapterId: 1, question: "સંચાલનની સપાટીઓ કેટલી છે?", options: ["એક", "બે", "ત્રણ", "ચાર"], answer: 2, explanation: "સંચાલનની મુખ્ય ત્રણ સપાટીઓ છે: ઉચ્ચ, મધ્ય અને તળ સપાટી." },
+      { id: "ch1_6", chapterId: 1, question: "ઉચ્ચ સપાટી સંચાલનમાં કોનો સમાવેશ થાય છે?", options: ["નિષ્ણાતો", "કામદારો", "ખાતાવાર અધિકારીઓ", "બોર્ડ ઓફ ડિરેક્ટર્સ"], answer: 3, explanation: "સર્વોચ્ચ સત્તા અને નીતિવિષયક નિર્ણયો લેતા સંચાલક મંડળનો સમાવેશ ઉચ્ચ સપાટીએ થાય છે." },
+      { id: "ch1_7", chapterId: 1, question: "તળ સપાટીને બીજા કયા નામે ઓળખવામાં આવે છે?", options: ["કાર્યકારી સપાટી", "કર્મચારી સપાટી", "નીતિ વિષયક સપાટી", "અધિકારીઓની સપાટી"], answer: 0, explanation: "આ સપાટીએ નિકટતમ રહીને પ્રત્યક્ષ કાર્યો અને નિર્ણયોનો અમલ થતો હોવાથી તેને કાર્યકારી સપાટી કહે છે." },
+      { id: "ch1_8", chapterId: 1, question: "નીચેનામાંથી કોનો સમાવેશ સંચાલનની એકપણ સપાટીમાં થતો નથી?", options: ["નિરીક્ષક", "જોબર", "કામદાર", "હિસાબી અધિકારી"], answer: 2, explanation: "કામદારો સંચાલકીય હોદ્દો ધરાવતા નથી પરંતુ તળ સપાટી હેઠળ કાર્ય કરે છે." },
+      { id: "ch1_9", chapterId: 1, question: "આયોજન એ ધંધાકીય સાહસનું મગજ છે, તો વ્યવસ્થાતંત્ર એ શું છે?", options: ["હૃદય", "હાથ-પગ", "શારીરિક માળખું", "રક્ત"], answer: 2, explanation: "આયોજન બૌદ્ધિક નિર્ણયો લે છે અને વ્યવસ્થાતંત્ર તેને અમલમાં મૂકવા શારીરિક માળખું પૂરું પાડે છે." },
+      { id: "ch1_10", chapterId: 1, question: "નીચેનામાંથી બજાર-સંચાલનનું કાર્ય કયું છે?", options: ["આવકની ફાળવણી", "ઉત્પાદન", "પેદાશ મિશ્ર", "નાણાંનો ઉપયોગ"], answer: 2, explanation: "બજાર સંચાલન (Marketing) ના 4Ps માં પેદાશ મિશ્ર, કિંમત, વિતરણ અને અભિવૃદ્ધિ આવે છે." },
+      { id: "ch1_11", chapterId: 1, question: "નીચેના પૈકી કોઈ એકનો માનવ સંસાધન સંચાલનમાં સમાવેશ થતો નથી:", options: ["સમારકામ અને જાળવણી", "તાલીમ અને વિકાસ", "બઢતી અને બદલી", "ભરતી અને પસંદગી"], answer: 0, explanation: "સમારકામ અને જાળવણી ઉત્પાદન વિભાગનું કાર્ય છે, માનવ સંસાધનનું નથી." },
+
+      // Chapter 2
+      { id: "ch2_1", chapterId: 2, question: "સંચાલનના સિદ્ધાંતો એટલે શું?", options: ["અનુભવનો નીચોડ છે.", "સંચાલકો નક્કી કરે છે.", "પ્રયોગોથી નક્કી થાય છે.", "મેનેજરો નક્કી કરે છે."], answer: 0, explanation: "સિદ્ધાંતો એ અનુભવ અને વ્યવહારિક તારણો પરથી ઘડાયેલી માર્ગદર્શિકા છે." },
+      { id: "ch2_2", chapterId: 2, question: "નીચેનામાંથી કયા પરિબળમાં ફેરફારને કારણે સંચાલનના સિદ્ધાંતોમાં બદલાવ લાવવાની જરૂરિયાત ઊભી થાય છે?", options: ["મિલકતોમાં ફેરફાર", "મૂડીમાં ફેરફાર", "ટેકનોલોજીમાં ફેરફાર", "સંચાલકોમાં ફેરફાર"], answer: 2, explanation: "ટેકનોલોજી અને પર્યાવરણમાં થતા ફેરફારોને કારણે સિદ્ધાંતોની અમલવારી પરિવર્તનશીલ બને છે." },
+      { id: "ch2_3", chapterId: 2, question: "વૈજ્ઞાનિક સંચાલન વિચારધારાના પ્રણેતા કોણ છે?", options: ["લ્યુથર ગુલિક", "ફેડરિક ટેલર", "હેનરી ફેયોલ", "પીટર એફ. ડ્રકર"], answer: 1, explanation: "એફ. ડબલ્યુ. ટેલરે રૂઢિગત પદ્ધતિ દૂર કરીને વૈજ્ઞાનિક અભિગમ રજૂ કર્યો હતો." },
+      { id: "ch2_4", chapterId: 2, question: "19મી સદીના અંત સુધીમાં જે વિચારધારાઓ રજૂ થઈ તેને કઈ વિચારધારાઓ કહે છે?", options: ["નવપ્રશિષ્ટ", "પૂર્વપ્રશિષ્ટ", "પ્રશિષ્ટ", "આધુનિક"], answer: 2, explanation: "૧૯મી સદીના અંત સુધી રજૂ થયેલી વિચારધારાઓને 'પ્રશિષ્ટ વિચારધારાઓ' કહેવાય છે." },
+      { id: "ch2_5", chapterId: 2, question: "નવપ્રશિષ્ટ વિચારધારાના પ્રણેતા કોણ હતા?", options: ["હર્ઝબર્ગ", "હેનરી ફેયોલ", "ફેડરિક ટેલર", "એલ્ટન મેયો"], answer: 3, explanation: "એલ્ટન મેયોના હોથોર્ન પ્રયોગોએ માનવ વર્તનવાદી વિચારધારાનો પાયો નાખ્યો." },
+      { id: "ch2_6", chapterId: 2, question: "‘તમે તમારા માણસોને સાચવો, તમારા માણસો બાકીનું તમારું બધું જ સાચવી લેશે.’ – આ વિધાન કોણે કહ્યું હતું?", options: ["એફ. ડબલ્યુ. ટેલરે", "પ્રો. ઉર્વિકે", "આર્ગોરિસે", "પીટર એફ. ડ્રકરે"], answer: 1, explanation: "પ્રો. ઉર્વિકે માનવ સંસાધનના મહત્વને સ્પષ્ટ કરતા આ વિધાન આપ્યું હતું." },
+      { id: "ch2_7", chapterId: 2, question: "નીચેનામાંથી કયા સંચાલનશાસ્ત્રીનું પ્રદાન આધુનિક વિચારધારામાં રહેલું છે?", options: ["સી. કે. પ્રહલાદ", "એલ્ટન મેયો", "મેક્સ વેબર", "હેનરી ગ્રેન્ટ"], answer: 0, explanation: "સી. કે. પ્રહલાદ, પીટર ડ્રકર વગેરેનું યોગદાન આધુનિક વિચારધારામાં છે." },
+      { id: "ch2_8", chapterId: 2, question: "સંચાલનના સામાન્ય સિદ્ધાંતો આપનાર કોણ હતા?", options: ["ફેડરિક ટેલર", "પીટર એફ. ડ્રકર", "હેનરી ફેયોલ", "ચેસ્ટર બર્નાડ"], answer: 2, explanation: "હેનરી ફેયોલે પોતાના પુસ્તકમાં સંચાલનના ૧૪ સામાન્ય સિદ્ધાંતો રજૂ કર્યા હતા." },
+      { id: "ch2_9", chapterId: 2, question: "કોઈ પણ કાર્યમાંથી ખોટી દિશામાંથી થતા બિનજરૂરી હલનચલનમાંથી ઉદ્ભવતો બગાડ દૂર કરવાની પદ્ધતિ એટલે શું?", options: ["સમય નિરીક્ષણ", "ગતિ નિરીક્ષણ", "ભિન્ન વેતન દર", "કર્મચારી નિરીક્ષણ"], answer: 1, explanation: "ગતિ નિરીક્ષણ એ ખોટી કે બિનજરૂરી શારીરિક હિલચાલ ઘટાડી શ્રમ બગાડ અટકાવે છે." },
+      { id: "ch2_10", chapterId: 2, question: "ધ્યેયલક્ષી સંચાલનના સિદ્ધાંતના પ્રણેતા કોણ હતા?", options: ["પીટર એફ. ડ્રકર", "ફેડરિક ટેલર", "હેનરી ફેયોલ", "મેક્સ વેબર"], answer: 0, explanation: "પીટર એફ. ડ્રકરે Management by Objectives (MBO) નો સિદ્ધાંત આપ્યો હતો." },
+      { id: "ch2_11", chapterId: 2, question: "શ્રમ વિભાજનના અમલ દ્વારા નીચેનામાંથી કઈ પ્રવૃત્તિ શક્ય બને છે?", options: ["એકત્રીકરણ", "વિશિષ્ટીકરણ", "સરળીકરણ", "સંકલન"], answer: 1, explanation: "શ્રમ વિભાજનથી ચોક્કસ કાર્ય કુશળતા વધતાં વિશિષ્ટીકરણ પ્રાપ્ત થાય છે." },
+      { id: "ch2_12", chapterId: 2, question: "જો કર્મચારીને તેમની કાર્યક્ષમતાનો યોગ્ય બદલો ન મળે તો શેમાં વધારો થાય છે?", options: ["મજૂર ફેરબદલી", "મજૂર બઢતી", "મજૂર ગેરહાજરી", "મજૂર અપકર્ષ"], answer: 0, explanation: "અસંતોષ અને અયોગ્ય વેતનને લીધે કર્મચારીઓ નોકરી છોડે છે જેથી મજૂર ફેરબદલી દર વધે છે." },
+
+      // Chapter 3
+      { id: "ch3_1", chapterId: 3, question: "સંચાલનનું સર્વ પ્રથમ કાર્ય જણાવો:", options: ["વ્યવસ્થાતંત્ર", "આયોજન", "દોરવણી", "અંકુશ"], answer: 1, explanation: "આયોજન એ સંચાલનનું પ્રથમ અને પાયાનું કાર્ય છે." },
+      { id: "ch3_2", chapterId: 3, question: "આયોજનને કોની સાથે સંબંધ છે?", options: ["ભૂતકાળ", "વર્તમાન", "ઉત્પાદન", "ભવિષ્ય"], answer: 3, explanation: "આયોજનમાં ભવિષ્યની ગણતરીઓ અને પૂર્વાનુમાન કરવામાં આવે છે." },
+      { id: "ch3_3", chapterId: 3, question: "આયોજનની વિધિનો પ્રથમ તબક્કો જણાવો:", options: ["હેતુ નિર્ધારણ", "આધાર સ્પષ્ટ કરવા", "વૈકલ્પિક યોજના ઘડવી", "ગૌણ યોજના ઘડવી"], answer: 0, explanation: "આયોજનની શરૂઆત એકમના હેતુઓ નક્કી કરવાથી થાય છે." },
+      { id: "ch3_4", chapterId: 3, question: "આયોજનનું કાર્ય એટલે શું?", options: ["રોજબરોજનું કાર્ય", "નિશ્ચિત કાર્ય", "પસંદગીનું કાર્ય", "મુશ્કેલ કાર્ય"], answer: 2, explanation: "ઉપલબ્ધ વિવિધ વિકલ્પોમાંથી શ્રેષ્ઠ વિકલ્પની પસંદગી કરવી એ આયોજન છે." },
+      { id: "ch3_5", chapterId: 3, question: "આયોજનમાં નક્કી કરેલ ધ્યેયને પાર પાડવા સંચાલકો જે નિર્ણયો અને વ્યૂહરચના નક્કી કરે તેને શું કહેવાય?", options: ["કાર્યક્રમ", "નીતિ", "નિયમો", "અંદાજપત્ર"], answer: 1, explanation: "ધ્યેય સિદ્ધિ માટે સંચાલકો જે વલણ કે નિર્ણય નક્કી કરે તેને નીતિ કહેવાય છે." },
+      { id: "ch3_6", chapterId: 3, question: "સફળ આયોજન માટેની પૂર્વશરત કઈ છે?", options: ["સમયની લાંબી મુદ્દત", "સમયની ઓછી મુદ્દત", "વ્યવસ્થાતંત્ર", "પરિવર્તનશીલતા"], answer: 3, explanation: "આયોજન જડ ન હોવું જોઈએ; બદલાતા સમય સાથે ફેરફાર થવા જરૂરી છે." },
+      { id: "ch3_7", chapterId: 3, question: "આયોજનની પ્રક્રિયાનો અંતિમ તબક્કો જણાવો:", options: ["યોજનાનું મૂલ્યાંકન", "ચોક્કસ યોજના સ્વીકારવી", "યોજનાની ચકાસણી કરવી", "વિકલ્પોની વિચારણા"], answer: 0, explanation: "આયોજનની વિધિનો છેલ્લો તબક્કો સમગ્ર યોજનાનું મૂલ્યાંકન (Evaluation) કરવાનો છે." },
+      { id: "ch3_8", chapterId: 3, question: "નીચેનામાંથી આયોજનનું ઘટક જણાવો:", options: ["સતત પ્રક્રિયા", "અંકુશ", "દોરવણી", "નિયમો"], answer: 3, explanation: "હેતુ, નીતિ, વિધિ, નિયમો, અંદાજપત્ર, કાર્યક્રમ અને વ્યૂહરચના એ આયોજનના ઘટકો છે." },
+      { id: "ch3_9", chapterId: 3, question: "એકમનું જીવન-ધ્યેય નક્કી કરતી યોજના કઈ છે?", options: ["કાયમી યોજના", "વ્યૂહાત્મક યોજના", "સુનિયોજિત યોજના", "એક ઉપયોગી યોજના"], answer: 1, explanation: "વ્યૂહાત્મક યોજના એકમની ફિલસૂફી મુજબ તેના જીવન-ધ્યેયને સિદ્ધ કરવા ઘડાય છે." },
+
+      // Chapter 4
+      { id: "ch4_1", chapterId: 4, question: "એક કરતાં વધુ વ્યક્તિઓ સમાન ધ્યેયોને સિદ્ધ કરવા સામૂહિક રીતે કાર્ય કરી શકે તે માટે રચવામાં આવતા માળખાને શું કહેવાય?", options: ["આયોજન", "વ્યવસ્થાતંત્ર", "અંકુશ", "દોરવણી"], answer: 1, explanation: "સત્તા અને જવાબદારીની વહેંચણી કરતા જૂથ માળખાને વ્યવસ્થાતંત્ર કહેવાય છે." },
+      { id: "ch4_2", chapterId: 4, question: "કાર્યોના વિભાગીકરણને કારણે નીચેનામાંથી શું શક્ય બને છે?", options: ["વિશિષ્ટીકરણ", "આયોજન", "સંકલન", "દોરવણી"], answer: 0, explanation: "વિભાગીકરણથી યોગ્ય વ્યક્તિને કાર્ય સોંપાતાં વિશિષ્ટીકરણ મળે છે." },
+      { id: "ch4_3", chapterId: 4, question: "કયા વ્યવસ્થાતંત્રને લશ્કરી વ્યવસ્થાતંત્ર કહે છે?", options: ["શ્રેણિક", "કાર્યાનુસાર", "રૈખિક", "અવૈધિક"], answer: 2, explanation: "રૈખિક વ્યવસ્થાતંત્રનો લશ્કરમાં વધુ ઉપયોગ થયો હોવાથી તેને લશ્કરી વ્યવસ્થાતંત્ર કહે છે." },
+      { id: "ch4_4", chapterId: 4, question: "નીચેનામાંથી કયા વ્યવસ્થાતંત્રમાં વિભાગ કરતાં કાર્યને વધુ મહત્વ આપવામાં આવે છે?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, explanation: "કાર્યાનુસાર માળખામાં નિષ્ણાતો દ્વારા કાર્ય શ્રમ-વિભાજનને વધુ પ્રાધાન્ય અપાય છે." },
+      { id: "ch4_5", chapterId: 4, question: "માનવ સંબંધોને આધારે કુદરતી રીતે રચાયેલું માનવ સંબંધોનું જાળું કયા નામે ઓળખાય છે?", options: ["અવૈધિક વ્યવસ્થાતંત્ર", "રૈખિક વ્યવસ્થાતંત્ર", "વૈધિક વ્યવસ્થાતંત્ર", "શ્રેણિક વ્યવસ્થાતંત્ર"], answer: 0, explanation: "કોઈ પણ ઔપચારિક નિયમ વગર સામાજિક સંબંધોમાંથી બનેલું જાળું અવૈધિક માળખું છે." },
+      { id: "ch4_6", chapterId: 4, question: "તળ સપાટીએ હુકમ મેળવનાર વ્યક્તિને શું કહેવાય?", options: ["તાબેદાર", "ઉપરી", "પ્રોજેક્ટ મેનેજર", "અધિકારી"], answer: 0, explanation: "ઉપરીના હુકમો મુજબ કામ કરનાર કર્મચારીને તાબેદાર કહે છે." },
+      { id: "ch4_7", chapterId: 4, question: "પ્રોજેક્ટ માળખું અને સામાન્ય માળખાના સંયોજનથી રચાતા વ્યવસ્થાતંત્રને શું કહે છે?", options: ["શ્રેણિક વ્યવસ્થાતંત્ર", "રૈખિક વ્યવસ્થાતંત્ર", "કાર્યાનુસાર વ્યવસ્થાતંત્ર", "વૈધિક વ્યવસ્થાતંત્ર"], answer: 0, explanation: "કાર્યાનુસાર અને પ્રોજેક્ટ વિભાગીકરણના મિશ્રણને શ્રેણિક (Matrix) માળખું કહે છે." },
+      { id: "ch4_8", chapterId: 4, question: "જે એકમોમાં સમગ્ર સત્તા ઉચ્ચ સંચાલકો પાસે જ કેન્દ્રિત હોય તેને કયા નામે ઓળખવામાં આવે છે?", options: ["વિકેન્દ્રીકરણ", "કેન્દ્રીકરણ", "વિમૂડીકરણ", "ધ્રુવીકરણ"], answer: 1, explanation: "નિર્ણય લેવાની સત્તા માત્ર ઉચ્ચ સ્તરે જ જળવાઈ રહે તેને કેન્દ્રીકરણ કહે છે." },
+      { id: "ch4_9", chapterId: 4, question: "નીચેનામાંથી શું અપનાવવાથી ભાવી સંચાલકો તૈયાર કરી શકાય?", options: ["વિકેન્દ્રીકરણ", "કેન્દ્રીકરણ", "વિમૂડીકરણ", "શ્રમ વિભાજન"], answer: 0, explanation: "સત્તા સોંપણી અને વિકેન્દ્રીકરણથી નીચલી સપાટીના અધિકારીઓમાં નિર્ણય શક્તિ ખીલે છે." },
+      { id: "ch4_10", chapterId: 4, question: "નીચેનામાંથી શું સોંપી શકાતું નથી?", options: ["સત્તા", "જવાબદારી", "ઉત્તરદાયિત્વ", "કાર્ય"], answer: 2, explanation: "સત્તા અને ફરજ સોંપી શકાય પરંતુ અંતિમ ઉત્તરદાયિત્વ (Accountability) સોંપી શકાતું નથી." },
+
+      // Chapter 5
+      { id: "ch5_1", chapterId: 5, question: "કર્મચારીઓ ધંધાકીય એકમની શું છે?", options: ["મૂડી સમાન છે.", "જવાબદારી છે.", "શક્તિ છે.", "અમૂલ્ય મિલકત છે."], answer: 3, explanation: "કાર્યક્ષમ અને સંતુષ્ટ કર્મચારીઓ જ એકમની સાચી અને અમૂલ્ય સંપત્તિ છે." },
+      { id: "ch5_2", chapterId: 5, question: "માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કયું છે?", options: ["વેચાણ-વૃદ્ધિ", "ગુણવત્તા અંકુશ", "કર્મચારી આયોજન", "ઉત્પાદન"], answer: 2, explanation: "HRM નું મુખ્ય અંગ કર્મચારીઓનું યોગ્ય આયોજન, ભરતી અને વિકાસ કરવાનું છે." },
+      { id: "ch5_3", chapterId: 5, question: "પસંદગીની પ્રક્રિયાનો પ્રથમ તબક્કો કયો છે?", options: ["અરજી-પત્રક સ્વીકારવું અને ચકાસણી કરવી.", "આવકાર અને પ્રાથમિક મુલાકાત", "રૂબરૂ મુલાકાત", "જરૂરી કસોટીઓ લેવી."], answer: 1, explanation: "ઉમેદવારના આગમન સમયે તેને આવકારી પ્રાથમિક વિગતો મેળવવી એ પ્રથમ પગથિયું છે." },
+      { id: "ch5_4", chapterId: 5, question: "ઉમેદવારની અરજી મળવા સુધીના કાર્યને શું કહે છે?", options: ["ભરતીનું કાર્ય કહેવાય", "સામાન્ય કાર્ય કહેવાય", "જાહેરાતનું કાર્ય કહેવાય", "પસંદગીનું કાર્ય કહેવાય"], answer: 0, explanation: "યોગ્ય જગ્યા માટે ઉમેદવારોને શોધવાની અને અરજી કરવા પ્રેરાવવાની પ્રક્રિયા એટલે ભરતી." },
+      { id: "ch5_5", chapterId: 5, question: "ઉમેદવારની આવડત કઈ કસોટી દ્વારા નક્કી થાય?", options: ["બુદ્ધિ-કસોટી", "અભિરૂચિ કસોટી", "મનોવૈજ્ઞાનિક કસોટી", "ધંધાકીય કસોટી"], answer: 3, explanation: "ઉમેદવાર જે કામ કરવાનો છે તેની પ્રત્યક્ષ આવડત જાણવા ધંધાકીય કસોટી (Trade Test) લેવાય છે." },
+      { id: "ch5_6", chapterId: 5, question: "બિન સંચાલકીય કર્મચારીઓની પસંદગીની પ્રક્રિયા કેવી છે?", options: ["મુશ્કેલ છે.", "ટૂંકી અને સરળ છે.", "ખર્ચાળ છે.", "લાંબી અને વિશિષ્ટ છે."], answer: 1, explanation: "સામાન્ય કામદારોની પસંદગી પ્રક્રિયા ટૂંકી હોય છે, ઉચ્ચ અધિકારીઓ જેવી જટિલ નહીં." },
+      { id: "ch5_7", chapterId: 5, question: "કર્મચારી વ્યવસ્થા એ સંચાલનનું કેવા પ્રકારનું કાર્ય છે?", options: ["ઉત્પાદકીય", "હેતુલક્ષી", "સંચાલકીય", "વહીવટી"], answer: 2, explanation: "કર્મચારી વ્યવસ્થા એ સંચાલન પ્રક્રિયાનું જ એક મુખ્ય સંચાલકીય અંગ છે." },
+      { id: "ch5_8", chapterId: 5, question: "ભરતી પછીનું બીજું કાર્ય કયું છે?", options: ["બઢતી આપવી", "પસંદગી કરવી", "તાલીમ આપવી", "બદલી કરવી"], answer: 1, explanation: "પ્રાપ્ત અરજીઓમાંથી યોગ્ય ઉમેદવાર છૂટા પાડવાનું કામ પસંદગી છે." },
+      { id: "ch5_9", chapterId: 5, question: "ઉમેદવારનો સ્વભાવ અને આત્મવિશ્વાસ જાણવા કઈ કસોટી લેવાય?", options: ["બુદ્ધિ-કસોટી.", "ધંધાકીય કસોટી.", "અભિરૂચિ કસોટી", "મનોવૈજ્ઞાનિક કસોટી."], answer: 3, explanation: "ઉમેદવારનું વલણ, મનોવૃત્તિ અને આત્મવિશ્વાસ ચકાસવા મનોવૈજ્ઞાનિક કસોટી ઉપયોગી છે." },
+
+      // Chapter 6
+      { id: "ch6_1", chapterId: 6, question: "દોરવણીમાં હુકમો, સૂચનો અને માર્ગદર્શન ઉપરાંત શાનો સમાવેશ થાય છે?", options: ["સલાહ", "અંકુશ", "દેખરેખ", "તાલીમ"], answer: 2, explanation: "દોરવણીમાં હુકમો આપવા સાથે કામગીરી પર નિરીક્ષણ/દેખરેખ પણ જરૂરી છે." },
+      { id: "ch6_2", chapterId: 6, question: "દોરવણીની માત્રા કઈ સપાટીએ વધુ હોય છે?", options: ["તળ", "મધ્ય", "ઉચ્ચ", "દરેક સપાટીએ"], answer: 0, explanation: "તળ સપાટીએ કામદારો પ્રત્યક્ષ કાર્ય કરતા હોવાથી ત્યાં વધુ દોરવણી આપવી પડે છે." },
+      { id: "ch6_3", chapterId: 6, question: "દોરવણીના કયા તત્વમાં દેખરેખ, નિયમન અને વિશ્લેષણનો સમાવેશ થાય છે?", options: ["નિરીક્ષણ", "અભિપ્રેરણ", "નેતૃત્વ", "તાલીમ"], answer: 0, explanation: "નિરીક્ષક કામદારોના કાર્યોનું અવલોકન અને વિશ્લેષણ કરે છે." },
+      { id: "ch6_4", chapterId: 6, question: "પ્રોત્સાહન આપીને અપેક્ષિત ધ્યેય પ્રાપ્ત કરવાની પ્રક્રિયાને શું કહેવાય?", options: ["અભિપ્રેરણ", "નિરીક્ષણ", "તાલીમ", "માર્ગદર્શન"], answer: 0, explanation: "કર્મચારીઓમાં કામ કરવાની ઉત્કંઠા કે પ્રોત્સાહન જગાડવું એટલે અભિપ્રેરણ." },
+      { id: "ch6_5", chapterId: 6, question: "માસ્લોની જરૂરિયાતોના અગ્રતાક્રમ અનુસાર પહેલી જરૂરિયાત કઈ છે?", options: ["શારીરિક જરૂરિયાતો", "સલામતીની જરૂરિયાતો", "સામાજિક જરૂરિયાતો", "પ્રતિષ્ઠાની જરૂરિયાતો"], answer: 0, explanation: "ખોરાક, પાણી અને નિવાસ જેવી મૂળભૂત શારીરિક જરૂરિયાતો સૌપ્રથમ આવે છે." },
+      { id: "ch6_6", chapterId: 6, question: "નીચેમાંથી કયું પ્રોત્સાહન નાણાકીય પ્રોત્સાહન છે?", options: ["બઢતી", "પ્રશંસા", "રોજગાર સલામતી", "કામની કદર અને સન્માન"], answer: 0, explanation: "બઢતી મળવાથી હોદ્દા સાથે નાણાકીય વળતરમાં વધારો થાય છે." },
+      { id: "ch6_7", chapterId: 6, question: "નેતૃત્વના અમલ માટે શાનું અસ્તિત્વ હોવું જરૂરી છે?", options: ["નિરીક્ષકો", "નિયોજકો", "તાબેદારો", "સંચાલકો."], answer: 2, explanation: "નેતાના માર્ગદર્શનને અનુસરવા તાબેદારોનું હોવું અનિવાર્ય છે." },
+      { id: "ch6_8", chapterId: 6, question: "એક વ્યક્તિ દ્વારા બીજી વ્યક્તિને સ્પષ્ટ અને અકબંધ સ્વરૂપમાં માહિતી પહોંચાડવી એટલે શું?", options: ["માહિતીસંચાર", "સંદેશા-વ્યવહાર", "કુરિયર-સેવા", "માહિતીપ્રેષણ"], answer: 0, explanation: "દ્વિમાર્ગી પ્રક્રિયા દ્વારા સ્પષ્ટ માહિતી આપ-લે કરવી એ માહિતીસંચાર છે." },
+      { id: "ch6_9", chapterId: 6, question: "તળ સપાટી સંચાલનથી અહેવાલ સ્વરૂપે ઉચ્ચ સપાટી સંચાલન સુધી માહિતી મોકલવાની પ્રક્રિયા એટલે શું?", options: ["માહિતીસંચાર", "માહિતીપ્રેષણ", "સંદેશા વ્યવહાર", "ટપાલ સેવા"], answer: 1, explanation: "નીચલી સપાટીએથી ઉચ્ચ સપાટીએ અહેવાલ કે વિગતો મોકલવી તેને માહિતીપ્રેષણ કહે છે." },
+      { id: "ch6_10", chapterId: 6, question: "અવૈધિક માહિતીસંચાર મોટા ભાગે કયા સ્વરૂપે થાય છે?", options: ["મૌખિક", "લેખિત", "લેખિત અને મૌખિક", "ઔપચારિક"], answer: 0, explanation: "અવૈધિક માહિતીસંચાર મિત્રતા અને કુદરતી વાર્તાલાપ પર આધારિત હોવાથી મૌખિક હોય છે." },
+
+      // Chapter 7
+      { id: "ch7_1", chapterId: 7, question: "આયોજન અનુસાર કાર્ય થાય છે કે નહિ તે જોવાની કામગીરી સંચાલનનું કયું કાર્ય કરે છે?", options: ["વ્યવસ્થાતંત્ર", "તાલીમ", "દોરવણી", "અંકુશ"], answer: 3, explanation: "યોજના મુજબ કામ થાય છે કે નહિ તે ચકાસવું અંકુશનું કાર્ય છે." },
+      { id: "ch7_2", chapterId: 7, question: "અંકુશ એ કેવી પ્રક્રિયા નથી?", options: ["સતત", "આંતરિક", "જડ", "ગતિશીલ"], answer: 2, explanation: "અંકુશ જડ નથી પરંતુ પરિસ્થિતિ અનુસાર સુધારાલક્ષી અને ગતિશીલ છે." },
+      { id: "ch7_3", chapterId: 7, question: "પ્રયત્નો, પરિણામ તથા સાધનો અને ઉદ્દેશ વચ્ચે સંતુલન સાધવાનું કાર્ય એટલે શું?", options: ["દોરવણી", "કર્મચારી વ્યવસ્થા", "સંકલન", "અંકુશ"], answer: 3, explanation: "અંકુશ પ્રયત્નો અને પરિણામો વચ્ચે સમતુલા જાળવે છે." },
+      { id: "ch7_4", chapterId: 7, question: "અંકુશનું કાર્ય કઈ સપાટીએ થાય છે?", options: ["દરેક સપાટીએ", "ઉચ્ચ સપાટીએ", "મધ્ય સપાટીએ", "તળ સપાટીએ"], answer: 0, explanation: "અંકુશ એ માત્ર ઉચ્ચ સપાટીનું નહીં, પણ દરેક સપાટીએ વ્યાપક કાર્ય છે." },
+      { id: "ch7_5", chapterId: 7, question: "નીચેનામાંથી કયું કાર્ય અંકુશનું નથી?", options: ["કાર્યોની પ્રગતિ", "ધોરણો સાથેની સરખામણી", "ઉદ્દેશો નક્કી કરવા", "વિચલનોની જાણકારી"], answer: 2, explanation: "ઉદ્દેશો નક્કી કરવાનું કાર્ય આયોજનનું છે, અંકુશનું નથી." },
+      { id: "ch7_6", chapterId: 7, question: "સંચાલનનું કયું કાર્ય અંકુશના જન્મદાતા તરીકે ઓળખાય છે?", options: ["વ્યવસ્થાતંત્ર", "કર્મચારી વ્યવસ્થા", "દોરવણી", "આયોજન"], answer: 3, explanation: "આયોજન વગર અંકુશનો જન્મ શક્ય નથી, માટે આયોજન જન્મદાતા છે." },
+      { id: "ch7_7", chapterId: 7, question: "સંચાલનનું અંતિમ કાર્ય કયું છે?", options: ["આયોજન", "વ્યવસ્થાતંત્ર", "કર્મચારી વ્યવસ્થા", "અંકુશ"], answer: 3, explanation: "સંચાલન પ્રક્રિયા આયોજનથી શરૂ થાય છે અને અંકુશથી પૂર્ણ થાય છે." },
+      { id: "ch7_8", chapterId: 7, question: "અંકુશ પ્રક્રિયાનો પ્રથમ તબક્કો કયો છે?", options: ["કામગીરીનું માપન", "થયેલી કામગીરીની સ્થાપિત ધોરણો સાથે સરખામણી", "સુધારાલક્ષી પગલાં", "ધોરણોની સ્થાપના"], answer: 3, explanation: "અંકુશ પ્રક્રિયાની શરૂઆત માપદંડો કે ધોરણો (Standards) નક્કી કરવાથી થાય છે." },
+      { id: "ch7_9", chapterId: 7, question: "વિચલનોની જાણકારી મેળવ્યા પછી સંચાલકો તેને દૂર કરવા કેવા ઉપાયો હાથ ધરે છે?", options: ["તાલીમ આપવી", "કર્મચારીઓને છૂટા કરવા", "સુધારાલક્ષી પગલાં લેવાં", "નિષ્ણાતોની નિમણૂક કરવી"], answer: 2, explanation: "ખામીઓ કે વિચલનો જણાય ત્યારે તેને અટકાવવા સુધારાલક્ષી પગલાં લેવાય છે." },
+      { id: "ch7_10", chapterId: 7, question: "એકમમાં સ્થાપિત ધોરણો કરતાં વધુ સારાં પરિણામ મળે ત્યારે શું કરવામાં આવે છે?", options: ["ધોરણો સુધારીને નીચાં કરવાં", "ધોરણો સુધારીને ઊંચાં કરવાં", "ધોરણોમાં ફેરફાર ન કરવો", "ધોરણો દૂર કરવાં"], answer: 1, explanation: "વધુ સારા પરિણામ મળે ત્યારે ભવિષ્ય માટે લક્ષ્યાંકો વધુ ઊંચા સેટ કરાય છે." },
+
+      // Chapter 8
+      { id: "ch8_1", chapterId: 8, question: "સંપત્તિના મહત્તમીકરણનો હેતુ બીજા કયા નામે ઓળખાય છે?", options: ["સામાજિક કલ્યાણ", "મૂડીરોકાણ", "ચોખ્ખું વર્તમાન મૂલ્ય", "ઈક્વિટી પરનો વેપાર"], answer: 2, explanation: "સંપત્તિના મહત્તમીકરણનો હેતુ શેરહોલ્ડરોના ચોખ્ખા વર્તમાન મૂલ્ય (NPV) માં વધારો કરવાનો છે." },
+      { id: "ch8_2", chapterId: 8, question: "સંપત્તિના મહત્તમીકરણનો અભિગમ કયા ખ્યાલ ઉપર આધારિત છે?", options: ["નકારાત્મકતા", "સામાજિક જવાબદારી", "સંપત્તિના વર્તમાન મૂલ્ય", "રોકડ પ્રવાહ"], answer: 2, explanation: "આ અભિગમ રોકડ પ્રવાહના વર્તમાન મૂલ્યના ખ્યાલ પર આધારિત છે." },
+      { id: "ch8_3", chapterId: 8, question: "નાણાકીય સંચાલન કોની સાથે સંબંધ ધરાવે છે?", options: ["નાણાં કાર્ય", "નાણાં બજાર", "મૂડીબજાર", "શેરબજાર"], answer: 0, explanation: "નાણાં મેળવવા, તેનો ઉપયોગ કરવો અને વહેંચણી કરવાના 'નાણાં કાર્ય' સાથે સંકળાયેલું છે." },
+      { id: "ch8_4", chapterId: 8, question: "રોકાણ અંગેના નિર્ણયો એટલે.....", options: ["મૂડી પડતર", "મૂડી બજેટિંગ", "મૂડી માળખું", "નફાનું પુન:રોકાણ"], answer: 1, explanation: "કાયમી મિલકતોમાં લાંબા ગાળાના રોકાણ અંગેના નિર્ણયોને મૂડી બજેટિંગ કહે છે." },
+      { id: "ch8_5", chapterId: 8, question: "ઈક્વિટી અને દેવાનું યોગ્ય પ્રમાણ ધરાવતું મૂડી માળખું એટલે.....", options: ["ઈષ્ટતમ મૂડી માળખું", "સરળ મૂડી માળખું", "કાર્યશીલ મૂડી માળખું", "પ્રમાણસર મૂડી માળખું"], answer: 0, explanation: "જેમાં જોખમ ન્યૂનતમ અને વળતર મહત્તમ મળે તે ઈષ્ટતમ (Optimum) મૂડી માળખું છે." },
+      { id: "ch8_6", chapterId: 8, question: "ચોખ્ખી કાર્યશીલ મૂડીના ખ્યાલના સંદર્ભમાં નીચેનામાંથી કયું વિધાન સાચું નથી?", options: ["ચાલુ જવાબદારીઓ ઉપર ચાલુ મિલકતોનો વધારો", "ધંધાકીય એકમની તરલતાની સ્થિતિ દર્શાવતો નથી", "કાર્યશીલ મૂડી માટે યોગ્ય માપદંડ પૂરો પાડે છે.", "ચાલુ જવાબદારીઓમાં વધારો ચોખ્ખી કાર્યશીલ મૂડીમાં વધારો કરતું નથી."], answer: 1, explanation: "ચોખ્ખી કાર્યશીલ મૂડી એ જ એકમની સાચી તરલતાની સ્થિતિ દર્શાવે છે." },
+      { id: "ch8_7", chapterId: 8, question: "મૂડી માળખાના કેટલા પ્રકારો છે?", options: ["બે", "ત્રણ", "ચાર", "પાંચ"], answer: 2, explanation: "મૂડી માળખાના ૪ મુખ્ય પ્રકારો છે (માત્ર ઈક્વિટી, ઈક્વિટી સાથે પ્રેફરન્સ, ઈક્વિટી સાથે ડિબેન્ચર, કે ત્રણેયનું મિશ્રણ)." },
+      { id: "ch8_8", chapterId: 8, question: "ડિવિડન્ડ કઈ મૂડી પર ચૂકવાય છે?", options: ["ભરપાઈ થયેલી મૂડી", "અધિકૃત મૂડી", "મંગાવેલી મૂડી", "કાર્યશીલ મૂડી"], answer: 0, explanation: "શેરહોલ્ડરોએ ખરેખર રોકડેથી ચૂકવેલી (Paid-up) મૂડી પર ડિવિડન્ડ મળે છે." },
+      { id: "ch8_9", chapterId: 8, question: "કાયમી મૂડીના સંદર્ભમાં કયું વિધાન સાચું છે?", options: ["5 વર્ષ સુધી જ ધંધામાં રોકાયેલી રહે છે", "દેવાદારો, લેણી હૂંડી, બેંકસિલક વગેરે ઘટકો છે", "તરલતાનું પ્રમાણ નહિવત છે", "રોકાણ સરળતાથી પાછું ખેંચી શકાય છે"], answer: 2, explanation: "સ્થાવર મિલકતોમાં રોકાયેલી મૂડીનું ત્વરિત રોકડમાં રૂપાંતર શક્ય નથી." },
+      { id: "ch8_10", chapterId: 8, question: "વિદેશી રોકાણ સંસ્થાએ તેની નોંધણી કોની સમક્ષ કરાવવી પડે છે?", options: ["કંપની રજિસ્ટ્રાર", "અદાલત", "શેરબજાર", "સેબી"], answer: 3, explanation: "વિદેશી સંસ્થાકીય રોકાણકારો (FII) એ સેબી (SEBI) પાસે નોંધણી કરાવવી પડે છે." },
+      { id: "ch8_11", chapterId: 8, question: "ચાલુ જવાબદારીઓ કરતાં ચાલુ મિલકતોનો વધારો એટલે.....", options: ["હકારાત્મક કાર્યશીલ મૂડી", "નકારાત્મક કાર્યશીલ મૂડી", "સરભર કાર્યશીલ મૂડી", "કુલ કાર્યશીલ મૂડી"], answer: 0, explanation: "ચાલુ મિલકતો > ચાલુ જવાબદારીઓ હોય તેને હકારાત્મક કાર્યશીલ મૂડી કહે છે." },
+
+      // Chapter 9
+      { id: "ch9_1", chapterId: 9, question: "એક વર્ષ કે તેથી ઓછા સમય માટે પાકતી મુદ્દત ધરાવતી જામીનગીરીઓનું બજાર એટલે........", options: ["મૂડી બજાર", "પ્રાથમિક બજાર", "નાણાં બજાર", "ગૌણ બજાર"], answer: 2, explanation: "ટૂંકા ગાળાના સાધનોનું બજાર એટલે નાણાં બજાર." },
+      { id: "ch9_2", chapterId: 9, question: "સંગઠિત નાણાં બજારનું નિયંત્રણ કોના દ્વારા થાય છે?", options: ["સેબી", "સ્ટેટ બેન્ક ઓફ ઈન્ડિયા", "રિઝર્વ બેન્ક ઓફ ઈન્ડિયા", "નાણાકીય સંસ્થાઓ"], answer: 2, explanation: "ભારતમાં નાણાં બજારનું નિયામક RBI છે." },
+      { id: "ch9_3", chapterId: 9, question: "ટ્રેઝરી બિલ ભારત સરકાર વતી કોણ બહાર પાડે છે?", options: ["સ્ટેટ બેન્ક ઓફ ઈન્ડિયા", "રિઝર્વ બેન્ક ઓફ ઈન્ડિયા", "સેન્ટ્રલ બેન્ક ઓફ ઈન્ડિયા", "નાણાકીય સંસ્થાઓ"], answer: 1, explanation: "ભારત સરકાર વતી RBI ટ્રેઝરી બિલ બહાર પાડે છે." },
+      { id: "ch9_4", chapterId: 9, question: "કોમર્શિયલ બિલના સંદર્ભમાં કયું વિધાન ખોટું છે?", options: ["સરકારી જામીનગીરી છે.", "ધંધાના વ્યવહારોથી ઉદ્ભવે છે.", "વેપારી બેન્કો વટાવી આપે છે.", "હસ્તાંતરણીય સાધન છે."], answer: 0, explanation: "કોમર્શિયલ બિલ એ વેપારી વ્યવહારોમાંથી ઉદ્ભવતું શાખ સાધન છે, સરકારી નથી." },
+      { id: "ch9_5", chapterId: 9, question: "નવી બહાર પાડવામાં આવતી જામીનગીરીઓના વેચાણનું બજાર એટલે.........", options: ["શેર બજાર", "પ્રાથમિક બજાર", "ગૌણ બજાર", "સટ્ટા બજાર"], answer: 1, explanation: "નવી જામીનગીરીઓના પ્રથમ વખત વેચાણ માટેનું બજાર પ્રાથમિક મૂડી બજાર છે." },
+      { id: "ch9_6", chapterId: 9, question: "1956ના જામીનગીરી કરાર (નિયમન) ધારા અન્વયે શેર બજારોએ કોની મંજૂરી મેળવવી પડે છે?", options: ["કેન્દ્ર સરકાર", "સેબી", "રિઝર્વ બેન્ક ઓફ ઈન્ડિયા", "નાણાં પ્રધાન"], answer: 0, explanation: "૧૯૫૬ ના કાયદા હેઠળ શેરબજારોએ કેન્દ્ર સરકારની મંજૂરી લેવી પડે છે." },
+      { id: "ch9_7", chapterId: 9, question: "ડિપોઝિટરી ધારો કયા વર્ષે અમલમાં આવ્યો?", options: ["1991", "1992", "1995", "1996"], answer: 3, explanation: "ઓગસ્ટ ૧૯૯૬ માં ડિપોઝિટરી ધારો લાગુ થયો હતો." },
+      { id: "ch9_8", chapterId: 9, question: "ડિપોઝિટરીએ તેની કામગીરી શરૂ કરતાં પહેલાં કોની પાસેથી નોંધણીનું પ્રમાણપત્ર મેળવવું પડે છે?", options: ["શેર બજાર", "કેન્દ્ર સરકાર", "સેબી", "રિઝર્વ બેન્ક ઓફ ઈન્ડિયા"], answer: 2, explanation: "NSDL/CDSL જેવી ડિપોઝિટરીઓએ સેબી પાસે નોંધણી પ્રમાણપત્ર લેવું પડે છે." },
+      { id: "ch9_9", chapterId: 9, question: "જામીનગીરીઓ ના ખરીદ-વેચાણમાં કેટલા પ્રકારના ઓર્ડર હોય છે?", options: ["બે", "ત્રણ", "ચાર", "પાંચ"], answer: 0, explanation: "ઓર્ડરના ૨ પ્રકારો છે: મર્યાદિત ઓર્ડર અને બજાર ઓર્ડર." },
+      { id: "ch9_10", chapterId: 9, question: "સેબી (SEBI) કયા કાયદાથી અસ્તિત્વમાં આવી?", options: ["કંપની ધારો", "જામીનગીરી કરાર (નિયમન) ધારો", "નેશનલ કંપની ધારો", "સિક્યુરિટીઝ એન્ડ એક્સચેન્જ બોર્ડ ઓફ ઈન્ડિયા ધારો (SEBI Act)"], answer: 3, explanation: "SEBI Act 1992 હેઠળ સેબી કાયદેસર સંસ્થા બની હતી." },
+
+      // Chapter 10
+      { id: "ch10_1", chapterId: 10, question: "બજારીય સંચાલનમાં બજાર મિશ્ર એટલે શું?", options: ["પેદાશ, ઉત્પાદન, વિતરણ અને કિંમત.", "પેદાશ, વાહનવ્યવહાર, બજાર અને ગ્રાહક.", "પેદાશ, હરીફો, સરકાર અને અન્ય.", "પેદાશ, કિંમત, અભિવૃદ્ધિ અને વિતરણ."], answer: 3, explanation: "માર્કેટિંગ મિશ્રમાં Product, Price, Promotion અને Place નો સમાવેશ થાય છે." },
+      { id: "ch10_2", chapterId: 10, question: "બજારીય વિભાવનામાં કોણ કેન્દ્ર સ્થાને હોય છે?", options: ["પેદાશ", "ઉત્પાદન", "ગ્રાહક", "નફો."], answer: 2, explanation: "આધુનિક માર્કેટિંગ સંકલ્પના ગ્રાહકલક્ષી છે." },
+      { id: "ch10_3", chapterId: 10, question: "બ્રાન્ડિંગનો મુખ્ય ઉદ્દેશ કયો છે?", options: ["પેદાશ વધુ ટકાવ બનાવવાનો", "પેદાશ કાયદા મુજબ બનાવવાનો", "પેદાશની જાહેરાત કરવાનો", "હરીફોની પેદાશથી પોતાની પેદાશ અલગ બનાવવાનો."], answer: 3, explanation: "બ્રાન્ડિંગ પેદાશને નવી અને અલગ ઓળખ આપે છે." },
+      { id: "ch10_4", chapterId: 10, question: "જ્યારે ઉત્પાદક ગ્રાહકને સીધું વેચાણ કરતો હોય ત્યારે કેટલી સપાટીવાળી વિતરણ વ્યવસ્થા ઊભી થઈ એમ કહેવાય?", options: ["એક", "બે", "ત્રણ", "શૂન્ય"], answer: 3, explanation: "ઉત્પાદક અને ગ્રાહક વચ્ચે કોઈ મધ્યસ્થી ન હોવાથી તે શૂન્ય સપાટી છે." },
+      { id: "ch10_5", chapterId: 10, question: "અભિવૃદ્ધિ દ્વારા શું કરવામાં આવે છે?", options: ["કિંમત વધારવામાં આવે છે.", "વેચાણ વધારવામાં આવે છે.", "ઉત્પાદન વધારવામાં આવે છે.", "રૂપરંગમાં ફેરફાર કરવામાં આવે છે."], answer: 1, explanation: "અભિવૃદ્ધિ ગ્રાહકોને ખરીદી માટે પ્રેરિત કરી વેચાણ ઉત્તેજિત કરે છે." },
+      { id: "ch10_6", chapterId: 10, question: "વ્યક્તિગત વેચાણમાં વેચાણકર્તા કયું કાર્ય કરે છે?", options: ["સંભવિત ગ્રાહકને પેદાશનું નિદર્શન કરે છે.", "પેદાશનું પેકિંગ કરે છે.", "પેદાશનો સ્વયં ઉપયોગ કરે છે.", "નવા વેચાણકર્તાની નિમણૂંક કરે છે."], answer: 0, explanation: "સેલ્સમેન પ્રત્યક્ષ મળી પેદાશનું ડેમોન્સ્ટ્રેશન આપે છે." },
+      { id: "ch10_7", chapterId: 10, question: "વેચાણ વૃદ્ધિની પ્રયુક્તિઓને કારણે કઈ પરિસ્થિતિનું નિર્માણ થાય છે?", options: ["ગ્રાહક પેદાશને ખરીદવા તાત્કાલિક પ્રેરાય છે.", "ગ્રાહક પેદાશને સમજવાનો પ્રયત્ન કરતો નથી.", "મધ્યસ્થીઓ ગ્રાહકોને માલ આપવાનું બંધ કરી દે છે.", "છૂટક વેપારીઓ મધ્યસ્થીઓ પાસેથી માલ લેવાનું બંધ કરે છે."], answer: 0, explanation: "ડિસ્કાઉન્ટ, ભેટ વગેરે પ્રયુક્તિઓ ગ્રાહકને ત્વરિત ખરીદી માટે પ્રોત્સાહિત કરે છે." },
+      { id: "ch10_8", chapterId: 10, question: "નીચેનામાંથી કયું કાર્ય બજારીય સંચાલનનું છે?", options: ["માલ વપરાશ યોગ્ય બનાવવો", "માલનો સંગ્રહ કરવો", "બજાર વિભાજન", "વેચાણ"], answer: 2, explanation: "બજારને જુદા જુદા ભાગોમાં વર્ગીકૃત કરવું (Market Segmentation) એ માર્કેટિંગ કાર્ય છે." },
+      { id: "ch10_9", chapterId: 10, question: "વધુ પડતા જાહેરાત ખર્ચને કારણે શું થાય છે?", options: ["પેદાશની કિંમતમાં વધારો થાય છે.", "પેદાશ વધુ આકર્ષક બને છે.", "પેદાશ વધુ ગુણવત્તાવાળી બને છે.", "પેદાશ બધે જ પ્રાપ્ય થાય છે."], answer: 0, explanation: "જાહેરાત ખર્ચ પેદાશની કિંમતમાં ઉમેરાતાં વેચાણ કિંમત વધે છે." },
+      { id: "ch10_10", chapterId: 10, question: "જાહેર સંપર્કમાં ધંધાકીય એકમ કે પેદાશ વિશે બધા સહભાગીઓ સમક્ષ હકારાત્મક વલણ ઊભું કરવાનો પ્રયાસ કરવામાં આવે છે.", options: ["આ વિધાન સાચું છે.", "આ વિધાન ફક્ત મધ્યસ્થીઓ અને છૂટક વ્યાપારીઓ માટે જ સાચું છે.", "આ વિધાન ફક્ત સંભવિત ગ્રાહકો માટે જ સાચું છે.", "આ વિધાન ખોટું છે."], answer: 0, explanation: "જાહેર સંપર્ક (PR) નું મૂળ કામ એકમની સારી છાપ ઊભી કરવાનું છે." },
+
+      // Chapter 11
+      { id: "ch11_1", chapterId: 11, question: "ગ્રાહક સુરક્ષાનો કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો?", options: ["1956", "1932", "1986", "2015"], answer: 2, explanation: "ભારત સરકારે ૧૯૮૬ માં ગ્રાહક સુરક્ષા ધારો ઘડ્યો હતો." },
+      { id: "ch11_2", chapterId: 11, question: "વાલીપણાનો સિદ્ધાંત કોણે આપ્યો છે?", options: ["જવાહરલાલ નેહરુ", "સુભાષચંદ્ર બોઝ", "ઈન્દિરા ગાંધી", "ગાંધીજી"], answer: 3, explanation: "મહાત્મા ગાંધીજીએ ટ્રસ્ટીશિપ (વાલીપણા) નો સિદ્ધાંત રજૂ કર્યો હતો." },
+      { id: "ch11_3", chapterId: 11, question: "નીચેનામાંથી કયો હક્ક ગ્રાહક સુરક્ષાના કાયદા-1986 મુજબ નથી?", options: ["સુરક્ષા", "પ્રાથમિક જરૂરિયાતો", "જાણકારી", "પસંદગી"], answer: 1, explanation: "૧૯૮૬ ના કાયદામાં ૬ હક્કો છે, પ્રાથમિક જરૂરિયાતો એ સંયુક્ત રાષ્ટ્રો (UN) નો વધારાનો અધિકાર છે." },
+      { id: "ch11_4", chapterId: 11, question: "નીચેના પૈકી કોનો સમાવેશ ગ્રાહક સુરક્ષાના કાયદા મુજબની તકરાર નિવારણ સંસ્થામાં થતો નથી?", options: ["લોક અદાલત", "જિલ્લા કક્ષાનું ફોરમ", "રાજ્ય કક્ષાનું આયોગ", "રાષ્ટ્રીય કક્ષાનું આયોગ"], answer: 0, explanation: "તકરાર નિવારણ માટે ૩ સ્તરના ફોરમ (જિલ્લા, રાજ્ય, રાષ્ટ્રીય) છે." },
+      { id: "ch11_5", chapterId: 11, question: "જિલ્લા કક્ષાના ફોરમમાં કેટલા સભ્યો હોય છે?", options: ["કુલ ત્રણ", "ઓછામાં ઓછા ત્રણ", "ઓછામાં ઓછા ચાર", "કુલ બે"], answer: 1, explanation: "જિલ્લા ફોરમમાં એક પ્રમુખ અને ઓછામાં ઓછા ૨ સભ્યો (જેમાં ૧ મહિલા) હોય છે." },
+      { id: "ch11_6", chapterId: 11, question: "કયા પ્રકારના ફોરમ/આયોગમાં સભ્યોની નિમણૂક કેન્દ્ર સરકાર કરે છે?", options: ["જિલ્લા સ્તર", "રાજ્ય સ્તર", "રાષ્ટ્રીય સ્તર", "આંતરરાષ્ટ્રીય સ્તર"], answer: 2, explanation: "રાષ્ટ્રીય આયોગના સભ્યોની નિમણૂક કેન્દ્ર સરકાર દ્વારા થાય છે." },
+      { id: "ch11_7", chapterId: 11, question: "જાહેર હિતની અરજી કઈ કોર્ટમાં થઈ શકે?", options: ["ફોજદારી કોર્ટ", "દીવાની કોર્ટ", "જિલ્લા કોર્ટ", "સુપ્રીમ કોર્ટ"], answer: 3, explanation: "જાહેર હિતની અરજી (PIL) હાઈકોર્ટ કે સુપ્રીમ કોર્ટમાં કરી શકાય છે." },
+      { id: "ch11_8", chapterId: 11, question: "કઈ ગ્રાહક સુરક્ષાની સંસ્થાની સ્થાપના સાથે અમદાવાદ સંકળાયેલું છે?", options: ["કન્ઝ્યુમર એજ્યુકેશન એન્ડ રિસર્ચ સેન્ટર (CERC)", "કન્ઝ્યુમર ગાઈડન્સ સોસાયટી ઓફ ઈન્ડિયા", "કન્ઝ્યુમર યુનિટી એન્ડ ટ્રસ્ટ સોસાયટી", "કન્ઝ્યુમર કો-ઓર્ડિનેશન કાઉન્સિલ"], answer: 0, explanation: "CERC નામની જાણીતી સ્વૈચ્છિક સંસ્થા અમદાવાદમાં કાર્યરત છે." },
+      { id: "ch11_9", chapterId: 11, question: "કઈ સંસ્થા ગ્રાહક સુરક્ષા માટે ભારતમાં કાર્ય કરતી સંસ્થાઓના સંકલનનું કામ કરે છે?", options: ["કન્ઝ્યુમર પ્રોટેક્શન કાઉન્સિલ", "કન્ઝ્યુમર એજ્યુકેશન એન્ડ રિસર્ચ કાઉન્સિલ", "કન્ઝ્યુમર કો-ઓર્ડિનેશન કાઉન્સિલ", "કન્ઝ્યુમર યુનિટી એન્ડ ટ્રસ્ટ સોસાયટી"], answer: 2, explanation: "દિલ્હીસ્થિત Consumer Co-ordination Council સંકલનનું કામ કરે છે." },
+      { id: "ch11_10", chapterId: 11, question: "નીચેના પૈકી કયું કાર્ય ગ્રાહક સંગઠનો કરતાં નથી?", options: ["ગ્રાહક અધિકારો માટે લોકોને શિક્ષણ આપવાનું", "ગ્રાહક હિત ધરાવતી માહિતીનું પ્રકાશન કરવાનું", "ગ્રાહકોની યાદી ઉદ્યોગને પૂરી પાડવાનું", "ગ્રાહકોના હિતોનું રક્ષણ કરવાનું"], answer: 2, explanation: "ગ્રાહક સંગઠનો ગ્રાહકોના શિક્ષણ અને રક્ષણ માટે છે, ઉદ્યોગોને ડેટા આપવા માટે નહીં." },
+
+      // Chapter 12
+      { id: "ch12_1", chapterId: 12, question: "ઔદ્યોગિક વિકાસ અને નિયમન ધારો કયા વર્ષમાં અસ્તિત્વમાં આવ્યો?", options: ["1951", "1955", "1969", "1986"], answer: 0, explanation: "ઉદ્યોગોના વિકાસ અને નિયંત્રણ માટે ૧૯૫૧ માં કાયદો બન્યો." },
+      { id: "ch12_2", chapterId: 12, question: "આવશ્યક ચીજવસ્તુઓનો ધારો કયા વર્ષમાં અસ્તિત્વમાં આવ્યો?", options: ["1951", "1955", "1969", "1986"], answer: 1, explanation: "જરૂરી વસ્તુઓનો પુરવઠો જાળવવા ૧૯૫૫ માં આ ધારો અસ્તિત્વમાં આવ્યો." },
+      { id: "ch12_3", chapterId: 12, question: "ટ્રેડ માર્ક ધારો કયા વર્ષમાં અસ્તિત્વમાં આવ્યો?", options: ["1951", "1955", "1969", "1986"], answer: 2, explanation: "ટ્રેડમાર્કના સંરક્ષણ માટે ૧૯૬૯ માં કાયદો ઘડાયો." },
+      { id: "ch12_4", chapterId: 12, question: "પ્રમાણભૂત વજન અને માપધારો કયા વર્ષમાં અસ્તિત્વમાં આવ્યો?", options: ["1951", "1955", "1969", "1986"], answer: 2, explanation: "તોલમાપમાં ચોકસાઈ માટે ૧૯૬૯ માં કાયદો અસ્તિત્વમાં આવ્યો." },
+      { id: "ch12_5", chapterId: 12, question: "ગ્રાહક સુરક્ષા ધારો કયા વર્ષમાં અસ્તિત્વમાં આવ્યો?", options: ["1951", "1955", "1969", "1986"], answer: 3, explanation: "ગ્રાહક રક્ષણ માટે ૧૯૮૬ માં ગ્રાહક સુરક્ષા કાયદો બન્યો." },
+      { id: "ch12_6", chapterId: 12, question: "ભારતમાં ઉદારીકરણ, ખાનગીકરણ અને વૈશ્વિકીકરણની શરૂઆત કયા વર્ષથી થઈ?", options: ["1951", "1991", "2001", "2011"], answer: 1, explanation: "જુલાઈ ૧૯૯૧ માં નવી આર્થિક નીતિ હેઠળ આ LPG સુધારાઓ શરૂ થયા." },
+      { id: "ch12_7", chapterId: 12, question: "ભારતીય ચલણ-રૂપિયાને કઈ સંજ્ઞા આપવામાં આવી છે?", options: ["Rupees", "Rs.", "₹", "Я"], answer: 2, explanation: "ભારતીય રૂપિયા માટે નવી સત્તાવાર સંજ્ઞા '₹' સ્વીકારાઈ છે." },
+      { id: "ch12_8", chapterId: 12, question: "વિદેશી હૂંડિયામણ માટે ભારતમાં હાલ કયો કાયદો અસ્તિત્વમાં છે?", options: ["FERA", "FECA", "FESA", "FEMA"], answer: 3, explanation: "જૂના FERA કાયદાને બદલે સુધારાત્મક FEMA કાયદો અમલમાં છે." },
+      { id: "ch12_9", chapterId: 12, question: "નીચેના વિકલ્પો પૈકી કયો લાભ ખાનગીકરણનો નથી?", options: ["કાર્યક્ષમતામાં વધારો", "રાજકીય દખલગીરીનો અભાવ", "કર્મચારીઓનું શોષણ", "આધુનિક ટેકનોલોજીનો ઉપયોગ"], answer: 2, explanation: "ખાનગીકરણથી કાર્યક્ષમતા વધે છે પરંતુ કર્મચારીઓનું શોષણ એ તેનો નકારાત્મક ગેરલાભ છે." },
+      { id: "ch12_10", chapterId: 12, question: "નીચેના વિકલ્પો પૈકી કયો લાભ ખાનગીકરણનો છે?", options: ["ઉચ્ચ સંચાલકો દ્વારા સત્તાનો દુરુપયોગ", "આવક અને સંપત્તિની અસમાન વહેંચણી", "ગ્રાહકોનું શોષણ", "ગુણવત્તાયુક્ત વસ્તુ કે સેવાનું ઉત્પાદન"], answer: 3, explanation: "ખાનગી ક્ષેત્ર ગુણવત્તાયુક્ત ઉત્પાદન પૂરું પાડે છે." }
+    ];
+
+    /* ==========================================================
+       GLOBAL APPLICATION STATE
+       ========================================================== */
+    window.allQuestions = [...DEFAULT_QUESTIONS];
+    window.dedicatedMockPapers = [];
+    window.studentReports = [];
+    
+    let adminPin = "1234";
+    let isAdminLoggedIn = false;
+    let failedPinAttempts = 0;
+    let lockoutUntil = 0;
+    let secretTapCount = 0;
+    let secretTapTimer = null;
+
+    let studentProfile = {
+      name: "વિદ્યાર્થી",
+      totalScore: 0,
+      bestStreak: 0,
+      quizzesTaken: 0
+    };
+
+    // Current quiz state
+    let activeQuizQuestions = [];
+    let currentQIndex = 0;
+    let currentScore = 0;
+    let currentStreak = 0;
+    let timerValue = 30;
+    let timerInterval = null;
+    let isQuestionAnswered = false;
+    let activeCategoryName = "";
+    let activeChapterId = null;
+    let isTimedMockMode = false;
+
+    // Lifeline states for current session
+    let lifelineState = { fftyUsed: false, skipUsed: false };
+
+    /* ==========================================================
+       PERMANENT SEAL SVG WATERMARK
+       ========================================================== */
+    const PERMANENT_SEAL_SVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Ccircle cx='250' cy='250' r='240' fill='none' stroke='%234F46E5' stroke-width='10' stroke-dasharray='18 10'/%3E%3Ccircle cx='250' cy='250' r='215' fill='none' stroke='%234F46E5' stroke-width='4'/%3E%3Cpath d='M250 85 L380 155 L250 225 L120 155 Z' fill='%234F46E5'/%3E%3Cpath d='M160 185 L160 275 Q250 335 340 275 L340 185' fill='none' stroke='%234F46E5' stroke-width='20'/%3E%3Ctext x='250' y='360' font-family='Arial, sans-serif' font-size='34' font-weight='bold' fill='%234F46E5' text-anchor='middle'%3ETR. HEMANT SIR%3C/text%3E%3Ctext x='250' y='400' font-family='Arial, sans-serif' font-size='20' font-weight='bold' fill='%234F46E5' text-anchor='middle'%3EB.A. MASTER EXCELLENCE%3C/text%3E%3Ctext x='250' y='430' font-family='Arial, sans-serif' font-size='16' fill='%236366F1' text-anchor='middle'%3EGSEB CLASS 12%3C/text%3E%3C/svg%3E`;
+
+    /* ==========================================================
+       AUDIO SYNTHESIZER (Web Audio API)
+       ========================================================== */
+    const AudioSynth = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new AudioContext();
+          } catch(e) {}
+        }
+      },
+      play(freq, type = 'sine', duration = 0.15, vol = 0.2) {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          if (this.ctx.state === 'suspended') this.ctx.resume();
+          
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+          gain.gain.setValueAtTime(vol, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+          
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + duration);
+        } catch(e) {}
+      },
+      click() { this.play(600, 'triangle', 0.08, 0.1); },
+      correct() {
+        this.play(523.25, 'sine', 0.1, 0.2);
+        setTimeout(() => this.play(659.25, 'sine', 0.15, 0.2), 100);
+      },
+      wrong() {
+        this.play(260, 'sawtooth', 0.2, 0.25);
+        setTimeout(() => this.play(220, 'sawtooth', 0.25, 0.25), 120);
+      },
+      fanfare() {
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+          setTimeout(() => this.play(freq, 'triangle', 0.3, 0.25), i * 140);
+        });
+      }
+    };
+
+    function showToast(msg, type = "info") {
+      const toast = document.createElement("div");
+      toast.className = `fixed bottom-5 left-1/2 transform -translate-x-1/2 px-4 py-2.5 rounded-xl text-white text-xs sm:text-sm font-bold shadow-2xl z-50 transition-all duration-300 pointer-events-none flex items-center gap-2 ${
+        type === 'error' ? 'bg-rose-600' : (type === 'success' ? 'bg-emerald-600' : 'bg-indigo-600')
+      }`;
+      const icon = type === 'error' ? 'fa-circle-xmark' : (type === 'success' ? 'fa-circle-check' : 'fa-circle-info');
+      toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${msg}</span>`;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, 15px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 2800);
+    }
+
+    function navigateTo(viewId) {
+      AudioSynth.click();
+      document.querySelectorAll('main > div[id^="view"]').forEach(el => el.classList.add('hidden'));
+      
+      const target = document.getElementById(`view${viewId.charAt(0).toUpperCase() + viewId.slice(1)}`);
+      if (target) {
+        target.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      
+      if (viewId === 'home') {
+        renderHomeScreen();
+      } else if (viewId === 'admin') {
+        renderAdminPortal();
+      }
+    }
+
+    function handleSecretCreatorTap(e) {
+      e.stopPropagation();
+      secretTapCount++;
+      clearTimeout(secretTapTimer);
+      secretTapTimer = setTimeout(() => { secretTapCount = 0; }, 2000);
+      
+      if (secretTapCount >= 5) {
+        secretTapCount = 0;
+        unlockCreatorAdmin();
+      }
+    }
+
+    function unlockCreatorAdmin() {
+      const btn = document.getElementById('teacherAdminNavBtn');
+      if (btn) {
+        btn.classList.remove('hidden');
+        btn.classList.add('flex');
+      }
+      showToast("શિક્ષક નિયંત્રણ મોડ પ્રગટ થયો!", "success");
+      promptTeacherLogin();
+    }
+
+    // Keyboard trigger: Ctrl + Shift + H (or Cmd + Shift + H)
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'H' || e.key === 'h')) {
+        e.preventDefault();
+        unlockCreatorAdmin();
+      }
+    });
+
+    function checkAdminUrlParam() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('admin') === 'true' || urlParams.get('creator') === 'true') {
+          const btn = document.getElementById('teacherAdminNavBtn');
+          if (btn) {
+            btn.classList.remove('hidden');
+            btn.classList.add('flex');
+          }
+        }
+      } catch (e) {}
+    }
+
+    function promptTeacherLogin() {
+      AudioSynth.click();
+      if (isAdminLoggedIn) {
+        navigateTo('admin');
+        return;
+      }
+
+      if (Date.now() < lockoutUntil) {
+        const remainingSec = Math.ceil((lockoutUntil - Date.now()) / 1000);
+        showToast(`સુરક્ષા કારણોસર એડમિન પેનલ ${remainingSec} સેકન્ડ માટે લૉક છે!`, "error");
+        return;
+      }
+
+      const modal = document.getElementById('teacherLoginModal');
+      const pinInput = document.getElementById('adminPinInput');
+      const errorMsg = document.getElementById('pinErrorMessage');
+      
+      if (modal && pinInput) {
+        pinInput.value = '';
+        if (errorMsg) errorMsg.classList.add('hidden');
+        modal.classList.remove('hidden');
+        setTimeout(() => pinInput.focus(), 150);
+      }
+    }
+
+    function closeTeacherLoginModal() {
+      const modal = document.getElementById('teacherLoginModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function verifyTeacherPin() {
+      if (Date.now() < lockoutUntil) {
+        const remainingSec = Math.ceil((lockoutUntil - Date.now()) / 1000);
+        showToast(`પેનલ લૉક છે! ${remainingSec} સેકન્ડ રાહ જુઓ.`, "error");
+        return;
+      }
+
+      const pinInput = document.getElementById('adminPinInput');
+      const errorMsg = document.getElementById('pinErrorMessage');
+      const entered = pinInput ? pinInput.value.trim() : '';
+
+      if (entered === adminPin) {
+        isAdminLoggedIn = true;
+        failedPinAttempts = 0;
+        closeTeacherLoginModal();
+        showToast("શિક્ષક એડમિન મોડ સફળતાપૂર્વક અનલૉક થયો!", "success");
+        navigateTo('admin');
+      } else {
+        AudioSynth.wrong();
+        failedPinAttempts++;
+        if (failedPinAttempts >= 3) {
+          lockoutUntil = Date.now() + (3 * 60 * 1000);
+          failedPinAttempts = 0;
+          closeTeacherLoginModal();
+          showToast("૩ વાર ખોટો PIN! એડમિન પેનલ ૩ મિનિટ માટે લૉક થઈ ગઈ છે.", "error");
+        } else if (errorMsg) {
+          errorMsg.innerText = `ખોટો PIN! (${3 - failedPinAttempts} પ્રયાસ બાકી)`;
+          errorMsg.classList.remove('hidden');
+        }
+      }
+    }
+
+    function changeAdminPinModal() {
+      const modal = document.getElementById('changePinModal');
+      if (modal) {
+        document.getElementById('currentPinInput').value = '';
+        document.getElementById('newPinInput').value = '';
+        document.getElementById('changePinError').classList.add('hidden');
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeChangePinModal() {
+      const modal = document.getElementById('changePinModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function saveNewAdminPin() {
+      const currentEntered = (document.getElementById('currentPinInput')?.value || '').trim();
+      const newEntered = (document.getElementById('newPinInput')?.value || '').trim();
+      const errorEl = document.getElementById('changePinError');
+
+      if (currentEntered !== adminPin) {
+        if (errorEl) {
+          errorEl.innerText = "હાલનો PIN ખોટો છે!";
+          errorEl.classList.remove('hidden');
+        }
+        return;
+      }
+
+      if (newEntered.length < 4) {
+        if (errorEl) {
+          errorEl.innerText = "નવો PIN ઓછામાં ઓછા ૪ અંકનો હોવો જોઈએ!";
+          errorEl.classList.remove('hidden');
+        }
+        return;
+      }
+
+      adminPin = newEntered;
+      try {
+        localStorage.setItem('teacher_admin_pin', adminPin);
+      } catch (err) {}
+
+      closeChangePinModal();
+      showToast("શિક્ષક PIN સફળતાપૂર્વક બદલાઈ ગયો છે!", "success");
+    }
+
+    function loadSavedData() {
+      checkAdminUrlParam();
+
+      // Load Questions
+      try {
+        const localQ = JSON.parse(localStorage.getItem('quiz_questions'));
+        if (localQ && Array.isArray(localQ) && localQ.length >= 122) {
+          window.allQuestions = localQ;
+        } else {
+          window.allQuestions = [...DEFAULT_QUESTIONS];
+          localStorage.setItem('quiz_questions', JSON.stringify(window.allQuestions));
+        }
+      } catch (e) {
+        window.allQuestions = [...DEFAULT_QUESTIONS];
+      }
+
+      // Load Dedicated Mock Papers
+      try {
+        const PERMANENT_BOARD_PAPERS = [
+  {
+    paperId: "BA_MARCH_2026",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૬",
+    year: "2026",
+    questions: [
+      { id: 1, question: "ઉચ્ચ સપાટી સંચાલનમાં કોનો સમાવેશ થાય છે?", options: ["નિષ્ણાતો", "કામદારો", "ખાતાવાર અધિકારીઓ", "બોર્ડ ઓફ ડિરેક્ટર્સ"], answer: 3, correctAnswer: "D", explanation: "બોર્ડ ઓફ ડિરેક્ટર્સ (સંચાલક મંડળ) ઉચ્ચ સપાટીએ હોય છે." },
+      { id: 2, question: "વૈજ્ઞાનિક સંચાલન વિચારધારાના પ્રણેતા કોણ છે ?", options: ["લ્યુથર ગ્યુલિક", "ફ્રેડરીક ટેલર", "હેનરી ફેયોલ", "પીટર એફ.ડ્રકર"], answer: 1, correctAnswer: "B", explanation: "વૈજ્ઞાનિક સંચાલનના પિતા/પ્રણેતા ફેડરિક ડબલ્યુ. ટેલર છે." },
+      { id: 3, question: "નીચેનામાંથી આયોજનનું ઘટક કયું છે?", options: ["સતત પ્રક્રિયા", "અંકુશ", "દોરવણી", "નિયમો"], answer: 3, correctAnswer: "D", explanation: "નિયમો એ આયોજનનું એક મહત્વનું ઘટક છે." },
+      { id: 4, question: "નીચેનામાંથી કયા વ્યવસ્થા તંત્રમાં વિભાગ કરતા કાર્યને વધુ મહત્ત્વ આપવામાં આવે છે?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, correctAnswer: "B", explanation: "કાર્યાનુસાર વ્યવસ્થાતંત્રમાં વિભાગ કરતાં કાર્યને વધુ મહત્વ અપાય છે." },
+      { id: 5, question: "નીચેનામાંથી શું સોંપી શકાતુ નથી ?", options: ["સત્તા", "જવાબદારી", "ઉત્તરદાયિત્વ", "કાર્ય"], answer: 2, correctAnswer: "C", explanation: "સત્તા અને જવાબદારી સોંપી શકાય છે પરંતુ ઉત્તરદાયિત્વની સોંપણી થઈ શકતી નથી." },
+      { id: 6, question: "માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કયું છે ?", options: ["વેચાણ વૃદ્ધિ", "ગુણવત્તા અંકુશ", "કર્મચારી આયોજન", "ઉત્પાદન"], answer: 2, correctAnswer: "C", explanation: "માનવ સંસાધન સંચાલન (HRM) માં કર્મચારી આયોજન મુખ્ય છે." },
+      { id: 7, question: "બિન સંચાલકીય કર્મચારીઓની પસંદગીની પ્રક્રિયા કેવી છે?", options: ["મુશ્કેલ છે.", "ટૂંકી અને સરળ છે.", "ખર્ચાળ છે.", "લાંબી અને વિશિષ્ટ છે."], answer: 1, correctAnswer: "B", explanation: "બિન-સંચાલકીય/તળ સપાટીના કર્મચારીઓની પસંદગી ટૂંકી અને સરળ હોય છે." },
+      { id: 8, question: "માસ્લોની જરૂરિયાતોના અગ્રતાક્રમ અનુસાર પહેલી જરૂરિયાત કઈ છે?", options: ["શારીરિક જરૂરિયાતો", "સલામતીની જરૂરિયાતો", "સામાજિક જરૂરિયાતો", "પ્રતિષ્ઠાની જરૂરિયાતો"], answer: 0, correctAnswer: "A", explanation: "અબ્રાહમ માસ્લોના અગ્રતાક્રમમાં પ્રથમ શારીરિક કે પ્રાથમિક જરૂરિયાતો આવે છે." },
+      { id: 9, question: "નેતૃત્વના અમલ માટે શાનું અસ્તિત્વ હોવું જરૂરી છે ?", options: ["નિરીક્ષકો", "નિયોજકો", "તાબેદારો", "સંચાલકો"], answer: 2, correctAnswer: "C", explanation: "તાબેદારો (અનુયાયીઓ) વિના નેતૃત્વ શક્ય નથી." },
+      { id: 10, question: "વિચલનોની જાણકારી મેળવ્યા પછી સંચાલકો તેને દૂર કરવા કેવા ઉપાયો હાથ ધરે છે?", options: ["તાલીમ આપવી", "કર્મચારીઓને છૂટા કરવા", "સુધારાલક્ષી પગલા લેવા", "નિષ્ણાતોની નિમણૂક કરવી"], answer: 2, correctAnswer: "C", explanation: "અંકુશ પ્રક્રિયાના અંતે વિચલનો દૂર કરવા સુધારાલક્ષી પગલાં લેવાય છે." },
+      { id: 11, question: "મૂડી માળખાના કેટલા પ્રકારો છે ?", options: ["બે", "ત્રણ", "ચાર", "પાંચ"], answer: 2, correctAnswer: "C", explanation: "મૂડી માળખાના મુખ્ય ચાર પ્રકારો છે." },
+      { id: 12, question: "ચાલુ જવાબદારીઓ કરતાં ચાલુ મિલકતોનો વધારો એટલે ....", options: ["હકારાત્મક કાર્યશીલ મૂડી", "નકારાત્મક કાર્યશીલ મૂડી", "સરભર કાર્યશીલ મૂડી", "કુલ કાર્યશીલ મૂડી"], answer: 0, correctAnswer: "A", explanation: "ચાલુ મિલકતો > ચાલુ જવાબદારી = હકારાત્મક કાર્યશીલ મૂડી." },
+      { id: 13, question: "એક વર્ષ કે તેથી ઓછા સમય માટે પાકતી મુદ્દત ધરાવતી જામીનગીરીઓનું બજાર એટલે", options: ["મૂડી બજાર", "પ્રાથમિક બજાર", "નાણાં બજાર", "ગૌણ બજાર"], answer: 2, correctAnswer: "C", explanation: "ટૂંકા ગાળાની (૧ વર્ષ કે તેથી ઓછી) મુદતનું બજાર નાણાં બજાર છે." },
+      { id: 14, question: "સેબી (SEBI) કયા કાયદાથી અસ્તિત્વમાં આવી?", options: ["કંપની ધારો", "જામીનગીરી કરાર (નિયમન) ધારો", "નેશનલ કંપની ધારો", "સિક્યુરિટીઝ એન્ડ એક્સચેન્જ બોર્ડ ઓફ ઇન્ડિયા ધારો (SEBI Act)"], answer: 3, correctAnswer: "D", explanation: "સેબી ધારો (SEBI Act, 1992) હેઠળ વૈધાનિક દરજ્જો પ્રાપ્ત થયો." },
+      { id: 15, question: "જ્યારે ઉત્પાદક ગ્રાહકને સીધુ વેચાણ કરતો હોય ત્યારે કેટલી સપાટીવાળી વિતરણ વ્યવસ્થા ઊભી થઈ એમ કહેવાય?", options: ["એક", "બે", "ત્રણ", "શૂન્ય"], answer: 3, correctAnswer: "D", explanation: "ઉત્પાદક -> ગ્રાહક (કોઈ મધ્યસ્થી નહિ) એટલે શૂન્ય સપાટી વિતરણ વ્યવસ્થા." },
+      { id: 16, question: "વધુ પડતા જાહેરાત ખર્ચને કારણે શું થાય છે?", options: ["પેદાશની કિંમતમાં વધારો થાય છે.", "પેદાશ વધુ આકર્ષક બને છે.", "પેદાશ વધુ ગુણવત્તાવાળો બને છે.", "પેદાશ બધે જ પ્રાપ્ય થાય છે."], answer: 0, correctAnswer: "A", explanation: "જાહેરાત ખર્ચ પેદાશ પડતરમાં ઉમેરાતા વસ્તુની કિંમતમાં વધારો થાય છે." },
+      { id: 17, question: "ગ્રાહક સુરક્ષા કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો ?", options: ["1956", "1932", "1986", "2015"], answer: 2, correctAnswer: "C", explanation: "ભારતમાં ગ્રાહક સુરક્ષા ધારો વર્ષ ૧૯૮૬ માં પસાર કરવામાં આવ્યો હતો." },
+      { id: 18, question: "નીચેના વિકલ્પોપૈકી કોનો સમાવેશ ગ્રાહક સુરક્ષાના કાયદા મુજબની તકરાર નિવારણ સંસ્થામાં થતો નથી ?", options: ["લોક અદાલત", "જિલ્લા કક્ષાનું ફોરમ", "રાજ્ય કક્ષાનું આયોગ", "રાષ્ટ્રીય કક્ષાનું આયોગ"], answer: 0, correctAnswer: "A", explanation: "ત્રિસ્તરીય અર્ધન્યાયિક તંત્રમાં જિલ્લા, રાજ્ય અને રાષ્ટ્રીય કમિશન હોય છે, લોક અદાલત નહિ." },
+      { id: 19, question: "કઈ ગ્રાહક સુરક્ષાની સંસ્થાની સ્થાપના સાથે અમદાવાદ સંકળાયેલું છે?", options: ["કન્ઝ્યુમર એજ્યુકેશન સોસાયટી એન્ડ રીસર્ચ સેન્ટર", "કન્ઝ્યુમર ગાઈડન્સ સોસાયટી ઓફ ઈન્ડિયા", "કન્ઝ્યુમર યુનિટી એન્ડ ટ્રસ્ટ સોસાયટી", "વોલેન્ટરી ઓર્ગેનાઈઝેશન ઈન ઈન્ટરેસ્ટ ઓફ કન્ઝ્યુમર એજ્યુકેશન"], answer: 0, correctAnswer: "A", explanation: "CERC (કન્ઝ્યુમર એજ્યુકેશન એન્ડ રિસર્ચ સેન્ટર) અમદાવાદ ખાતે સ્થિત છે." },
+      { id: 20, question: "ટ્રેડમાર્ક ધારો કયા વર્ષમાં અસ્તિત્વમાં આવ્યો ?", options: ["1951", "1955", "1999", "1986"], answer: 2, correctAnswer: "C", explanation: "ટ્રેડમાર્ક ધારો (Trade Marks Act) વર્ષ ૧૯૯૯ માં અસ્તિત્વમાં આવ્યો." }
+    ]
+  },
+  {
+    paperId: "BA_MARCH_2024",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૪",
+    year: "2024",
+    questions: [
+      { id: 1, question: "વ્યવસાયી મંડળો પોતાના વ્યવસાય માટે કઈ બાબતોનું ઘડતર કરે છે?", options: ["વિસંગતતા", "અસંગતતા", "આચાર સંહિતા", "વિચાર સંહિતા"], answer: 2, correctAnswer: "C", explanation: "વ્યવસાયી મંડળો પોતાના વ્યવસાય માટે આચારસંહિતા ઘડે છે." },
+      { id: 2, question: "“તમે તમારા માણસોને સાચવો, તમારા માણસો બાકીનું તમારું બધું જ સાચવી લેશે.” – આ વિધાન કોણે કહ્યું હતું?", options: ["એફ.ડબ્લ્યુ. ટેલરે", "પ્રો. ઊર્વિકે", "આર્ગરિસે", "પીટર એફ. ડ્રકરે"], answer: 1, correctAnswer: "B", explanation: "પ્રોફેસર ઉર્વિકે આ જાણીતું વિધાન આપેલું છે." },
+      { id: 3, question: "એકમનું જીવન-ધ્યેય નક્કી કરતી યોજના કઈ છે?", options: ["કાયમી યોજના", "વ્યૂહાત્મક યોજના", "સુનિયોજિત યોજના", "એક ઉપયોગી યોજના"], answer: 1, correctAnswer: "B", explanation: "વ્યૂહાત્મક યોજના ધંધાકીય એકમનું જીવન-ધ્યેય નક્કી કરે છે." },
+      { id: 4, question: "નીચેનામાંથી કયા વ્યવસ્થાતંત્રમાં વિભાગ કરતા કાર્યને વધુ મહત્ત્વ આપવામાં આવે છે?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, correctAnswer: "B", explanation: "કાર્યાનુસાર વ્યવસ્થાતંત્રમાં કાર્યને વિશેષ મહત્વ અપાય છે." },
+      { id: 5, question: "જે એકમમાં સમગ્ર સત્તા ઉચ્ચ સંચાલકો પાસે જ કેન્દ્રિત હોય તેને કયા નામે ઓળખવામાં આવે છે?", options: ["કેન્દ્રિકરણ", "વિકેન્દ્રિકરણ", "વિમૂડીકરણ", "ધ્રૂવીકરણ"], answer: 0, correctAnswer: "A", explanation: "બધી જ સત્તા ઉચ્ચ સપાટીએ જળવાઈ રહે તેને કેન્દ્રીકરણ કહે છે." },
+      { id: 6, question: "માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કયું છે ?", options: ["વેચાણ - વૃદ્ધિ", "ગુણવત્તા અંકુશ", "કર્મચારી આયોજન", "ઉત્પાદન"], answer: 2, correctAnswer: "C", explanation: "માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કર્મચારી આયોજન છે." },
+      { id: 7, question: "બિન સંચાલકીય કર્મચારીઓની પસંદગીની પ્રક્રિયા કેવી છે ?", options: ["મુશ્કેલ છે.", "ટૂંકી અને સરળ છે.", "ખર્ચાળ છે.", "લાંબી અને વિશિષ્ટ છે."], answer: 1, correctAnswer: "B", explanation: "તળ કક્ષાના કારીગરો માટે પસંદગી પ્રક્રિયા ટૂંકી અને સરળ હોય છે." },
+      { id: 8, question: "નીચેમાંથી કયું પ્રોત્સાહન નાણાકીય પ્રોત્સાહન છે?", options: ["બઢતી", "પ્રશંસા", "રોજગાર સલામતી", "કામની કદર અને સન્માન"], answer: 0, correctAnswer: "A", explanation: "બઢતી સાથે વેતન/નાણાકીય લાભ વધે છે તેથી તે નાણાકીય પ્રોત્સાહન છે." },
+      { id: 9, question: "તળ સપાટી સંચાલનથી અહેવાલ સ્વરૂપે ઉચ્ચ સપાટી સંચાલન સુધી માહિતી મોકલવાની પ્રક્રિયા એટલે શું?", options: ["માહિતી પ્રેષણ", "માહિતી સંચાર", "સંદેશા વ્યવહાર", "ટપાલ સેવા"], answer: 0, correctAnswer: "A", explanation: "તળ સપાટીથી ઉચ્ચ સપાટી તરફ અહેવાલ મોકલવો એટલે માહિતી પ્રેષણ (Reporting)." },
+      { id: 10, question: "આયોજન અનુસાર કાર્ય થાય છે કે નહિ તે જોવાની કામગીરી સંચાલનનું કયું કાર્ય કરે છે?", options: ["વ્યવસ્થાતંત્ર", "તાલીમ", "દોરવણી", "અંકુશ"], answer: 3, correctAnswer: "D", explanation: "કાર્યો આયોજન મુજબ થાય છે કે નહિ તે તપાસવાનું કાર્ય અંકુશ કરે છે." },
+      { id: 11, question: "સંપત્તિના મહત્તમીકરણનો હેતુ બીજા કયા નામે ઓળખાય છે ?", options: ["સામાજિક કલ્યાણ", "મૂડી રોકાણ", "ચોખ્ખું વર્તમાન મૂલ્ય", "ઈક્વિટી પરનો વેપાર"], answer: 2, correctAnswer: "C", explanation: "સંપત્તિના મહત્તમીકરણનો હેતુ ચોખ્ખું વર્તમાન મૂલ્ય (NPV) તરીકે પણ ઓળખાય છે." },
+      { id: 12, question: "વિદેશી રોકાણ સંસ્થાએ તેની નોંધણી કોની સમક્ષ કરાવવી પડે છે ?", options: ["કંપની રજિસ્ટ્રાર", "અદાલત", "શૅર બજાર", "સેબી"], answer: 3, correctAnswer: "D", explanation: "FII એ સેબી (SEBI) સમક્ષ નોંધણી કરાવવી ફરજિયાત છે." },
+      { id: 13, question: "એક વર્ષ કે તેથી ઓછા સમય માટે પાકતી મુદ્દત ધરાવતી જામીનગીરીઓનું બજાર એટલે", options: ["મૂડી બજાર", "પ્રાથમિક બજાર", "નાણાં બજાર", "ગૌણ બજાર"], answer: 2, correctAnswer: "C", explanation: "૧ વર્ષ કે તેથી ઓછા સમયની મુદત ધરાવતી જામીનગીરીઓનું બજાર નાણાં બજાર કહેવાય." },
+      { id: 14, question: "જામીનગીરીઓના ખરીદ - વેચાણમાં કેટલા પ્રકારના ઓર્ડર હોય છે?", options: ["બે", "ત્રણ", "ચાર", "પાંચ"], answer: 0, correctAnswer: "A", explanation: "ઓર્ડરના મુખ્ય બે પ્રકાર હોય છે: મર્યાદિત ઓર્ડર અને બજાર ઓર્ડર." },
+      { id: 15, question: "બજારીય વિભાવનામાં કોણ કેન્દ્ર સ્થાને હોય છે?", options: ["પેદાશ", "ઉત્પાદન", "ગ્રાહક", "નફો"], answer: 2, correctAnswer: "C", explanation: "માર્કેટિંગ/બજારીય ખ્યાલમાં ગ્રાહક સમગ્ર પ્રવૃત્તિના કેન્દ્રસ્થાને હોય છે." },
+      { id: 16, question: "જ્યારે ઉત્પાદક ગ્રાહકને સીધું વેચાણ કરતો હોય ત્યારે કેટલી સપાટીવાળી વિતરણ વ્યવસ્થા ઊભી થઈ એમ કહેવાય?", options: ["એક", "બે", "ત્રણ", "શૂન્ય"], answer: 3, correctAnswer: "D", explanation: "મધ્યસ્થી વગર સીધું વેચાણ એટલે શૂન્ય સપાટી વિતરણ વ્યવસ્થા." },
+      { id: 17, question: "ગ્રાહક સુરક્ષાનો કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો?", options: ["1956", "1932", "1986", "2015"], answer: 2, correctAnswer: "C", explanation: "ગ્રાહક સુરક્ષા ધારો વર્ષ ૧૯૮૬ માં સંસદ દ્વારા પસાર થયો હતો." },
+      { id: 18, question: "કયા પ્રકારના આયોગમાં સભ્યોની નિમણૂંક કેન્દ્ર સરકાર કરે છે?", options: ["જિલ્લા સ્તર", "રાજય સ્તર", "રાષ્ટ્રીય સ્તર", "આંતરરાષ્ટ્રીય સ્તર"], answer: 2, correctAnswer: "C", explanation: "રાષ્ટ્રીય ગ્રાહક તકરાર નિવારણ કમિશનના સભ્યોની નિમણૂંક કેન્દ્ર સરકાર કરે છે." },
+      { id: 19, question: "જાહેર હિતની અરજી કઈ કોર્ટમાં થઈ શકે?", options: ["ફોજદારી કોર્ટ", "દિવાની કોર્ટ", "જિલ્લા કોર્ટ", "સુપ્રીમ કોર્ટ"], answer: 3, correctAnswer: "D", explanation: "જાહેર હિતની અરજી (PIL) વડી અદાલત કે સર્વોચ્ચ અદાલત (સુપ્રીમ કોર્ટ) માં થઈ શકે." },
+      { id: 20, question: "વિદેશી હૂંડિયામણ માટે ભારતમાં હાલ કયો કાયદો અસ્તિત્વમાં છે?", options: ["FERA", "FECA", "FESA", "FEMA"], answer: 3, correctAnswer: "D", explanation: "હાલમાં વિદેશી હૂંડિયામણ વ્યવસ્થાપન ધારો (FEMA - Foreign Exchange Management Act) અમલમાં છે." }
+    ]
+  },
+  {
+    paperId: "BA_MARCH_2023",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૩",
+    year: "2023",
+    questions: [
+      { id: 1, question: "જ્ઞાનને અમલમાં મૂકવાની સરળ પધ્ધતિ એટલે શું?", options: ["વ્યવસાય", "વિજ્ઞાન", "કળા", "દોરવણી"], answer: 2, correctAnswer: "C", explanation: "જ્ઞાનને વ્યવહારમાં અમલમાં મૂકવાની સરળ પદ્ધતિ એટલે કળા." },
+      { id: 2, question: "નવપ્રશિષ્ટ વિચારધારાના પ્રણેતા કોણ હતા ?", options: ["હર્ઝબર્ગ", "હેનરી ફેયોલ", "ફ્રેડરીક ટેલર", "એલ્ટન મેયો"], answer: 3, correctAnswer: "D", explanation: "નવપ્રશિષ્ટ સંચાલન વિચારધારાના પ્રણેતા એલ્ટન મેયો છે." },
+      { id: 3, question: "આયોજનને કોની સાથે સંબંધ છે ?", options: ["ભૂતકાળ", "વર્તમાન", "ઉત્પાદન", "ભવિષ્ય"], answer: 3, correctAnswer: "D", explanation: "આયોજન ભવિષ્યની અનિશ્ચિતતાઓ ધ્યાને રાખી ભવિષ્ય માટે કરવામાં આવે છે." },
+      { id: 4, question: "નીચેનામાંથી કયા વ્યવસ્થા તંત્રમાં વિભાગ કરતાં કાર્યને વધુ મહત્ત્વ આપવામાં આવે છે ?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, correctAnswer: "B", explanation: "કાર્યાનુસાર વ્યવસ્થાતંત્ર કાર્ય-કેન્દ્રી હોય છે." },
+      { id: 5, question: "પ્રયત્નો પરિણામ તથા સાધનો અને ઉદેશ વચ્ચે સંતુલન સાધવાનું કાર્ય એટલે શું ?", options: ["દોરવણી", "કર્મચારી વ્યવસ્થા", "સંકલન", "અંકુશ"], answer: 2, correctAnswer: "C", explanation: "પ્રવૃત્તિઓ અને સાધનો વચ્ચે તાલમેલ કે સંતુલન સાધવું એટલે સંકલન." },
+      { id: 6, question: "સંપત્તિના મહત્તમીકારણનો હેતુ બીજા કયા નામે ઓળખાય છે ?", options: ["સામાજિક કલ્યાણ", "મૂડી રોકાણ", "ચોખ્ખું વર્તમાન મૂલ્ય", "ઇક્વિટી પરનો વેપાર"], answer: 2, correctAnswer: "C", explanation: "સંપત્તિના મહત્તમીકરણનો માપદંડ ચોખ્ખું વર્તમાન મૂલ્ય (Net Present Value) છે." },
+      { id: 7, question: "નાણાકીય સંચાલન કોની સાથે સંબંધ ધરાવે છે ?", options: ["નાણાં કાર્ય", "નાણાં બજાર", "મૂડી બજાર", "શેર બજાર"], answer: 0, correctAnswer: "A", explanation: "નાણાકીય સંચાલન એકમના નાણાં કાર્ય (નાણાં પ્રાપ્તિ અને ઉપયોગ) સાથે સંબંધિત છે." },
+      { id: 8, question: "ડિપોઝીટરી ધારો કયા વર્ષ અમલમાં આવ્યો ?", options: ["1991", "1992", "1995", "1996"], answer: 3, correctAnswer: "D", explanation: "ભારતમાં ડિપોઝીટરી ધારો ઓગસ્ટ ૧૯૯૬ માં અમલમાં આવ્યો." },
+      { id: 9, question: "જયારે ઉત્પાદક ગ્રાહકને સીધું વેચાણ કરતો હોય ત્યારે કેટલી સપાટીવાળી વિતરણ વ્યવસ્થા ઊભી થઈ એમ કહેવાય ?", options: ["એક", "બે", "ત્રણ", "શૂન્ય"], answer: 3, correctAnswer: "D", explanation: "કોઈ વચેટિયા વગરનું સીધું વેચાણ શૂન્ય સપાટી વિતરણ કહેવાય." },
+      { id: 10, question: "ગ્રાહક સુરક્ષાનો કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો ?", options: ["1956", "1932", "1986", "2015"], answer: 2, correctAnswer: "C", explanation: "ગ્રાહક સુરક્ષા ધારો ૧૯૮૬ માં પસાર થયો હતો." }
+    ]
+  },
+  {
+    paperId: "BA_MARCH_2022",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૨",
+    year: "2022",
+    questions: [
+      { id: 1, question: "અન્ય વ્યક્તિઓ પાસેથી કામ લેવાની કળાને શું કહે છે ?", options: ["આયોજન", "સંચાલન", "દોરવણી", "સંકલન"], answer: 1, correctAnswer: "B", explanation: "કૂન્ટ્ઝ અને ઓ'ડોનલના મતે સંચાલન એટલે અન્ય વ્યક્તિઓ પાસેથી કામ લેવાની કળા." },
+      { id: 2, question: "વૈજ્ઞાનિક સંચાલન વિચારધારાના પ્રણેતા કોણ છે ?", options: ["લ્યુથર ગ્યુલિક", "ફેડરીક ટેલર", "હેનરી ફેયોલ", "પીટર એફ. ડ્રકર"], answer: 1, correctAnswer: "B", explanation: "વૈજ્ઞાનિક સંચાલનના પ્રણેતા ફેડરિક ડબલ્યુ. ટેલર છે." },
+      { id: 3, question: "આયોજન પ્રક્રિયાનો અંતિમ તબક્કો જણાવો.", options: ["યોજનાનું મૂલ્યાંકન", "ચોક્કસ યોજના સ્વીકારવી", "યોજનાની ચકાસણી કરવી", "વિકલ્પોની વિચારણા"], answer: 0, correctAnswer: "A", explanation: "યોજનાનો અમલ કર્યા બાદ તેનું મૂલ્યાંકન કરવું એ આયોજનનો અંતિમ તબક્કો છે." },
+      { id: 4, question: "તળ સપાટીએ હુકમ મેળવનાર વ્યક્તિને શું કહેવાય છે ?", options: ["તાબેદાર", "ઉપરી", "પ્રોજેક્ટ મેનેજર", "અધિકારી"], answer: 0, correctAnswer: "A", explanation: "ઉપરી તરફથી આદેશ મેળવનાર વ્યક્તિ તાબેદાર કહેવાય છે." },
+      { id: 5, question: "માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કયું છે ?", options: ["વેચાણ – વૃદ્ધિ", "ગુણવત્તા અંકુશ", "કર્મચારી આયોજન", "ઉત્પાદન"], answer: 2, correctAnswer: "C", explanation: "કર્મચારી આયોજન એ માનવ સંસાધન સંચાલનનું પ્રાથમિક કાર્ય છે." },
+      { id: 6, question: "ભરતી પછીનું બીજું કાર્ય કયું છે ?", options: ["બઢતી આપવી", "પસંદગી કરવી", "તાલીમ આપવી", "બદલી કરવી"], answer: 1, correctAnswer: "B", explanation: "અરજીઓ મંગાવ્યા બાદ યોગ્ય ઉમેદવારની પસંદગી કરવામાં આવે છે." },
+      { id: 7, question: "પ્રોત્સાહન આપીને અપેક્ષિત ધ્યેય પ્રાપ્ત કરવાની પ્રક્રિયાને શું કહેવાય ?", options: ["અભિપ્રેરણ", "નિરીક્ષણ", "તાલીમ", "માર્ગદર્શન"], answer: 0, correctAnswer: "A", explanation: "કર્મચારીઓને ઉત્સાહિત કરી ધ્યેયસિદ્ધિ તરફ દોરવા એટલે અભિપ્રેરણ (Motivation)." },
+      { id: 8, question: "તળ સપાટી સંચાલનથી અહેવાલ સ્વરૂપે ઉચ્ચ સપાટી સંચાલન સુધી માહિતી મોકલવાની પ્રક્રિયા એટલે શું?", options: ["માહિતી સંચાર", "માહિતી પ્રેષણ", "સંદેશા વ્યવહાર", "ટપાલ સેવા"], answer: 1, correctAnswer: "B", explanation: "અહેવાલો નીચેથી ઉપર મોકલવાની ક્રિયા માહિતી પ્રેષણ છે." },
+      { id: 9, question: "અંકુશ એ કેવી પ્રક્રિયા નથી ?", options: ["સતત", "આંતરિક", "જડ", "ગતિશીલ"], answer: 2, correctAnswer: "C", explanation: "અંકુશ પરિવર્તનશીલ છે, તે જડ પ્રક્રિયા નથી." },
+      { id: 10, question: "સંચાલનનું કયું કાર્ય અંકુશના જન્મદાતા તરીકે ઓળખાય છે ?", options: ["વ્યવસ્થાતંત્ર", "કર્મચારી વ્યવસ્થા", "દોરવણી", "આયોજન"], answer: 3, correctAnswer: "D", explanation: "આયોજન વિના અંકુશ અશક્ય હોવાથી આયોજન એ અંકુશનો જન્મદાતા છે." },
+      { id: 11, question: "અંકુશ પ્રક્રિયાનો પ્રથમ તબક્કો કયો છે?", options: ["કામગીરીનું માપન", "થયેલ કામગીરીની સ્થાપિત ધોરણો સાથે સરખામણી", "સુધારાલક્ષી પગલા", "ધોરણોની સ્થાપના"], answer: 3, correctAnswer: "D", explanation: "અંકુશ માટે સૌપ્રથમ કાર્યના માપદંડો કે પ્રમાણો (ધોરણો) સ્થાપિત કરવા પડે છે." },
+      { id: 12, question: "મૂડી માળખાના કેટલા પ્રકારો છે ?", options: ["બે", "ત્રણ", "ચાર", "પાંચ"], answer: 2, correctAnswer: "C", explanation: "મૂડી માળખાના મુખ્ય ચાર પ્રકારો હોય છે." },
+      { id: 13, question: "વિદેશી રોકાણ સંસ્થાએ તેની નોંધણી કોની સમક્ષ કરાવવી પડે છે ?", options: ["કંપની રજીસ્ટ્રાર", "અદાલત", "શેર બજાર", "સેબી"], answer: 3, correctAnswer: "D", explanation: "FII ની નોંધણી સેબી સમક્ષ કરાવવી અનિવાર્ય છે." },
+      { id: 14, question: "ટ્રેઝરી બિલ ભારત સરકાર વતી કોણ બહાર પાડે છે ?", options: ["સ્ટેટ બેન્ક ઓફ ઇન્ડિયા", "રિઝર્વ બેન્ક ઓફ ઇન્ડિયા", "સેન્ટ્રલ બેન્ક ઓફ ઇન્ડિયા", "નાણાંકિય સંસ્થાઓ"], answer: 1, correctAnswer: "B", explanation: "ભારત સરકાર વતી રિઝર્વ બેંક ઓફ ઇન્ડિયા (RBI) ટ્રેઝરી બિલ બહાર પાડે છે." },
+      { id: 15, question: "બજારીય વિભાવનામાં કોણ કેન્દ્ર સ્થાને હોય છે ?", options: ["પેદાશ", "ઉત્પાદન", "ગ્રાહક", "નફો"], answer: 2, correctAnswer: "C", explanation: "બજારીય વિચારધારામાં ઉપભોક્તા/ગ્રાહક કેન્દ્રસ્થાને છે." },
+      { id: 16, question: "બ્રાન્ડિંગનો મુખ્ય ઉદ્દેશ કયો છે?", options: ["પેદાશ વધુ ટકાઉ બનાવવાનો", "પેદાશ કાયદા મુજબ બનાવવાનો", "પેદાશની જાહેરાત કરવાનો", "હરીફોની પેદાશથી પોતાની પેદાશ અલગ બનાવવાનો"], answer: 3, correctAnswer: "D", explanation: "બ્રાન્ડિંગ દ્વારા ઉત્પાદન હરીફોના ઉત્પાદનથી વિશિષ્ટ અને અલગ બને છે." },
+      { id: 17, question: "ગ્રાહક સુરક્ષાનો કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો ?", options: ["1956", "1932", "1986", "2015"], answer: 2, correctAnswer: "C", explanation: "ગ્રાહક સુરક્ષા ધારો ૧૯૮૬ માં ઘડાયો." },
+      { id: 18, question: "વાલીપણાનો સિદ્ધાંત કોણે આપ્યો છે?", options: ["જવાહરલાલ નહેરુ", "સુભાષચંદ્ર બોઝ", "ઇન્દિરા ગાંધી", "ગાંધીજી"], answer: 3, correctAnswer: "D", explanation: "ગાંધીજીએ ટ્રસ્ટીશિપ (વાલીપણા) નો આદર્શ સિદ્ધાંત આપ્યો હતો." },
+      { id: 19, question: "કયા પ્રકારના આયોગમાં સભ્યોની નિમણૂંક કેન્દ્ર સરકાર કરે છે ?", options: ["જિલ્લા સ્તર", "રાજય સ્તર", "રાષ્ટ્રીય સ્તર", "આંતરરાષ્ટ્રીય સ્તર"], answer: 2, correctAnswer: "C", explanation: "રાષ્ટ્રીય સ્તરના કમિશનમાં સભ્યોની નિમણૂક કેન્દ્ર સરકાર દ્વારા થાય છે." },
+      { id: 20, question: "દર વર્ષે આંતરરાષ્ટ્રિય ગ્રાહક સુરક્ષા દિવસ ક્યારે ઉજવાય છે ?", options: ["15 માર્ચ", "15 જુલાઈ", "15 ઓગસ્ટ", "15 ડિસેમ્બર"], answer: 0, correctAnswer: "A", explanation: "વિશ્વ ગ્રાહક અધિકાર દિવસ ૧૫ માર્ચે ઉજવવામાં આવે છે." }
+    ]
+  },
+  {
+    paperId: "BA_MARCH_2021",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૧",
+    year: "2021",
+    questions: [
+      { id: 1, question: "પ્રવૃત્તિની દૃષ્ટિએ સંચાલન કેવી પ્રવૃત્તિ છે ?", options: ["સર્વવ્યાપી", "બિન કાર્યક્ષમ", "ધ્યેય નિર્ધારણ", "પારદર્શક"], answer: 0, correctAnswer: "A", explanation: "સંચાલન દરેક ક્ષેત્રમાં જોવા મળતી સર્વવ્યાપી પ્રવૃત્તિ છે." },
+      { id: 2, question: "તળ સપાટીને બીજા કયા કયા નામે ઓળખવામાં આવે છે ?", options: ["કાર્યકારી સપાટી", "કર્મચારી સપાટી", "નીતિ વિષયક સપાટી", "અધિકારીઓની સપાટી"], answer: 0, correctAnswer: "A", explanation: "તળ સપાટીને કાર્યકારી કે નિરીક્ષકોની સપાટી કહે છે." },
+      { id: 3, question: "સંચાલનના સિદ્ધાંતો એટલે શું ?", options: ["અનુભવનો નીચોડ છે.", "સંચાલકો નક્કી કરે છે.", "પ્રયોગોથી નક્કી થાય છે.", "મેનેજરો નક્કી કરે છે."], answer: 0, correctAnswer: "A", explanation: "સંચાલનના સિદ્ધાંતો એ અનુભવનો નીચોડ છે." },
+      { id: 4, question: "આયોજનનું કાર્ય એટલે શું?", options: ["રોજબરોજનું કાર્ય", "નિશ્ચિત કાર્ય", "પસંદગીનું કાર્ય", "મુશ્કેલ કાર્ય"], answer: 2, correctAnswer: "C", explanation: "વિકલ્પોમાંથી શ્રેષ્ઠ વિકલ્પ પસંદ કરવાનું હોવાથી તે પસંદગીનું કાર્ય છે." },
+      { id: 5, question: "સફળ આયોજન માટેની પૂર્વશરત કઈ છે?", options: ["સમયની લાંબી મુદત", "સમયની ઓછી મુદત", "વ્યવસ્થાતંત્ર", "પરિવર્તનશીલતા"], answer: 3, correctAnswer: "D", explanation: "બદલાતા વાતાવરણમાં આયોજન પરિવર્તનશીલ હોવું અનિવાર્ય છે." },
+      { id: 6, question: "નીચેનામાંથી કયા વ્યવસ્થાતંત્રમાં વિભાગ કરતા કાર્યને વધુ મહત્ત્વ આપવામાં આવે છે?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, correctAnswer: "B", explanation: "કાર્યાનુસાર વ્યવસ્થાતંત્રમાં વિભાગ કરતાં કાર્ય મુખ્ય છે." },
+      { id: 7, question: "નીચેનામાંથી શું સોપી શકાતું નથી ?", options: ["સત્તા", "જવાબદારી", "ઉત્તરદાયિત્વ", "કાર્ય"], answer: 2, correctAnswer: "C", explanation: "ઉત્તરદાયિત્વની સોંપણી અન્ય કોઈને કરી શકાતી નથી." },
+      { id: 8, question: "બિન સંચાલકીય કર્મચારીઓની પસંદગીની પ્રક્રિયા કેવી છે ?", options: ["મુશ્કેલ છે.", "ટૂંકી અને સરળ છે.", "ખર્ચાળ છે.", "લાંબી અને વિશિષ્ટ છે."], answer: 1, correctAnswer: "B", explanation: "બિન સંચાલકીય કર્મચારીઓની પસંદગી ટૂંકી અને સરળ હોય છે." },
+      { id: 9, question: "ભરતી પછીનું બીજું કાર્ય કયું છે.", options: ["બઢતી આપવી", "પસંદગી કરવી", "તાલીમ આપવી", "બદલી કરવી"], answer: 1, correctAnswer: "B", explanation: "ભરતી પછી બીજું સોપાન પસંદગી છે." },
+      { id: 10, question: "દોરવણીની જરૂર કઈ સપાટીએ હોય છે ?", options: ["તળ", "મધ્ય", "ઉચ્ચ", "દરેક સપાટીએ"], answer: 3, correctAnswer: "D", explanation: "દોરવણી સંચાલનની ઉચ્ચ, મધ્ય અને તળ તમામ સપાટીએ જરૂરી છે." },
+      { id: 11, question: "અંકુશ એ કેવી પ્રક્રિયા નથી ?", options: ["સતત", "આંતરિક", "જડ", "ગતિશીલ"], answer: 2, correctAnswer: "C", explanation: "અંકુશ સ્થિતિસ્થાપક હોય છે, જડ નથી." },
+      { id: 12, question: "સંપત્તિના મહત્તમીકરણનો હેતુ બીજા કયા નામે ઓળખાય છે?", options: ["સામાજિક કલ્યાણ", "મૂડી રોકાણ", "ચોખ્ખુ વર્તમાન મૂલ્ય", "ઇક્વિટી પરનો વેપાર"], answer: 2, correctAnswer: "C", explanation: "તે નેટ પ્રેઝન્ટ વેલ્યુ (ચોખ્ખું વર્તમાન મૂલ્ય) ના નામે પણ ઓળખાય છે." },
+      { id: 13, question: "ડિપોઝીટરી ધારો કયા વર્ષે અમલમાં આવ્યો?", options: ["1991", "1992", "1995", "1996"], answer: 3, correctAnswer: "D", explanation: "ભારતમાં ડિપોઝીટરી ધારો ૧૯૯૬ માં અમલમાં આવ્યો." },
+      { id: 14, question: "બજારી વિભાવનામાં કોણ કેન્દ્ર સ્થાને હોય છે?", options: ["પેદાશ", "ઉત્પાદન", "ગ્રાહક", "નફો"], answer: 2, correctAnswer: "C", explanation: "ગ્રાહકલક્ષી અભિગમ હોવાથી ગ્રાહક કેન્દ્રસ્થાને છે." },
+      { id: 15, question: "નીચેનામાંથી કયું કાર્ય બજારીય સંચાલકનું છે ?", options: ["માલ વપરાશ યોગ્ય બનાવવો", "માલનો સંગ્રહ કરવો", "બજાર વિભાજન", "વેચાણ"], answer: 2, correctAnswer: "C", explanation: "બજાર વિભાજન (Market Segmentation) એ બજારીય સંચાલનનું મહત્વનું કાર્ય છે." }
+    ]
+  }
+];
+const localMock = JSON.parse(localStorage.getItem('dedicated_mock_papers'));
+        if (localMock && Array.isArray(localMock)) {
+          window.dedicatedMockPapers = localMock;
+        }
+      let savedPapers = JSON.parse(localStorage.getItem('dedicated_mock_papers') || '[]');
+if (!savedPapers || savedPapers.length === 0) {
+  // ૧. કાયમી બોર્ડ મોક પેપર્સ (Permanent Board Papers 2021 to 2026)
+const PERMANENT_BOARD_PAPERS = [
+  {
+    paperId: "BA_MARCH_2026",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૬",
+    year: "2026",
+    questions: [
+      { id: 1, question: "1. ઉચ્ચ સપાટી સંચાલનમાં કોનો સમાવેશ થાય છે?", options: ["નિષ્ણાતો", "કામદારો", "ખાતાવાર અધિકારીઓ", "બોર્ડ ઓફ ડિરેક્ટર્સ"], answer: 3, explanation: "બોર્ડ ઓફ ડિરેક્ટર્સ (સંચાલક મંડળ) ઉચ્ચ સપાટીએ હોય છે." },
+      { id: 2, question: "2. વૈજ્ઞાનિક સંચાલન વિચારધારાના પ્રણેતા કોણ છે ?", options: ["લ્યુથર ગ્યુલિક", "ફ્રેડરીક ટેલર", "હેનરી ફેયોલ", "પીટર એફ.ડ્રકર"], answer: 1, explanation: "વૈજ્ઞાનિક સંચાલનના પિતા/પ્રણેતા ફેડરિક ડબલ્યુ. ટેલર છે." },
+      { id: 3, question: "3. નીચેનામાંથી આયોજનનું ઘટક કયું છે?", options: ["સતત પ્રક્રિયા", "અંકુશ", "દોરવણી", "નિયમો"], answer: 3, explanation: "નિયમો એ આયોજનનું એક મહત્વનું ઘટક છે." },
+      { id: 4, question: "4. નીચેનામાંથી કયા વ્યવસ્થા તંત્રમાં વિભાગ કરતા કાર્યને વધુ મહત્ત્વ આપવામાં આવે છે?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, explanation: "કાર્યાનુસાર વ્યવસ્થાતંત્રમાં વિભાગ કરતાં કાર્યને વધુ મહત્વ અપાય છે." },
+      { id: 5, question: "5. નીચેનામાંથી શું સોંપી શકાતુ નથી ?", options: ["સત્તા", "જવાબદારી", "ઉત્તરદાયિત્વ", "કાર્ય"], answer: 2, explanation: "સત્તા અને જવાબદારી સોંપી શકાય છે પરંતુ ઉત્તરદાયિત્વની સોંપણી થઈ શકતી નથી." },
+      { id: 6, question: "6. માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કયું છે ?", options: ["વેચાણ વૃદ્ધિ", "ગુણવત્તા અંકુશ", "કર્મચારી આયોજન", "ઉત્પાદન"], answer: 2, explanation: "માનવ સંસાધન સંચાલન (HRM) માં કર્મચારી આયોજન મુખ્ય છે." },
+      { id: 7, question: "7. બિન સંચાલકીય કર્મચારીઓની પસંદગીની પ્રક્રિયા કેવી છે?", options: ["મુશ્કેલ છે.", "ટૂંકી અને સરળ છે.", "ખર્ચાળ છે.", "લાંબી અને વિશિષ્ટ છે."], answer: 1, explanation: "બિન-સંચાલકીય/તળ સપાટીના કર્મચારીઓની પસંદગી ટૂંકી અને સરળ હોય છે." },
+      { id: 8, question: "8. માસ્લોની જરૂરિયાતોના અગ્રતાક્રમ અનુસાર પહેલી જરૂરિયાત કઈ છે?", options: ["શારીરિક જરૂરિયાતો", "સલામતીની જરૂરિયાતો", "સામાજિક જરૂરિયાતો", "પ્રતિષ્ઠાની જરૂરિયાતો"], answer: 0, explanation: "અબ્રાહમ માસ્લોના અગ્રતાક્રમમાં પ્રથમ શારીરિક કે પ્રાથમિક જરૂરિયાતો આવે છે." },
+      { id: 9, question: "9. નેતૃત્વના અમલ માટે શાનું અસ્તિત્વ હોવું જરૂરી છે ?", options: ["નિરીક્ષકો", "નિયોજકો", "તાબેદારો", "સંચાલકો"], answer: 2, explanation: "તાબેદારો (અનુયાયીઓ) વિના નેતૃત્વ શક્ય નથી." },
+      { id: 10, question: "10. વિચલનોની જાણકારી મેળવ્યા પછી સંચાલકો તેને દૂર કરવા કેવા ઉપાયો હાથ ધરે છે?", options: ["તાલીમ આપવી", "કર્મચારીઓને છૂટા કરવા", "સુધારાલક્ષી પગલા લેવા", "નિષ્ણાતોની નિમણૂક કરવી"], answer: 2, explanation: "અંકુશ પ્રક્રિયાના અંતે વિચલનો દૂર કરવા સુધારાલક્ષી પગલાં લેવાય છે." },
+      { id: 11, question: "11. મૂડી માળખાના કેટલા પ્રકારો છે ?", options: ["બે", "ત્રણ", "ચાર", "પાંચ"], answer: 2, explanation: "મૂડી માળખાના મુખ્ય ચાર પ્રકારો છે." },
+      { id: 12, question: "12. ચાલુ જવાબદારીઓ કરતાં ચાલુ મિલકતોનો વધારો એટલે ....", options: ["હકારાત્મક કાર્યશીલ મૂડી", "નકારાત્મક કાર્યશીલ મૂડી", "સરભર કાર્યશીલ મૂડી", "કુલ કાર્યશીલ મૂડી"], answer: 0, explanation: "ચાલુ મિલકતો > ચાલુ જવાબદારી = હકારાત્મક કાર્યશીલ મૂડી." },
+      { id: 13, question: "13. એક વર્ષ કે તેથી ઓછા સમય માટે પાકતી મુદ્દત ધરાવતી જામીનગીરીઓનું બજાર એટલે", options: ["મૂડી બજાર", "પ્રાથમિક બજાર", "નાણાં બજાર", "ગૌણ બજાર"], answer: 2, explanation: "ટૂંકા ગાળાની (૧ વર્ષ કે તેથી ઓછી) મુદતનું બજાર નાણાં બજાર છે." },
+      { id: 14, question: "14. સેબી (SEBI) કયા કાયદાથી અસ્તિત્વમાં આવી?", options: ["કંપની ધારો", "જામીનગીરી કરાર (નિયમન) ધારો", "નેશનલ કંપની ધારો", "સિક્યુરિટીઝ એન્ડ એક્સચેન્જ બોર્ડ ઓફ ઇન્ડિયા ધારો (SEBI Act)"], answer: 3, explanation: "સેબી ધારો (SEBI Act, 1992) હેઠળ વૈધાનિક દરજ્જો પ્રાપ્ત થયો." },
+      { id: 15, question: "15. જ્યારે ઉત્પાદક ગ્રાહકને સીધુ વેચાણ કરતો હોય ત્યારે કેટલી સપાટીવાળી વિતરણ વ્યવસ્થા ઊભી થઈ એમ કહેવાય?", options: ["એક", "બે", "ત્રણ", "શૂન્ય"], answer: 3, explanation: "ઉત્પાદક -> ગ્રાહક (કોઈ મધ્યસ્થી નહિ) એટલે શૂન્ય સપાટી વિતરણ વ્યવસ્થા." },
+      { id: 16, question: "16. વધુ પડતા જાહેરાત ખર્ચને કારણે શું થાય છે?", options: ["પેદાશની કિંમતમાં વધારો થાય છે.", "પેદાશ વધુ આકર્ષક બને છે.", "પેદાશ વધુ ગુણવત્તાવાળો બને છે.", "પેદાશ બધે જ પ્રાપ્ય થાય છે."], answer: 0, explanation: "જાહેરાત ખર્ચ પેદાશ પડતરમાં ઉમેરાતા વસ્તુની કિંમતમાં વધારો થાય છે." },
+      { id: 17, question: "17. ગ્રાહક સુરક્ષા કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો ?", options: ["1956", "1932", "1986", "2015"], answer: 2, explanation: "ભારતમાં ગ્રાહક સુરક્ષા ધારો વર્ષ ૧૯૮૬ માં પસાર કરવામાં આવ્યો હતો." },
+      { id: 18, question: "18. નીચેના વિકલ્પોપૈકી કોનો સમાવેશ ગ્રાહક સુરક્ષાના કાયદા મુજબની તકરાર નિવારણ સંસ્થામાં થતો નથી ?", options: ["લોક અદાલત", "જિલ્લા કક્ષાનું ફોરમ", "રાજ્ય કક્ષાનું આયોગ", "રાષ્ટ્રીય કક્ષાનું આયોગ"], answer: 0, explanation: "ત્રિસ્તરીય અર્ધન્યાયિક તંત્રમાં જિલ્લા, રાજ્ય અને રાષ્ટ્રીય કમિશન હોય છે, લોક અદાલત નહિ." },
+      { id: 19, question: "19. કઈ ગ્રાહક સુરક્ષાની સંસ્થાની સ્થાપના સાથે અમદાવાદ સંકળાયેલું છે?", options: ["કન્ઝ્યુમર એજ્યુકેશન સોસાયટી એન્ડ રીસર્ચ સેન્ટર", "કન્ઝ્યુમર ગાઈડન્સ સોસાયટી ઓફ ઈન્ડિયા", "કન્ઝ્યુમર યુનિટી એન્ડ ટ્રસ્ટ સોસાયટી", "વોલેન્ટરી ઓર્ગેનાઈઝેશન ઈન ઈન્ટરેસ્ટ ઓફ કન્ઝ્યુમર એજ્યુકેશન"], answer: 0, explanation: "CERC (કન્ઝ્યુમર એજ્યુકેશન એન્ડ રિસર્ચ સેન્ટર) અમદાવાદ ખાતે સ્થિત છે." },
+      { id: 20, question: "20. ટ્રેડમાર્ક ધારો કયા વર્ષમાં અસ્તિત્વમાં આવ્યો ?", options: ["1951", "1955", "1999", "1986"], answer: 2, explanation: "ટ્રેડમાર્ક ધારો (Trade Marks Act) વર્ષ ૧૯૯૯ માં અસ્તિત્વમાં આવ્યો." }
+    ]
+  },
+  {
+    paperId: "BA_MARCH_2024",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૪",
+    year: "2024",
+    questions: [
+      { id: 1, question: "1. વ્યવસાયી મંડળો પોતાના વ્યવસાય માટે કઈ બાબતોનું ઘડતર કરે છે?", options: ["વિસંગતતા", "અસંગતતા", "આચાર સંહિતા", "વિચાર સંહિતા"], answer: 2, explanation: "વ્યવસાયી મંડળો પોતાના વ્યવસાય માટે આચારસંહિતા ઘડે છે." },
+      { id: 2, question: "2. “તમે તમારા માણસોને સાચવો, તમારા માણસો બાકીનું તમારું બધું જ સાચવી લેશે.” – આ વિધાન કોણે કહ્યું હતું?", options: ["એફ.ડબ્લ્યુ. ટેલરે", "પ્રો. ઊર્વિકે", "આર્ગરિસે", "પીટર એફ. ડ્રકરે"], answer: 1, explanation: "પ્રોફેસર ઉર્વિકે આ જાણીતું વિધાન આપેલું છે." },
+      { id: 3, question: "3. એકમનું જીવન-ધ્યેય નક્કી કરતી યોજના કઈ છે?", options: ["કાયમી યોજના", "વ્યૂહાત્મક યોજના", "સુનિયોજિત યોજના", "એક ઉપયોગી યોજના"], answer: 1, explanation: "વ્યૂહાત્મક યોજના ધંધાકીય એકમનું જીવન-ધ્યેય નક્કી કરે છે." },
+      { id: 4, question: "4. નીચેનામાંથી કયા વ્યવસ્થાતંત્રમાં વિભાગ કરતા કાર્યને વધુ મહત્ત્વ આપવામાં આવે છે?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, explanation: "કાર્યાનુસાર વ્યવસ્થાતંત્રમાં કાર્યને વિશેષ મહત્વ અપાય છે." },
+      { id: 5, question: "5. જે એકમમાં સમગ્ર સત્તા ઉચ્ચ સંચાલકો પાસે જ કેન્દ્રિત હોય તેને કયા નામે ઓળખવામાં આવે છે?", options: ["કેન્દ્રિકરણ", "વિકેન્દ્રિકરણ", "વિમૂડીકરણ", "ધ્રૂવીકરણ"], answer: 0, explanation: "બધી જ સત્તા ઉચ્ચ સપાટીએ જળવાઈ રહે તેને કેન્દ્રીકરણ કહે છે." },
+      { id: 6, question: "6. માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કયું છે ?", options: ["વેચાણ - વૃદ્ધિ", "ગુણવત્તા અંકુશ", "કર્મચારી આયોજન", "ઉત્પાદન"], answer: 2, explanation: "માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કર્મચારી આયોજન છે." },
+      { id: 7, question: "7. બિન સંચાલકીય કર્મચારીઓની પસંદગીની પ્રક્રિયા કેવી છે ?", options: ["મુશ્કેલ છે.", "ટૂંકી અને સરળ છે.", "ખર્ચાળ છે.", "લાંબી અને વિશિષ્ટ છે."], answer: 1, explanation: "તળ કક્ષાના કારીગરો માટે પસંદગી પ્રક્રિયા ટૂંકી અને સરળ હોય છે." },
+      { id: 8, question: "8. નીચેમાંથી કયું પ્રોત્સાહન નાણાકીય પ્રોત્સાહન છે?", options: ["બઢતી", "પ્રશંસા", "રોજગાર સલામતી", "કામની કદર અને સન્માન"], answer: 0, explanation: "બઢતી સાથે વેતન/નાણાકીય લાભ વધે છે તેથી તે નાણાકીય પ્રોત્સાહન છે." },
+      { id: 9, question: "9. તળ સપાટી સંચાલનથી અહેવાલ સ્વરૂપે ઉચ્ચ સપાટી સંચાલન સુધી માહિતી મોકલવાની પ્રક્રિયા એટલે શું?", options: ["માહિતી પ્રેષણ", "માહિતી સંચાર", "સંદેશા વ્યવહાર", "ટપાલ સેવા"], answer: 0, explanation: "તળ સપાટીથી ઉચ્ચ સપાટી તરફ અહેવાલ મોકલવો એટલે માહિતી પ્રેષણ (Reporting)." },
+      { id: 10, question: "10. આયોજન અનુસાર કાર્ય થાય છે કે નહિ તે જોવાની કામગીરી સંચાલનનું કયું કાર્ય કરે છે?", options: ["વ્યવસ્થાતંત્ર", "તાલીમ", "દોરવણી", "અંકુશ"], answer: 3, explanation: "કાર્યો આયોજન મુજબ થાય છે કે નહિ તે તપાસવાનું કાર્ય અંકુશ કરે છે." },
+      { id: 11, question: "11. સંપત્તિના મહત્તમીકરણનો હેતુ બીજા કયા નામે ઓળખાય છે ?", options: ["સામાજિક કલ્યાણ", "મૂડી રોકાણ", "ચોખ્ખું વર્તમાન મૂલ્ય", "ઈક્વિટી પરનો વેપાર"], answer: 2, explanation: "સંપત્તિના મહત્તમીકરણનો હેતુ ચોખ્ખું વર્તમાન મૂલ્ય (NPV) તરીકે પણ ઓળખાય છે." },
+      { id: 12, question: "12. વિદેશી રોકાણ સંસ્થાએ તેની નોંધણી કોની સમક્ષ કરાવવી પડે છે ?", options: ["કંપની રજિસ્ટ્રાર", "અદાલત", "શૅર બજાર", "સેબી"], answer: 3, explanation: "FII એ સેબી (SEBI) સમક્ષ નોંધણી કરાવવી ફરજિયાત છે." },
+      { id: 13, question: "13. એક વર્ષ કે તેથી ઓછા સમય માટે પાકતી મુદ્દત ધરાવતી જામીનગીરીઓનું બજાર એટલે", options: ["મૂડી બજાર", "પ્રાથમિક બજાર", "નાણાં બજાર", "ગૌણ બજાર"], answer: 2, explanation: "૧ વર્ષ કે તેથી ઓછા સમયની મુદત ધરાવતી જામીનગીરીઓનું બજાર નાણાં બજાર કહેવાય." },
+      { id: 14, question: "14. જામીનગીરીઓના ખરીદ - વેચાણમાં કેટલા પ્રકારના ઓર્ડર હોય છે?", options: ["બે", "ત્રણ", "ચાર", "પાંચ"], answer: 0, explanation: "ઓર્ડરના મુખ્ય બે પ્રકાર હોય છે: મર્યાદિત ઓર્ડર અને બજાર ઓર્ડર." },
+      { id: 15, question: "15. બજારીય વિભાવનામાં કોણ કેન્દ્ર સ્થાને હોય છે?", options: ["પેદાશ", "ઉત્પાદન", "ગ્રાહક", "નફો"], answer: 2, explanation: "માર્કેટિંગ/બજારીય ખ્યાલમાં ગ્રાહક સમગ્ર પ્રવૃત્તિના કેન્દ્રસ્થાને હોય છે." },
+      { id: 16, question: "16. જ્યારે ઉત્પાદક ગ્રાહકને સીધું વેચાણ કરતો હોય ત્યારે કેટલી સપાટીવાળી વિતરણ વ્યવસ્થા ઊભી થઈ એમ કહેવાય?", options: ["એક", "બે", "ત્રણ", "શૂન્ય"], answer: 3, explanation: "મધ્યસ્થી વગર સીધું વેચાણ એટલે શૂન્ય સપાટી વિતરણ વ્યવસ્થા." },
+      { id: 17, question: "17. ગ્રાહક સુરક્ષાનો કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો?", options: ["1956", "1932", "1986", "2015"], answer: 2, explanation: "ગ્રાહક સુરક્ષા ધારો વર્ષ ૧૯૮૬ માં સંસદ દ્વારા પસાર થયો હતો." },
+      { id: 18, question: "18. કયા પ્રકારના આયોગમાં સભ્યોની નિમણૂંક કેન્દ્ર સરકાર કરે છે?", options: ["જિલ્લા સ્તર", "રાજય સ્તર", "રાષ્ટ્રીય સ્તર", "આંતરરાષ્ટ્રીય સ્તર"], answer: 2, explanation: "રાષ્ટ્રીય ગ્રાહક તકરાર નિવારણ કમિશનના સભ્યોની નિમણૂંક કેન્દ્ર સરકાર કરે છે." },
+      { id: 19, question: "19. જાહેર હિતની અરજી કઈ કોર્ટમાં થઈ શકે?", options: ["ફોજદારી કોર્ટ", "દિવાની કોર્ટ", "જિલ્લા કોર્ટ", "સુપ્રીમ કોર્ટ"], answer: 3, explanation: "જાહેર હિતની અરજી (PIL) વડી અદાલત કે સર્વોચ્ચ અદાલત (સુપ્રીમ કોર્ટ) માં થઈ શકે." },
+      { id: 20, question: "20. વિદેશી હૂંડિયામણ માટે ભારતમાં હાલ કયો કાયદો અસ્તિત્વમાં છે?", options: ["FERA", "FECA", "FESA", "FEMA"], answer: 3, explanation: "હાલમાં વિદેશી હૂંડિયામણ વ્યવસ્થાપન ધારો (FEMA - Foreign Exchange Management Act) અમલમાં છે." }
+    ]
+  },
+  {
+    paperId: "BA_MARCH_2023",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૩",
+    year: "2023",
+    questions: [
+      { id: 1, question: "1. જ્ઞાનને અમલમાં મૂકવાની સરળ પધ્ધતિ એટલે શું?", options: ["વ્યવસાય", "વિજ્ઞાન", "કળા", "દોરવણી"], answer: 2, explanation: "જ્ઞાનને વ્યવહારમાં અમલમાં મૂકવાની સરળ પદ્ધતિ એટલે કળા." },
+      { id: 2, question: "2. નવપ્રશિષ્ટ વિચારધારાના પ્રણેતા કોણ હતા ?", options: ["હર્ઝબર્ગ", "હેનરી ફેયોલ", "ફ્રેડરીક ટેલર", "એલ્ટન મેયો"], answer: 3, explanation: "નવપ્રશિષ્ટ સંચાલન વિચારધારાના પ્રણેતા એલ્ટન મેયો છે." },
+      { id: 3, question: "3. આયોજનને કોની સાથે સંબંધ છે ?", options: ["ભૂતકાળ", "વર્તમાન", "ઉત્પાદન", "ભવિષ્ય"], answer: 3, explanation: "આયોજન ભવિષ્યની અનિશ્ચિતતાઓ ધ્યાને રાખી ભવિષ્ય માટે કરવામાં આવે છે." },
+      { id: 4, question: "4. નીચેનામાંથી કયા વ્યવસ્થા તંત્રમાં વિભાગ કરતાં કાર્યને વધુ મહત્ત્વ આપવામાં આવે છે ?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, explanation: "કાર્યાનુસાર વ્યવસ્થાતંત્ર કાર્ય-કેન્દ્રી હોય છે." },
+      { id: 5, question: "5. પ્રયત્નો પરિણામ તથા સાધનો અને ઉદેશ વચ્ચે સંતુલન સાધવાનું કાર્ય એટલે શું ?", options: ["દોરવણી", "કર્મચારી વ્યવસ્થા", "સંકલન", "અંકુશ"], answer: 2, explanation: "પ્રવૃત્તિઓ અને સાધનો વચ્ચે તાલમેલ કે સંતુલન સાધવું એટલે સંકલન." },
+      { id: 6, question: "6. સંપત્તિના મહત્તમીકારણનો હેતુ બીજા કયા નામે ઓળખાય છે ?", options: ["સામાજિક કલ્યાણ", "મૂડી રોકાણ", "ચોખ્ખું વર્તમાન મૂલ્ય", "ઇક્વિટી પરનો વેપાર"], answer: 2, explanation: "સંપત્તિના મહત્તમીકરણનો માપદંડ ચોખ્ખું વર્તમાન મૂલ્ય (Net Present Value) છે." },
+      { id: 7, question: "7. નાણાકીય સંચાલન કોની સાથે સંબંધ ધરાવે છે ?", options: ["નાણાં કાર્ય", "નાણાં બજાર", "મૂડી બજાર", "શેર બજાર"], answer: 0, explanation: "નાણાકીય સંચાલન એકમના નાણાં કાર્ય (નાણાં પ્રાપ્તિ અને ઉપયોગ) સાથે સંબંધિત છે." },
+      { id: 8, question: "8. ડિપોઝીટરી ધારો કયા વર્ષ અમલમાં આવ્યો ?", options: ["1991", "1992", "1995", "1996"], answer: 3, explanation: "ભારતમાં ડિપોઝીટરી ધારો ઓગસ્ટ ૧૯૯૬ માં અમલમાં આવ્યો." },
+      { id: 9, question: "9. જયારે ઉત્પાદક ગ્રાહકને સીધું વેચાણ કરતો હોય ત્યારે કેટલી સપાટીવાળી વિતરણ વ્યવસ્થા ઊભી થઈ એમ કહેવાય ?", options: ["એક", "બે", "ત્રણ", "શૂન્ય"], answer: 3, explanation: "કોઈ વચેટિયા વગરનું સીધું વેચાણ શૂન્ય સપાટી વિતરણ કહેવાય." },
+      { id: 10, question: "10. ગ્રાહક સુરક્ષાનો કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો ?", options: ["1956", "1932", "1986", "2015"], answer: 2, explanation: "ગ્રાહક સુરક્ષા ધારો ૧૯૮૬ માં પસાર થયો હતો." }
+    ]
+  },
+  {
+    paperId: "BA_MARCH_2022",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૨",
+    year: "2022",
+    questions: [
+      { id: 1, question: "1. અન્ય વ્યક્તિઓ પાસેથી કામ લેવાની કળાને શું કહે છે ?", options: ["આયોજન", "સંચાલન", "દોરવણી", "સંકલન"], answer: 1, explanation: "કૂન્ટ્ઝ અને ઓ'ડોનલના મતે સંચાલન એટલે અન્ય વ્યક્તિઓ પાસેથી કામ લેવાની કળા." },
+      { id: 2, question: "2. વૈજ્ઞાનિક સંચાલન વિચારધારાના પ્રણેતા કોણ છે ?", options: ["લ્યુથર ગ્યુલિક", "ફેડરીક ટેલર", "હેનરી ફેયોલ", "પીટર એફ. ડ્રકર"], answer: 1, explanation: "વૈજ્ઞાનિક સંચાલનના પ્રણેતા ફેડરિક ડબલ્યુ. ટેલર છે." },
+      { id: 3, question: "3. આયોજન પ્રક્રિયાનો અંતિમ તબક્કો જણાવો.", options: ["યોજનાનું મૂલ્યાંકન", "ચોક્કસ યોજના સ્વીકારવી", "યોજનાની ચકાસણી કરવી", "વિકલ્પોની વિચારણા"], answer: 0, explanation: "યોજનાનો અમલ કર્યા બાદ તેનું મૂલ્યાંકન કરવું એ આયોજનનો અંતિમ તબક્કો છે." },
+      { id: 4, question: "4. તળ સપાટીએ હુકમ મેળવનાર વ્યક્તિને શું કહેવાય છે ?", options: ["તાબેદાર", "ઉપરી", "પ્રોજેક્ટ મેનેજર", "અધિકારી"], answer: 0, explanation: "ઉપરી તરફથી આદેશ મેળવનાર વ્યક્તિ તાબેદાર કહેવાય છે." },
+      { id: 5, question: "5. માનવ સંસાધન સંચાલનનું મુખ્ય કાર્ય કયું છે ?", options: ["વેચાણ – વૃદ્ધિ", "ગુણવત્તા અંકુશ", "કર્મચારી આયોજન", "ઉત્પાદન"], answer: 2, explanation: "કર્મચારી આયોજન એ માનવ સંસાધન સંચાલનનું પ્રાથમિક કાર્ય છે." },
+      { id: 6, question: "6. ભરતી પછીનું બીજું કાર્ય કયું છે ?", options: ["બઢતી આપવી", "પસંદગી કરવી", "તાલીમ આપવી", "બદલી કરવી"], answer: 1, explanation: "અરજીઓ મંગાવ્યા બાદ યોગ્ય ઉમેદવારની પસંદગી કરવામાં આવે છે." },
+      { id: 7, question: "7. પ્રોત્સાહન આપીને અપેક્ષિત ધ્યેય પ્રાપ્ત કરવાની પ્રક્રિયાને શું કહેવાય ?", options: ["અભિપ્રેરણ", "નિરીક્ષણ", "તાલીમ", "માર્ગદર્શન"], answer: 0, explanation: "કર્મચારીઓને ઉત્સાહિત કરી ધ્યેયસિદ્ધિ તરફ દોરવા એટલે અભિપ્રેરણ (Motivation)." },
+      { id: 8, question: "8. તળ સપાટી સંચાલનથી અહેવાલ સ્વરૂપે ઉચ્ચ સપાટી સંચાલન સુધી માહિતી મોકલવાની પ્રક્રિયા એટલે શું?", options: ["માહિતી સંચાર", "માહિતી પ્રેષણ", "સંદેશા વ્યવહાર", "ટપાલ સેવા"], answer: 1, explanation: "અહેવાલો નીચેથી ઉપર મોકલવાની ક્રિયા માહિતી પ્રેષણ છે." },
+      { id: 9, question: "9. અંકુશ એ કેવી પ્રક્રિયા નથી ?", options: ["સતત", "આંતરિક", "જડ", "ગતિશીલ"], answer: 2, explanation: "અંકુશ પરિવર્તનશીલ છે, તે જડ પ્રક્રિયા નથી." },
+      { id: 10, question: "10. સંચાલનનું કયું કાર્ય અંકુશના જન્મદાતા તરીકે ઓળખાય છે ?", options: ["વ્યવસ્થાતંત્ર", "કર્મચારી વ્યવસ્થા", "દોરવણી", "આયોજન"], answer: 3, explanation: "આયોજન વિના અંકુશ અશક્ય હોવાથી આયોજન એ અંકુશનો જન્મદાતા છે." },
+      { id: 11, question: "11. અંકુશ પ્રક્રિયાનો પ્રથમ તબક્કો કયો છે?", options: ["કામગીરીનું માપન", "થયેલ કામગીરીની સ્થાપિત ધોરણો સાથે સરખામણી", "સુધારાલક્ષી પગલા", "ધોરણોની સ્થાપના"], answer: 3, explanation: "અંકુશ માટે સૌપ્રથમ કાર્યના માપદંડો કે પ્રમાણો (ધોરણો) સ્થાપિત કરવા પડે છે." },
+      { id: 12, question: "12. મૂડી માળખાના કેટલા પ્રકારો છે ?", options: ["બે", "ત્રણ", "ચાર", "પાંચ"], answer: 2, explanation: "મૂડી માળખાના મુખ્ય ચાર પ્રકારો હોય છે." },
+      { id: 13, question: "13. વિદેશી રોકાણ સંસ્થાએ તેની નોંધણી કોની સમક્ષ કરાવવી પડે છે ?", options: ["કંપની રજીસ્ટ્રાર", "અદાલત", "શેર બજાર", "સેબી"], answer: 3, explanation: "FII ની નોંધણી સેબી સમક્ષ કરાવવી અનિવાર્ય છે." },
+      { id: 14, question: "14. ટ્રેઝરી બિલ ભારત સરકાર વતી કોણ બહાર પાડે છે ?", options: ["સ્ટેટ બેન્ક ઓફ ઇન્ડિયા", "રિઝર્વ બેન્ક ઓફ ઇન્ડિયા", "સેન્ટ્રલ બેન્ક ઓફ ઇન્ડિયા", "નાણાંકિય સંસ્થાઓ"], answer: 1, explanation: "ભારત સરકાર વતી રિઝર્વ બેંક ઓફ ઇન્ડિયા (RBI) ટ્રેઝરી બિલ બહાર પાડે છે." },
+      { id: 15, question: "15. બજારીય વિભાવનામાં કોણ કેન્દ્ર સ્થાને હોય છે ?", options: ["પેદાશ", "ઉત્પાદન", "ગ્રાહક", "નફો"], answer: 2, explanation: "બજારીય વિચારધારામાં ઉપભોક્તા/ગ્રાહક કેન્દ્રસ્થાને છે." },
+      { id: 16, question: "16. બ્રાન્ડિંગનો મુખ્ય ઉદ્દેશ કયો છે?", options: ["પેદાશ વધુ ટકાઉ બનાવવાનો", "પેદાશ કાયદા મુજબ બનાવવાનો", "પેદાશની જાહેરાત કરવાનો", "હરીફોની પેદાશથી પોતાની પેદાશ અલગ બનાવવાનો"], answer: 3, explanation: "બ્રાન્ડિંગ દ્વારા ઉત્પાદન હરીફોના ઉત્પાદનથી વિશિષ્ટ અને અલગ બને છે." },
+      { id: 17, question: "17. ગ્રાહક સુરક્ષાનો કાયદો કયા વર્ષમાં પસાર કરવામાં આવ્યો હતો ?", options: ["1956", "1932", "1986", "2015"], answer: 2, explanation: "ગ્રાહક સુરક્ષા ધારો ૧૯૮૬ માં ઘડાયો." },
+      { id: 18, question: "18. વાલીપણાનો સિદ્ધાંત કોણે આપ્યો છે?", options: ["જવાહરલાલ નહેરુ", "સુભાષચંદ્ર બોઝ", "ઇન્દિરા ગાંધી", "ગાંધીજી"], answer: 3, explanation: "ગાંધીજીએ ટ્રસ્ટીશિપ (વાલીપણા) નો આદર્શ સિદ્ધાંત આપ્યો હતો." },
+      { id: 19, question: "19. કયા પ્રકારના આયોગમાં સભ્યોની નિમણૂંક કેન્દ્ર સરકાર કરે છે ?", options: ["જિલ્લા સ્તર", "રાજય સ્તર", "રાષ્ટ્રીય સ્તર", "આંતરરાષ્ટ્રીય સ્તર"], answer: 2, explanation: "રાષ્ટ્રીય સ્તરના કમિશનમાં સભ્યોની નિમણૂક કેન્દ્ર સરકાર દ્વારા થાય છે." },
+      { id: 20, question: "20. દર વર્ષે આંતરરાષ્ટ્રિય ગ્રાહક સુરક્ષા દિવસ ક્યારે ઉજવાય છે ?", options: ["15 માર્ચ", "15 જુલાઈ", "15 ઓગસ્ટ", "15 ડિસેમ્બર"], answer: 0, explanation: "વિશ્વ ગ્રાહક અધિકાર દિવસ ૧૫ માર્ચે ઉજવવામાં આવે છે." }
+    ]
+  },
+  {
+    paperId: "BA_MARCH_2021",
+    title: "વાણિજ્ય વ્યવસ્થા - બોર્ડ પેપર માર્ચ ૨૦૨૧",
+    year: "2021",
+    questions: [
+      { id: 1, question: "1. પ્રવૃત્તિની દૃષ્ટિએ સંચાલન કેવી પ્રવૃત્તિ છે ?", options: ["સર્વવ્યાપી", "બિન કાર્યક્ષમ", "ધ્યેય નિર્ધારણ", "પારદર્શક"], answer: 0, explanation: "સંચાલન દરેક ક્ષેત્રમાં જોવા મળતી સર્વવ્યાપી પ્રવૃત્તિ છે." },
+      { id: 2, question: "2. તળ સપાટીને બીજા કયા કયા નામે ઓળખવામાં આવે છે ?", options: ["કાર્યકારી સપાટી", "કર્મચારી સપાટી", "નીતિ વિષયક સપાટી", "અધિકારીઓની સપાટી"], answer: 0, explanation: "તળ સપાટીને કાર્યકારી કે નિરીક્ષકોની સપાટી કહે છે." },
+      { id: 3, question: "3. સંચાલનના સિદ્ધાંતો એટલે શું ?", options: ["અનુભવનો નીચોડ છે.", "સંચાલકો નક્કી કરે છે.", "પ્રયોગોથી નક્કી થાય છે.", "મેનેજરો નક્કી કરે છે."], answer: 0, explanation: "સંચાલનના સિદ્ધાંતો એ અનુભવનો નીચોડ છે." },
+      { id: 4, question: "4. આયોજનનું કાર્ય એટલે શું?", options: ["રોજબરોજનું કાર્ય", "નિશ્ચિત કાર્ય", "પસંદગીનું કાર્ય", "મુશ્કેલ કાર્ય"], answer: 2, explanation: "વિકલ્પોમાંથી શ્રેષ્ઠ વિકલ્પ પસંદ કરવાનું હોવાથી તે પસંદગીનું કાર્ય છે." },
+      { id: 5, question: "5. સફળ આયોજન માટેની પૂર્વશરત કઈ છે?", options: ["સમયની લાંબી મુદત", "સમયની ઓછી મુદત", "વ્યવસ્થાતંત્ર", "પરિવર્તનશીલતા"], answer: 3, explanation: "બદલાતા વાતાવરણમાં આયોજન પરિવર્તનશીલ હોવું અનિવાર્ય છે." },
+      { id: 6, question: "6. નીચેનામાંથી કયા વ્યવસ્થાતંત્રમાં વિભાગ કરતા કાર્યને વધુ મહત્ત્વ આપવામાં આવે છે?", options: ["રૈખિક", "કાર્યાનુસાર", "અવૈધિક", "શ્રેણિક"], answer: 1, explanation: "કાર્યાનુસાર વ્યવસ્થાતંત્રમાં વિભાગ કરતાં કાર્ય મુખ્ય છે." },
+      { id: 7, question: "7. નીચેનામાંથી શું સોપી શકાતું નથી ?", options: ["સત્તા", "જવાબદારી", "ઉત્તરદાયિત્વ", "કાર્ય"], answer: 2, explanation: "ઉત્તરદાયિત્વની સોંપણી અન્ય કોઈને કરી શકાતી નથી." },
+      { id: 8, question: "8. બિન સંચાલકીય કર્મચારીઓની પસંદગીની પ્રક્રિયા કેવી છે ?", options: ["મુશ્કેલ છે.", "ટૂંકી અને સરળ છે.", "ખર્ચાળ છે.", "લાંબી અને વિશિષ્ટ છે."], answer: 1, explanation: "બિન સંચાલકીય કર્મચારીઓની પસંદગી ટૂંકી અને સરળ હોય છે." },
+      { id: 9, question: "9. ભરતી પછીનું બીજું કાર્ય કયું છે.", options: ["બઢતી આપવી", "પસંદગી કરવી", "તાલીમ આપવી", "બદલી કરવી"], answer: 1, explanation: "ભરતી પછી બીજું સોપાન પસંદગી છે." },
+      { id: 10, question: "10. દોરવણીની જરૂર કઈ સપાટીએ હોય છે ?", options: ["તળ", "મધ્ય", "ઉચ્ચ", "દરેક સપાટીએ"], answer: 3, explanation: "દોરવણી સંચાલનની ઉચ્ચ, મધ્ય અને તળ તમામ સપાટીએ જરૂરી છે." },
+      { id: 11, question: "11. અંકુશ એ કેવી પ્રક્રિયા નથી ?", options: ["સતત", "આંતરિક", "જડ", "ગતિશીલ"], answer: 2, explanation: "અંકુશ સ્થિતિસ્થાપક હોય છે, જડ નથી." },
+      { id: 12, question: "12. સંપત્તિના મહત્તમીકરણનો હેતુ બીજા કયા નામે ઓળખાય છે?", options: ["સામાજિક કલ્યાણ", "મૂડી રોકાણ", "ચોખ્ખુ વર્તમાન મૂલ્ય", "ઇક્વિટી પરનો વેપાર"], answer: 2, explanation: "તે નેટ પ્રેઝન્ટ વેલ્યુ (ચોખ્ખું વર્તમાન મૂલ્ય) ના નામે પણ ઓળખાય છે." },
+      { id: 13, question: "13. ડિપોઝીટરી ધારો કયા વર્ષે અમલમાં આવ્યો?", options: ["1991", "1992", "1995", "1996"], answer: 3, explanation: "ભારતમાં ડિપોઝીટરી ધારો ૧૯૯૬ માં અમલમાં આવ્યો." },
+      { id: 14, question: "14. બજારી વિભાવનામાં કોણ કેન્દ્ર સ્થાને હોય છે?", options: ["પેદાશ", "ઉત્પાદન", "ગ્રાહક", "નફો"], answer: 2, explanation: "ગ્રાહકલક્ષી અભિગમ હોવાથી ગ્રાહક કેન્દ્રસ્થાને છે." },
+      { id: 15, question: "15. નીચેનામાંથી કયું કાર્ય બજારીય સંચાલકનું છે ?", options: ["માલ વપરાશ યોગ્ય બનાવવો", "માલનો સંગ્રહ કરવો", "બજાર વિભાજન", "વેચાણ"], answer: 2, explanation: "બજાર વિભાજન (Market Segmentation) એ બજારીય સંચાલનનું મહત્વનું કાર્ય છે." }
+    ]
+  }
+];
+
+// ૨. કાયમી પેપર્સને લોડ કરવાનું લોજિક (Auto-Merge Logic)
+function getInitialMockPapers() {
+  let userUploaded = [];
+  try {
+    userUploaded = JSON.parse(localStorage.getItem('dedicated_mock_papers') || '[]');
+  } catch (e) {
+    userUploaded = [];
+  }
+
+  // જો લોકલ સ્ટોરેજ ખાલી હોય, તો સીધા જ કાયમી પેપર્સ આપી દેવા
+  if (!userUploaded || userUploaded.length === 0) {
+    localStorage.setItem('dedicated_mock_papers', JSON.stringify(PERMANENT_BOARD_PAPERS));
+    return PERMANENT_BOARD_PAPERS;
+  }
+
+  // કાયમી પેપર્સ અને નવા અપલોડ થયેલા બંનેને ભેગા (Merge) કરવા
+  const combined = [...PERMANENT_BOARD_PAPERS];
+  userUploaded.forEach(p => {
+    if (!combined.some(c => c.title === p.title)) {
+      combined.push(p);
+    }
+  });
+  return combined;
+}
+
+// તમારા મુખ્ય મોક પેપર્સના વેરીએબલને અહીં સેટ કરો
+window.dedicatedMockPapers = getInitialMockPapers();savedPapers = PERMANENT_BOARD_PAPERS;
+  localStorage.setItem('dedicated_mock_papers', JSON.stringify(savedPapers));
+}} catch (e) {}
+
+      // Load Student Reports & Profile
+      try {
+        const savedProf = JSON.parse(localStorage.getItem('student_profile'));
+        if (savedProf) studentProfile = { ...studentProfile, ...savedProf };
+
+        const savedReports = JSON.parse(localStorage.getItem('student_reports_log'));
+        if (savedReports && Array.isArray(savedReports)) {
+          window.studentReports = savedReports;
+        } else {
+          // Pre-populate realistic seed records for leaderboard & counter
+          window.studentReports = [
+            { name: "પ્રિયા પટેલ", date: "15/09/2026, 10:30", category: "બોર્ડ મોક ટેસ્ટ", score: 25, total: 25, percentage: 100 },
+            { name: "રોહિત શર્મા", date: "14/09/2026, 16:45", category: "પ્રકરણ ૧: સંચાલનનું સ્વરૂપ", score: 10, total: 10, percentage: 100 },
+            { name: "અંજલિ દેસાઈ", date: "14/09/2026, 12:15", category: "બોર્ડ મોક ટેસ્ટ", score: 24, total: 25, percentage: 96 },
+            { name: "ધ્રુવ વ્યાસ", date: "13/09/2026, 18:20", category: "પ્રકરણ ૨: સિદ્ધાંતો", score: 11, total: 12, percentage: 92 },
+            { name: "મિતલ પંચાલ", date: "13/09/2026, 09:10", category: "મિશ્ર પ્રશ્નો (20)", score: 18, total: 20, percentage: 90 },
+            { name: "હર્ષિલ મોદી", date: "12/09/2026, 14:00", category: "પ્રકરણ ૩: આયોજન", score: 8, total: 9, percentage: 89 },
+            { name: "દીપ શાહ", date: "11/09/2026, 20:30", category: "બોર્ડ મોક ટેસ્ટ", score: 22, total: 25, percentage: 88 }
+          ];
+          localStorage.setItem('student_reports_log', JSON.stringify(window.studentReports));
+        }
+
+        const savedPin = localStorage.getItem('teacher_admin_pin');
+        if (savedPin) adminPin = savedPin;
+      } catch (e) {}
+
+      // Apply Watermark & Theme
+      applyWatermarkDisplay();
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    }
+
+    function toggleDarkMode() {
+      AudioSynth.click();
+      const isDark = document.documentElement.classList.toggle('dark');
+      try {
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      } catch (e) {}
+    }
+
+    function applyWatermarkDisplay() {
+      const wmEl = document.getElementById('appWatermark');
+      if (!wmEl) return;
+      
+      const savedOpacity = localStorage.getItem('watermark_opacity') || '5';
+      const customUrl = localStorage.getItem('watermark_custom_url');
+      const isCustom = localStorage.getItem('watermark_is_custom') === 'true';
+
+      wmEl.style.opacity = (parseInt(savedOpacity) / 100).toString();
+
+      if (isCustom && customUrl) {
+        wmEl.style.backgroundImage = `url('${customUrl}')`;
+      } else {
+        wmEl.style.backgroundImage = `url("${PERMANENT_SEAL_SVG}")`;
+      }
+    }
+
+    function renderHomeScreen() {
+      // Profile stats
+      document.getElementById('studentGreetingName').innerText = `નમસ્તે, ${studentProfile.name}!`;
+      document.getElementById('statTotalScore').innerText = studentProfile.totalScore.toLocaleString('gu-IN');
+      document.getElementById('navScorePoints').innerText = studentProfile.totalScore.toLocaleString('gu-IN');
+      document.getElementById('statTotalQuestions').innerText = window.allQuestions.length.toLocaleString('gu-IN');
+      document.getElementById('statBestStreak').innerText = `${studentProfile.bestStreak} 🔥`;
+
+      // Live student counter badge
+      const uniqueCount = new Set(window.studentReports.map(r => r.name)).size || 12;
+      document.getElementById('liveStudentCountText').innerText = `${uniqueCount}+ વિદ્યાર્થીઓએ ટેસ્ટ આપી`;
+
+      // Render 12 Chapter Cards
+      const container = document.getElementById('chapterCardsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      CHAPTERS.forEach((ch) => {
+        const chQuestions = window.allQuestions.filter(q => q.chapterId === ch.id);
+        const count = chQuestions.length;
+
+        const card = document.createElement('div');
+        card.className = "bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-sm hover:shadow-md border border-slate-200 dark:border-slate-700 transition flex flex-col justify-between group";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr ${ch.color} flex items-center justify-center text-white shadow-sm">
+                <i class="fa-solid ${ch.icon}"></i>
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                ${count} પ્રશ્નો
+              </span>
+            </div>
+            <h4 class="font-bold text-sm sm:text-base text-slate-800 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition leading-snug">
+              પ્રકરણ ${ch.id}: ${ch.title}
+            </h4>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between">
+            <span class="text-[11px] text-slate-400">MCQ પ્રેક્ટિસ</span>
+            <button onclick="startChapterQuiz(${ch.id})" class="px-3 py-1.5 rounded-xl font-bold text-xs bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white dark:bg-indigo-950/60 dark:text-indigo-300 dark:hover:bg-indigo-600 dark:hover:text-white transition flex items-center gap-1">
+              <span>ટેસ્ટ આપો</span>
+              <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function promptEditStudentName() {
+      const current = studentProfile.name;
+      const entered = prompt("તમારું પૂરું નામ દાખલ કરો:", current);
+      if (entered && entered.trim()) {
+        studentProfile.name = entered.trim();
+        try {
+          localStorage.setItem('student_profile', JSON.stringify(studentProfile));
+        } catch (e) {}
+        renderHomeScreen();
+        showToast(`નામ "${studentProfile.name}" સેટ થયું!`, "success");
+      }
+    }
+
+    function startChapterQuiz(chapterId) {
+      const questions = window.allQuestions.filter(q => q.chapterId === chapterId);
+      if (questions.length === 0) {
+        showToast("આ પ્રકરણમાં કોઈ પ્રશ્નો ઉપલબ્ધ નથી.", "error");
+        return;
+      }
+      activeCategoryName = `પ્રકરણ ${chapterId}: ${CHAPTERS.find(c => c.id === chapterId)?.title || ''}`;
+      activeChapterId = chapterId;
+      isTimedMockMode = false;
+      initQuizArena(questions);
+    }
+
+    function startMixedQuiz() {
+      if (window.allQuestions.length === 0) return;
+      const shuffled = [...window.allQuestions].sort(() => 0.5 - Math.random()).slice(0, 20);
+      activeCategoryName = "મિશ્ર પ્રશ્નો (20)";
+      activeChapterId = null;
+      isTimedMockMode = false;
+      initQuizArena(shuffled);
+    }
+
+    function startTimedMockTest(count = 25) {
+      if (window.allQuestions.length === 0) return;
+      const shuffled = [...window.allQuestions].sort(() => 0.5 - Math.random()).slice(0, count);
+      activeCategoryName = "બોર્ડ સ્પેશિયલ મોક ટેસ્ટ";
+      activeChapterId = null;
+      isTimedMockMode = true;
+      initQuizArena(shuffled);
+    }
+
+    function initQuizArena(questionsList) {
+      activeQuizQuestions = questionsList;
+      currentQIndex = 0;
+      currentScore = 0;
+      currentStreak = 0;
+      lifelineState = { fftyUsed: false, skipUsed: false };
+
+      // Update lifelines UI
+      const l50 = document.getElementById('lifeline5050');
+      const lsk = document.getElementById('lifelineSkip');
+      if (l50) { l50.disabled = false; l50.classList.remove('opacity-40', 'line-through'); }
+      if (lsk) { lsk.disabled = false; lsk.classList.remove('opacity-40', 'line-through'); }
+
+      document.getElementById('quizBadgeCategory').innerText = activeCategoryName;
+      navigateTo('quiz');
+      renderCurrentQuestion();
+    }
+
+    function renderCurrentQuestion() {
+      clearInterval(timerInterval);
+      isQuestionAnswered = false;
+
+      const q = activeQuizQuestions[currentQIndex];
+      const total = activeQuizQuestions.length;
+
+      // Update Header Stats
+      document.getElementById('quizQuestionCounter').innerText = `પ્રશ્ન ${currentQIndex + 1} / ${total}`;
+      document.getElementById('quizStreakCount').innerText = currentStreak;
+      document.getElementById('quizProgressBar').style.width = `${((currentQIndex + 1) / total) * 100}%`;
+
+      // Hide Next button & explanation box
+      document.getElementById('btnQuizNext').disabled = true;
+      const expBox = document.getElementById('quizExplanationBox');
+      if (expBox) expBox.classList.add('hidden');
+
+      // Question Text
+      document.getElementById('quizQuestionText').innerText = q.question;
+
+      // Render Options
+      const optionsBox = document.getElementById('quizOptionsContainer');
+      optionsBox.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      q.options.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "w-full text-left p-3.5 sm:p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 hover:bg-indigo-50/80 dark:bg-slate-700/50 dark:hover:bg-slate-700 font-medium text-xs sm:text-sm text-slate-800 dark:text-slate-200 transition flex items-center gap-3";
+        btn.id = `quizOptBtn_${idx}`;
+        btn.onclick = () => selectQuizAnswer(idx);
+        btn.innerHTML = `
+          <span class="w-6 h-6 rounded-lg bg-white dark:bg-slate-600 border border-slate-200 dark:border-slate-500 flex items-center justify-center font-bold text-xs text-indigo-600 dark:text-indigo-300 shrink-0">
+            ${letters[idx]}
+          </span>
+          <span class="flex-1">${optText}</span>
+        `;
+        optionsBox.appendChild(btn);
+      });
+
+      // Timer setup
+      timerValue = isTimedMockMode ? 45 : 30;
+      document.getElementById('quizTimerText').innerText = `${timerValue}s`;
+      document.getElementById('quizTimerWrapper').classList.remove('bg-rose-100', 'text-rose-600');
+
+      timerInterval = setInterval(() => {
+        timerValue--;
+        document.getElementById('quizTimerText').innerText = `${timerValue}s`;
+
+        if (timerValue <= 5) {
+          document.getElementById('quizTimerWrapper').classList.add('bg-rose-100', 'text-rose-600');
+        }
+
+        if (timerValue <= 0) {
+          clearInterval(timerInterval);
+          handleTimeOut();
+        }
+      }, 1000);
+    }
+
+    function selectQuizAnswer(selectedIndex) {
+      if (isQuestionAnswered) return;
+      isQuestionAnswered = true;
+      clearInterval(timerInterval);
+
+      const q = activeQuizQuestions[currentQIndex];
+      const correctIndex = q.answer;
+      const isCorrect = (selectedIndex === correctIndex);
+
+      // Highlight selected & correct buttons
+      const selectedBtn = document.getElementById(`quizOptBtn_${selectedIndex}`);
+      const correctBtn = document.getElementById(`quizOptBtn_${correctIndex}`);
+
+      if (isCorrect) {
+        AudioSynth.correct();
+        currentScore++;
+        currentStreak++;
+        if (selectedBtn) {
+          selectedBtn.className = "w-full text-left p-3.5 sm:p-4 rounded-xl border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-200 font-bold text-xs sm:text-sm flex items-center gap-3 shadow-sm";
+        }
+      } else {
+        AudioSynth.wrong();
+        currentStreak = 0;
+        if (selectedBtn) {
+          selectedBtn.className = "w-full text-left p-3.5 sm:p-4 rounded-xl border border-rose-500 bg-rose-50 dark:bg-rose-950/50 text-rose-800 dark:text-rose-200 font-medium text-xs sm:text-sm flex items-center gap-3";
+        }
+        if (correctBtn) {
+          correctBtn.className = "w-full text-left p-3.5 sm:p-4 rounded-xl border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-200 font-bold text-xs sm:text-sm flex items-center gap-3";
+        }
+      }
+
+      document.getElementById('quizStreakCount').innerText = currentStreak;
+
+      // Show Explanation Box
+      const expBox = document.getElementById('quizExplanationBox');
+      const expBody = document.getElementById('explanationBody');
+      if (expBox && expBody) {
+        expBody.innerText = q.explanation || "આ પ્રશ્ન પાઠ્યપુસ્તકના સત્તાવાર સિલેબસ આધારિત છે.";
+        expBox.classList.remove('hidden');
+      }
+
+      // Enable Next Button
+      document.getElementById('btnQuizNext').disabled = false;
+    }
+
+    function handleTimeOut() {
+      if (isQuestionAnswered) return;
+      isQuestionAnswered = true;
+      AudioSynth.wrong();
+      currentStreak = 0;
+      document.getElementById('quizStreakCount').innerText = currentStreak;
+
+      const q = activeQuizQuestions[currentQIndex];
+      const correctBtn = document.getElementById(`quizOptBtn_${q.answer}`);
+      if (correctBtn) {
+        correctBtn.className = "w-full text-left p-3.5 sm:p-4 rounded-xl border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-200 font-bold text-xs sm:text-sm flex items-center gap-3";
+      }
+
+      const expBox = document.getElementById('quizExplanationBox');
+      const expBody = document.getElementById('explanationBody');
+      if (expBox && expBody) {
+        expBody.innerText = "સમય પૂરો થઈ ગયો! સાચો જવાબ હાઈલાઈટ થયો છે.";
+        expBox.classList.remove('hidden');
+      }
+
+      document.getElementById('btnQuizNext').disabled = false;
+    }
+
+    function proceedToNextQuestion() {
+      AudioSynth.click();
+      if (currentQIndex < activeQuizQuestions.length - 1) {
+        currentQIndex++;
+        renderCurrentQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function useLifeline5050() {
+      if (lifelineState.fftyUsed || isQuestionAnswered) return;
+      lifelineState.fftyUsed = true;
+      AudioSynth.click();
+
+      const btn = document.getElementById('lifeline5050');
+      if (btn) { btn.disabled = true; btn.classList.add('opacity-40', 'line-through'); }
+
+      const q = activeQuizQuestions[currentQIndex];
+      const wrongIndices = [0, 1, 2, 3].filter(i => i !== q.answer);
+      // Randomly hide 2 wrong options
+      wrongIndices.sort(() => 0.5 - Math.random()).slice(0, 2).forEach(idx => {
+        const optBtn = document.getElementById(`quizOptBtn_${idx}`);
+        if (optBtn) optBtn.classList.add('invisible');
+      });
+      showToast("૫૦:૫૦ લાઈફલાઈન સક્રિય થઈ!", "info");
+    }
+
+    function useLifelineSkip() {
+      if (lifelineState.skipUsed || isQuestionAnswered) return;
+      lifelineState.skipUsed = true;
+      AudioSynth.click();
+
+      const btn = document.getElementById('lifelineSkip');
+      if (btn) { btn.disabled = true; btn.classList.add('opacity-40', 'line-through'); }
+
+      showToast("પ્રશ્ન સ્કિપ કર્યો!", "info");
+      proceedToNextQuestion();
+    }
+
+    function confirmExitQuiz() {
+      if (confirm("શું તમે ખરેખર કસોટી છોડીને હોમ પેજ પર જવા માંગો છો?")) {
+        clearInterval(timerInterval);
+        navigateTo('home');
+      }
+    }
+
+    function finishQuiz() {
+      clearInterval(timerInterval);
+      const total = activeQuizQuestions.length;
+      const percentage = Math.round((currentScore / total) * 100);
+      const earnedPoints = currentScore * 10;
+
+      // Update student profile
+      studentProfile.totalScore += earnedPoints;
+      studentProfile.quizzesTaken++;
+      if (currentStreak > studentProfile.bestStreak) {
+        studentProfile.bestStreak = currentStreak;
+      }
+      try {
+        localStorage.setItem('student_profile', JSON.stringify(studentProfile));
+      } catch (e) {}
+
+      // Record to Student Reports Log
+      const now = new Date();
+      const reportRecord = {
+        name: studentProfile.name,
+        date: `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}, ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`,
+        category: activeCategoryName,
+        score: currentScore,
+        total: total,
+        percentage: percentage
+      };
+      window.studentReports.unshift(reportRecord);
+      if (window.studentReports.length > 200) window.studentReports.pop();
+      try {
+        localStorage.setItem('student_reports_log', JSON.stringify(window.studentReports));
+      } catch (e) {}
+
+      // Play victory sound
+      if (percentage >= 80) {
+        AudioSynth.fanfare();
+      } else {
+        AudioSynth.click();
+      }
+
+      // Populate Result View Elements
+      document.getElementById('resCorrectScore').innerText = `${currentScore} / ${total}`;
+      document.getElementById('resPercentage').innerText = `${percentage}%`;
+      document.getElementById('resEarnedPoints').innerText = `+${earnedPoints}`;
+
+      const certBox = document.getElementById('certificateClaimBox');
+      if (percentage >= 80) {
+        if (certBox) certBox.classList.remove('hidden');
+        document.getElementById('resultHeading').innerText = "શાનદાર! ઉત્કૃષ્ટ પરિણામ!";
+      } else {
+        if (certBox) certBox.classList.add('hidden');
+        document.getElementById('resultHeading').innerText = "કસોટી પૂર્ણ થઈ!";
+      }
+
+      navigateTo('result');
+    }
+
+    function restartCurrentQuiz() {
+      if (activeQuizQuestions.length > 0) {
+        initQuizArena(activeQuizQuestions);
+      } else {
+        navigateTo('home');
+      }
+    }
+
+    function openCertificateModal() {
+      AudioSynth.click();
+      const total = activeQuizQuestions.length || 1;
+      const percentage = Math.round((currentScore / total) * 100);
+      const now = new Date();
+
+      document.getElementById('certStudentName').innerText = studentProfile.name;
+      document.getElementById('certPercentage').innerText = `${percentage}%`;
+      document.getElementById('certDateText').innerText = `તારીખ: ${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}`;
+
+      const modal = document.getElementById('certificateModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeCertificateModal() {
+      const modal = document.getElementById('certificateModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function openLeaderboardModal() {
+      AudioSynth.click();
+      renderLeaderboard();
+      const modal = document.getElementById('leaderboardModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeLeaderboardModal() {
+      const modal = document.getElementById('leaderboardModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function renderLeaderboard() {
+      // Find best percentage for each unique student
+      const userBestMap = {};
+      window.studentReports.forEach(rep => {
+        if (!userBestMap[rep.name] || rep.percentage > userBestMap[rep.name].percentage) {
+          userBestMap[rep.name] = rep;
+        }
+      });
+
+      const sortedList = Object.values(userBestMap).sort((a, b) => b.percentage - a.percentage || b.score - a.score);
+      const top3 = sortedList.slice(0, 3);
+      const rest = sortedList.slice(3, 10);
+
+      // Render Podium (2nd, 1st, 3rd visual arrangement)
+      const podiumBox = document.getElementById('leaderboardPodiumBox');
+      podiumBox.innerHTML = '';
+
+      if (sortedList.length === 0) {
+        podiumBox.innerHTML = '<p class="col-span-3 text-xs text-slate-400 py-4">હજુ સુધી કોઈ સ્કોર નોંધાયો નથી.</p>';
+        return;
+      }
+
+      // Helper for podium card
+      const createPodiumItem = (item, rank, heightClass, bgBadge) => {
+        if (!item) return `<div></div>`;
+        return `
+          <div class="flex flex-col items-center">
+            <span class="text-lg">${rank === 1 ? '👑' : (rank === 2 ? '🥈' : '🥉')}</span>
+            <div class="w-full ${heightClass} ${bgBadge} rounded-t-2xl p-2 flex flex-col justify-between shadow">
+              <span class="font-bold text-xs truncate max-w-full">${item.name}</span>
+              <span class="text-xs font-black">${item.percentage}%</span>
+            </div>
+            <span class="text-[10px] text-slate-500 font-bold mt-1">#${rank}</span>
+          </div>
+        `;
+      };
+
+      podiumBox.innerHTML = `
+        ${createPodiumItem(top3[1], 2, 'h-24', 'bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-100')}
+        ${createPodiumItem(top3[0], 1, 'h-32', 'bg-amber-400 text-slate-900 font-bold')}
+        ${createPodiumItem(top3[2], 3, 'h-20', 'bg-amber-600/30 text-amber-900 dark:text-amber-200')}
+      `;
+
+      // Render 4 to 10
+      const restBox = document.getElementById('leaderboardRemainderList');
+      restBox.innerHTML = '';
+      rest.forEach((item, index) => {
+        const rank = index + 4;
+        const row = document.createElement('div');
+        row.className = "flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 text-xs";
+        row.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-600 font-bold flex items-center justify-center text-[10px] text-slate-600 dark:text-slate-300">
+              #${rank}
+            </span>
+            <span class="font-bold text-slate-800 dark:text-slate-200">${item.name}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] text-slate-400">${item.category}</span>
+            <span class="font-black text-indigo-600 dark:text-indigo-400">${item.percentage}%</span>
+          </div>
+        `;
+        restBox.appendChild(row);
+      });
+    }
+
+    function openResetPointsModal() {
+      AudioSynth.click();
+      const modal = document.getElementById('resetPointsModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeResetPointsModal() {
+      const modal = document.getElementById('resetPointsModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function confirmResetPoints() {
+      studentProfile.totalScore = 0;
+      studentProfile.bestStreak = 0;
+      try {
+        localStorage.setItem('student_profile', JSON.stringify(studentProfile));
+      } catch (e) {}
+
+      closeResetPointsModal();
+      renderHomeScreen();
+      showToast("કુલ પોઈન્ટ્સ સફળતાપૂર્વક ૦ થઈ ગયા છે!", "info");
+    }
+
+    function openMockSelectModal() {
+      AudioSynth.click();
+      const container = document.getElementById('mockPaperSelectionList');
+      container.innerHTML = '';
+
+      // Default random 25 option
+      const defCard = document.createElement('div');
+      defCard.className = "p-3.5 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-slate-700 dark:to-slate-700/50 border border-amber-200 dark:border-slate-600 flex items-center justify-between cursor-pointer hover:shadow-md transition";
+      defCard.onclick = () => { closeMockSelectModal(); startTimedMockTest(25); };
+      defCard.innerHTML = `
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold">
+            <i class="fa-solid fa-dice"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">જનરલ બોર્ડ મોક ટેસ્ટ (૨૫ પ્રશ્નો)</h4>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">બધા પ્રકરણોમાંથી રેન્ડમ પ્રશ્નો</p>
+          </div>
+        </div>
+        <button class="px-3 py-1.5 rounded-xl bg-amber-500 text-white font-bold text-xs">શરૂ કરો</button>
+      `;
+      container.appendChild(defCard);
+
+      // Uploaded Dedicated Papers
+      if (window.dedicatedMockPapers.length > 0) {
+        window.dedicatedMockPapers.forEach((paper, pIdx) => {
+          const card = document.createElement('div');
+          card.className = "p-3.5 rounded-2xl bg-white dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600 flex items-center justify-between cursor-pointer hover:shadow-md transition";
+          card.onclick = () => { closeMockSelectModal(); startDedicatedMockPaper(pIdx); };
+          card.innerHTML = `
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold">
+                <i class="fa-solid fa-file-signature"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">${paper.title}</h4>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">${paper.questions.length} પ્રશ્નો</p>
+              </div>
+            </div>
+            <button class="px-3 py-1.5 rounded-xl bg-indigo-600 text-white font-bold text-xs">શરૂ કરો</button>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      document.getElementById('mockSelectModal').classList.remove('hidden');
+    }
+
+    function closeMockSelectModal() {
+      const modal = document.getElementById('mockSelectModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function startDedicatedMockPaper(paperIndex) {
+      const paper = window.dedicatedMockPapers[paperIndex];
+      if (!paper || paper.questions.length === 0) return;
+      activeCategoryName = paper.title;
+      activeChapterId = null;
+      isTimedMockMode = true;
+      initQuizArena(paper.questions);
+    }
+
+    function renderAdminPortal() {
+      document.getElementById('adminTotalQuestionsCount').innerText = window.allQuestions.length.toLocaleString('gu-IN');
+      renderAdminQuestionsTable();
+      renderAdminMockPapersList();
+      renderStudentReportsTable();
+    }
+
+    function switchAdminTab(tab) {
+      AudioSynth.click();
+      const tabs = ['questions', 'mock', 'reports'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`adminTabBtn${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        const content = document.getElementById(`adminTab${t.charAt(0).toUpperCase() + t.slice(1)}`);
+        if (t === tab) {
+          if (btn) { btn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm bg-indigo-600 text-white transition shrink-0"; }
+          if (content) content.classList.remove('hidden');
+        } else {
+          if (btn) { btn.className = "px-4 py-2 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition shrink-0"; }
+          if (content) content.classList.add('hidden');
+        }
+      });
+    }
+
+    function renderAdminQuestionsTable() {
+      const filterChap = document.getElementById('adminFilterChapter')?.value || 'all';
+      const query = (document.getElementById('adminSearchInput')?.value || '').trim().toLowerCase();
+      const tbody = document.getElementById('adminQuestionsTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      let filtered = window.allQuestions.filter(q => {
+        const matchesChap = (filterChap === 'all') || (q.chapterId.toString() === filterChap);
+        const matchesQuery = !query || q.question.toLowerCase().includes(query);
+        return matchesChap && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-slate-400 text-xs">કોઈ પ્રશ્નો મળ્યા નથી.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach((q, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50 dark:hover:bg-slate-700/30";
+        tr.innerHTML = `
+          <td class="py-3 px-3 text-center font-bold text-slate-400">${idx + 1}</td>
+          <td class="py-3 px-3 font-semibold text-indigo-600">પ્રકરણ ${q.chapterId}</td>
+          <td class="py-3 px-4 font-medium">${q.question}</td>
+          <td class="py-3 px-4 font-bold text-emerald-600">${q.options[q.answer] || ''}</td>
+          <td class="py-3 px-3 text-center">
+            <button onclick="deleteAdminQuestion('${q.id}')" class="text-rose-500 hover:text-rose-700 p-1 transition" title="કાઢી નાખો">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function deleteAdminQuestion(id) {
+      if (confirm("શું તમે ખરેખર આ પ્રશ્ન કાઢી નાખવા માંગો છો?")) {
+        window.allQuestions = window.allQuestions.filter(q => q.id !== id);
+        try {
+          localStorage.setItem('quiz_questions', JSON.stringify(window.allQuestions));
+        } catch (e) {}
+        renderAdminPortal();
+        showToast("પ્રશ્ન કાઢી નાખવામાં આવ્યો છે.", "info");
+      }
+    }
+
+    function resetToDefault122Questions() {
+      if (confirm("શું તમે મૂળ ૧૨૨ અધિકૃત પ્રશ્નો પુનઃસ્થાપિત કરવા માંગો છો?")) {
+        window.allQuestions = [...DEFAULT_QUESTIONS];
+        try {
+          localStorage.setItem('quiz_questions', JSON.stringify(window.allQuestions));
+        } catch (e) {}
+        renderAdminPortal();
+        showToast("મૂળ ૧૨૨ પ્રશ્નો પુનઃસ્થાપિત થઈ ગયા!", "success");
+      }
+    }
+
+    function renderAdminMockPapersList() {
+      const container = document.getElementById('adminMockPapersList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (window.dedicatedMockPapers.length === 0) {
+        container.innerHTML = `<p class="col-span-2 text-xs text-slate-400 py-6 text-center">હજુ સુધી કોઈ સ્પેશિયલ મોક પેપર અપલોડ થયું નથી.</p>`;
+        return;
+      }
+
+      window.dedicatedMockPapers.forEach((paper, idx) => {
+        const card = document.createElement('div');
+        card.className = "p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-between";
+        card.innerHTML = `
+          <div>
+            <h4 class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">${paper.title}</h4>
+            <p class="text-xs text-slate-400 mt-0.5">${paper.questions.length} પ્રશ્નો • ${paper.createdAt || 'હાલમાં'}</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="deleteDedicatedMockPaper(${idx})" class="p-2 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950 transition" title="ડિલીટ કરો">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function deleteDedicatedMockPaper(index) {
+      if (confirm("શું તમે આ મોક ટેસ્ટ પેપર કાઢી નાખવા માંગો છો?")) {
+        window.dedicatedMockPapers.splice(index, 1);
+        try {
+          localStorage.setItem('dedicated_mock_papers', JSON.stringify(window.dedicatedMockPapers));
+        } catch (e) {}
+        renderAdminMockPapersList();
+        showToast("મોક પેપર ડિલીટ થયું.", "info");
+      }
+    }
+
+    function renderStudentReportsTable() {
+      const totalSessions = window.studentReports.length;
+      const uniqueNames = new Set(window.studentReports.map(r => r.name)).size;
+      const avgScore = totalSessions > 0 
+        ? Math.round(window.studentReports.reduce((acc, r) => acc + r.percentage, 0) / totalSessions) 
+        : 0;
+
+      document.getElementById('repTotalSessions').innerText = totalSessions.toLocaleString('gu-IN');
+      document.getElementById('repUniqueStudents').innerText = uniqueNames.toLocaleString('gu-IN');
+      document.getElementById('repAverageScore').innerText = `${avgScore}%`;
+
+      const tbody = document.getElementById('adminStudentReportsTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (window.studentReports.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400 text-xs">કોઈ વિદ્યાર્થી રિપોર્ટ ઉપલબ્ધ નથી.</td></tr>`;
+        return;
+      }
+
+      window.studentReports.forEach(rep => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50 dark:hover:bg-slate-700/30";
+        const badgeColor = rep.percentage >= 80 ? 'bg-emerald-100 text-emerald-700' : (rep.percentage >= 50 ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700');
+        const badgeText = rep.percentage >= 80 ? 'ઉત્કૃષ્ટ' : (rep.percentage >= 50 ? 'સંતોષકારક' : 'સુધારો જરૂરી');
+        
+        tr.innerHTML = `
+          <td class="py-3 px-3 text-slate-400 font-mono text-[11px]">${rep.date}</td>
+          <td class="py-3 px-4 font-bold text-slate-800 dark:text-slate-100">${rep.name}</td>
+          <td class="py-3 px-3 text-indigo-600 font-medium">${rep.category}</td>
+          <td class="py-3 px-3 text-center font-bold">${rep.score} / ${rep.total}</td>
+          <td class="py-3 px-3 text-center font-black">${rep.percentage}%</td>
+          <td class="py-3 px-3 text-center">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${badgeColor}">
+              ${badgeText}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openExcelModal() {
+      AudioSynth.click();
+      const modal = document.getElementById('excelImportModal');
+      const err = document.getElementById('excelErrorMsg');
+      if (err) err.classList.add('hidden');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeExcelModal() {
+      const modal = document.getElementById('excelImportModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function downloadExcelTemplate() {
+      const rows = [
+        ["પ્રકરણ_નંબર", "પ્રશ્ન", "વિકલ્પ_A", "વિકલ્પ_B", "વિકલ્પ_C", "વિકલ્પ_D", "સાચો_જવાબ", "સમજૂતી"],
+        [1, "અન્ય વ્યક્તિઓ પાસેથી કામ લેવાની કળાને શું કહે છે?", "આયોજન", "સંચાલન", "દોરવણી", "સંકલન", "B", "કુંન્ત્ઝ અને ઓ’ડોનેલ અનુસાર"],
+        [2, "વૈજ્ઞાનિક સંચાલન વિચારધારાના પ્રણેતા કોણ છે?", "લ્યુથર ગુલિક", "ફેડરિક ટેલર", "હેનરી ફેયોલ", "પીટર એફ. ડ્રકર", "B", "એફ. ડબલ્યુ. ટેલર"]
+      ];
+      const ws = XLSX.utils.aoa_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Questions");
+      XLSX.writeFile(wb, "BA_MCQ_Template.xlsx");
+      showToast("નમૂના એક્સેલ ફાઇલ ડાઉનલોડ થઈ ગઈ!", "success");
+    }
+
+    function handleExcelUpload() {
+      const fileInput = document.getElementById('excelFileInput');
+      const errorMsg = document.getElementById('excelErrorMsg');
+      if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+        if (errorMsg) { errorMsg.innerText = "કૃપા કરીને પહેલા ફાઇલ પસંદ કરો!"; errorMsg.classList.remove('hidden'); }
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+          const jsonRows = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+          if (jsonRows.length < 2) {
+            throw new Error("એક્સેલ શીટ ખાલી છે!");
+          }
+
+          const newQuestions = [];
+          const ansMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, '1': 0, '2': 1, '3': 2, '4': 3 };
+
+          for (let i = 1; i < jsonRows.length; i++) {
+            const row = jsonRows[i];
+            if (!row[1]) continue;
+
+            const chId = parseInt(row[0]) || 1;
+            const qText = String(row[1]).trim();
+            const opts = [String(row[2] || ''), String(row[3] || ''), String(row[4] || ''), String(row[5] || '')];
+            
+            let ansKey = String(row[6] || 'A').trim().toLowerCase();
+            let ansIndex = ansMap[ansKey] !== undefined ? ansMap[ansKey] : 0;
+            const explanation = String(row[7] || '');
+
+            newQuestions.push({
+              id: `excel_${Date.now()}_${i}`,
+              chapterId: (chId >= 1 && chId <= 12) ? chId : 1,
+              question: qText,
+              options: opts,
+              answer: ansIndex,
+              explanation: explanation
+            });
+          }
+
+          if (newQuestions.length === 0) {
+            throw new Error("કોઈ માન્ય પ્રશ્નો મળ્યા નહીં.");
+          }
+
+          window.allQuestions = [...window.allQuestions, ...newQuestions];
+          try {
+            localStorage.setItem('quiz_questions', JSON.stringify(window.allQuestions));
+          } catch (e) {}
+
+          closeExcelModal();
+          renderAdminPortal();
+          showToast(`${newQuestions.length} પ્રશ્નો સફળતાપૂર્વક ઉમેરાયા!`, "success");
+        } catch (err) {
+          if (errorMsg) {
+            errorMsg.innerText = "ફાઇલ વાંચવામાં ભૂલ: " + err.message;
+            errorMsg.classList.remove('hidden');
+          }
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    function openMockUploadModal() {
+      AudioSynth.click();
+      const modal = document.getElementById('mockUploadModal');
+      const err = document.getElementById('mockUploadError');
+      if (err) err.classList.add('hidden');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeMockUploadModal() {
+      const modal = document.getElementById('mockUploadModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function downloadMockTemplate() {
+      const rows = [
+        ["પ્રશ્ન", "વિકલ્પ_A", "વિકલ્પ_B", "વિકલ્પ_C", "વિકલ્પ_D", "સાચો_જવાબ", "સમજૂતી"],
+        ["સંચાલન એ કેવી પ્રવૃત્તિ છે?", "સર્વવ્યાપી", "બિનકાર્યક્ષમ", "ધ્યેય નિર્ધારણ", "પારદર્શક", "A", "સર્વવ્યાપી પ્રવૃત્તિ છે"]
+      ];
+      const ws = XLSX.utils.aoa_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "MockPaper");
+      XLSX.writeFile(wb, "Board_Mock_Template.xlsx");
+      showToast("મોક ટેસ્ટ નમૂનો ડાઉનલોડ થયો!", "success");
+    }
+
+    function handleMockUpload() {
+      const titleInput = document.getElementById('mockPaperTitleInput');
+      const fileInput = document.getElementById('mockFileInput');
+      const errorMsg = document.getElementById('mockUploadError');
+
+      const title = (titleInput?.value || '').trim();
+      if (!title) {
+        if (errorMsg) { errorMsg.innerText = "કૃપા કરીને પેપરનું નામ આપો!"; errorMsg.classList.remove('hidden'); }
+        return;
+      }
+
+      if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+        if (errorMsg) { errorMsg.innerText = "કૃપા કરીને એક્સેલ ફાઇલ પસંદ કરો!"; errorMsg.classList.remove('hidden'); }
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const sheet = workbook.Sheets[workbook.SheetNames[0]];
+          const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+          const mockQ = [];
+          const ansMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, '1': 0, '2': 1, '3': 2, '4': 3 };
+
+          for (let i = 1; i < rows.length; i++) {
+            const r = rows[i];
+            if (!r[0]) continue;
+            const qText = String(r[0]).trim();
+            const opts = [String(r[1] || ''), String(r[2] || ''), String(r[3] || ''), String(r[4] || '')];
+            let ansKey = String(r[5] || 'A').trim().toLowerCase();
+            let ansIndex = ansMap[ansKey] !== undefined ? ansMap[ansKey] : 0;
+            const explanation = String(r[6] || '');
+
+            mockQ.push({
+              id: `mock_${Date.now()}_${i}`,
+              question: qText,
+              options: opts,
+              answer: ansIndex,
+              explanation: explanation
+            });
+          }
+
+          if (mockQ.length === 0) {
+            throw new Error("માન્ય પ્રશ્નો મળ્યા નહીં.");
+          }
+
+          const now = new Date();
+          window.dedicatedMockPapers.push({
+            title: title,
+            questions: mockQ,
+            createdAt: `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`
+          });
+          try {
+            localStorage.setItem('dedicated_mock_papers', JSON.stringify(window.dedicatedMockPapers));
+          } catch (e) {}
+
+          closeMockUploadModal();
+          renderAdminPortal();
+          showToast(`મોક ટેસ્ટ "${title}" (${mockQ.length} પ્રશ્નો) સફળતાપૂર્વક સેવ થયું!`, "success");
+        } catch (err) {
+          if (errorMsg) {
+            errorMsg.innerText = "ભૂલ: " + err.message;
+            errorMsg.classList.remove('hidden');
+          }
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    function openBgPhotoModal() {
+      AudioSynth.click();
+      const modal = document.getElementById('bgPhotoModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeBgPhotoModal() {
+      const modal = document.getElementById('bgPhotoModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function toggleWatermarkInputType(type) {
+      const box = document.getElementById('customWatermarkInputBox');
+      if (box) {
+        if (type === 'custom') box.classList.remove('hidden');
+        else box.classList.add('hidden');
+      }
+    }
+
+    function saveWatermarkSettings() {
+      const opacity = document.getElementById('bgOpacityRange')?.value || '5';
+      const isCustom = document.querySelector('input[name="watermarkType"]:checked')?.value === 'custom';
+      const urlInput = (document.getElementById('bgPhotoUrlInput')?.value || '').trim();
+      const fileInput = document.getElementById('bgPhotoFileInput');
+
+      try {
+        localStorage.setItem('watermark_opacity', opacity);
+        localStorage.setItem('watermark_is_custom', isCustom ? 'true' : 'false');
+        
+        if (isCustom) {
+          if (fileInput && fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              localStorage.setItem('watermark_custom_url', e.target.result);
+              applyWatermarkDisplay();
+              closeBgPhotoModal();
+              showToast("વોટરમાર્ક સફળતાપૂર્વક લાગુ થયો!", "success");
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+            return;
+          } else if (urlInput) {
+            localStorage.setItem('watermark_custom_url', urlInput);
+          }
+        }
+      } catch (e) {}
+
+      applyWatermarkDisplay();
+      closeBgPhotoModal();
+      showToast("વોટરમાર્ક સેટિંગ્સ સાચવી લેવાયા!", "success");
+    }
+
+    function exportQuestionsJson() {
+      const blob = new Blob([JSON.stringify(window.allQuestions, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `BA_Master_Questions_${window.allQuestions.length}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("પ્રશ્નોની JSON ફાઇલ ડાઉનલોડ થઈ ગઈ!", "success");
+    }
+
+    function exportStudentReportsCsv() {
+      if (window.studentReports.length === 0) {
+        showToast("ડાઉનલોડ કરવા માટે કોઈ ડેટા નથી.", "error");
+        return;
+      }
+      const rows = [
+        ["તારીખ-સમય", "વિદ્યાર્થીનું નામ", "કસોટી/પ્રકરણ", "મેળવેલ ગુણ", "કુલ ગુણ", "ટકાવારી"]
+      ];
+      window.studentReports.forEach(r => {
+        rows.push([r.date, r.name, r.category, r.score, r.total, `${r.percentage}%`]);
+      });
+      const ws = XLSX.utils.aoa_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "StudentReports");
+      XLSX.writeFile(wb, `BA_Student_Reports_${Date.now()}.xlsx`);
+      showToast("વિદ્યાર્થી રિપોર્ટ્સ એક્સેલ ડાઉનલોડ થઈ ગઈ!", "success");
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedData();
+      renderHomeScreen();
+    });
+  </script>
+</body>
+</html>
